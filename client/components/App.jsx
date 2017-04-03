@@ -18,18 +18,18 @@ class App extends React.Component {
      var Row = require('react-bootstrap').Row;
      var Col=require('react-bootstrap').Col;
     // var code = require('react-bootstrap').code;
+    const items =[1,2,3].map((e,i)=>{
+         return(   
+          <Col key={i} md={4}>
+              <Item key={i}/>
+          </Col>
+               )
+
+    })
     return (
       <Grid >
         <Row >
-          <Col md={4}>
-              <Item />
-          </Col>
-          <Col md={4}>
-              <Item />
-          </Col>
-          <Col md={4}>
-              <Item />
-          </Col>
+          {items}
         </Row>
           <Row >
             <Col md={12}>

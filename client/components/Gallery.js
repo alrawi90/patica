@@ -28,8 +28,8 @@ class Galary extends React.Component{
          counter:0
        }
    }
-   handleClick(e){console.log(e.target);this.props.pickedIcon(e.target.src)}
-   handlePrevious(e){this.state.counter<= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
+   handleClick(e){this.props.pickedIcon(e.target.src)}
+   handlePrevious(e){this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
    handleNext(e){this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})}
 
     render(){
@@ -63,8 +63,8 @@ class Galary extends React.Component{
               <button onClick={this.handleNext} >{'<'}</button>
             </Col>
             <Col md={4} >
-              <Thumbnail >
-                 <img onClick={this.handleClick} style={{height:'100%',width:'100%'}} src={this.state.items[this.state.counter]} />
+              <Thumbnail ref='thumb' >
+                 <img  onClick={this.handleClick} style={{height:'100%',width:'100%'}} src={this.state.items[this.state.counter]} />
               </Thumbnail>
             </Col>
             <Col md={1} >

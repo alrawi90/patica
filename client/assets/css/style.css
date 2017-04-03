@@ -44,3 +44,9 @@ html {
   transition-duration: 1s;
   -webkit-transition-duration: 1s;
 }
+.thumb:active{
+	border-width:10px;
+    box-shadow:1px;
+    border-radius:0;
+    border-color: blue;
+}
