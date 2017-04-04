@@ -4,7 +4,7 @@ const SkillCategory = require('./SkillCategory');
 class Item extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { categoryName:'', skills: [] ,iconUrl: '', key:1}
+    this.state = { categoryName:'Category Name', skills: ['skill-1','skill-2','skill-3'] ,iconUrl: '', key:1}
     this.handler = this.handler.bind(this)
   }
   handleClick(e){this.refs.sc.openModal(e)}
@@ -18,12 +18,14 @@ class Item extends React.Component {
 
     return (
 
-        <div>
-           <Hexagon key={this.state.key}  setIcon={this.state.iconUrl} click={(e)=>this.handleClick(e)} />
-           <label>Skill Category Name: <i>{this.state.categoryName}</i> </label><br />
-           <label>Skills: <i>{this.state.skills.join(', ')}</i> </label>
-           <SkillCategory ref='sc' handler={this.handler}  />
+      <div className="item-container">
+        <div className="item-details">
+          <label className="item-category-name" >{this.state.categoryName}</label><br />
+          <label><i>{this.state.skills.join(', ')}</i> </label>
+          <SkillCategory ref='sc' handler={this.handler}  />
         </div>
+          <Hexagon size={7} className="item-hexagon" key={this.state.key}  setIcon={this.state.iconUrl} click={(e)=>this.handleClick(e)} />
+      </div>
 
     )
   }

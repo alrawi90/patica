@@ -20,7 +20,7 @@ class Hexagon extends React.Component {
       <div className="hexagon-container">
         <svg viewBox='0 0 300 300'
           id="image-fill" xmlns="http://www.w3.org/2000/svg"
-          version="1.1" width="20%" height="20%"
+          version="1.1" width={this.props.size+'em'} height={this.props.size+'em'}
           xmlnsXlink="http://www.w3.org/1999/xlink">
 
           <defs key={this.state.key}>

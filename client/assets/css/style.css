@@ -50,3 +50,23 @@ html {
     border-radius:0;
     border-color: blue;
 }
+.item-container{
+  /*background-color: #dadfe8;*/
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.item-details{
+  text-align: right;
+  width:65%;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+}
+.item-hexagon{
+  display: flex;
+  flex-direction: column;
+}
+.item-category-name{
+  word-wrap: break-word;
+}
