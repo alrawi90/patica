@@ -4,12 +4,14 @@ const SkillCategory = require('./SkillCategory');
 class Item extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { categoryName:'' ,skills:[]}
-     this.handler = this.handler.bind(this)
+    this.state = { categoryName:'', skills: [] ,iconUrl: '', key:1}
+    this.handler = this.handler.bind(this)
   }
-     handler(cn,skills) {
+  handleClick(e){this.refs.sc.openModal(e)}
+
+  handler(cn,skills,iconUrl) {
     this.setState({
-      categoryName: cn,skills:skills
+      categoryName: cn, skills: skills , iconUrl: iconUrl, key: Math.random()
     })
   }
   render() {
@@ -17,11 +19,10 @@ class Item extends React.Component {
     return (
 
         <div>
-
-         <label>Skill Category Name: <i>{this.state.categoryName}</i> </label><br />
-         <label>Skills: <i>{this.state.skills.join(', ')}</i> </label>
-          <SkillCategory handler={this.handler} />
-
+           <Hexagon key={this.state.key}  setIcon={this.state.iconUrl} click={(e)=>this.handleClick(e)} />
+           <label>Skill Category Name: <i>{this.state.categoryName}</i> </label><br />
+           <label>Skills: <i>{this.state.skills.join(', ')}</i> </label>
+           <SkillCategory ref='sc' handler={this.handler}  />
         </div>
 
     )

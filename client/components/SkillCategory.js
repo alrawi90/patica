@@ -7,11 +7,19 @@ class SkillCategory extends React.Component {
     super(props)
     this.state = { isModalOpen: false,name:'',iconUrl:'',selectedIconUrl:'' ,key:1,SkillBoxes:['']}
     this.handleChange=this.handleChange.bind(this)
-    this.handleClick=this.handleClick.bind(this)
+    //this.handleClick=this.handleClick.bind(this)
     this.changeInputValue=this.changeInputValue.bind(this)
     this.setIcon=this.setIcon.bind(this)
   }
-  setIcon(url){this.setState({iconUrl: url,key: Math.random()})}
+  setIcon(url){
+
+    this.setState({
+      iconUrl: url,
+      key: Math.random(),
+
+
+   })
+  }
   changeInputValue(e){
     //
     const index=parseInt(e.target.id.split('-')[1])
@@ -42,7 +50,6 @@ class SkillCategory extends React.Component {
 
     return (
     <div style={{height:'100%' , with:'100%'}}>
-        <Hexagon key={this.state.key}  setIcon={this.state.iconUrl} click={this.handleClick} />
         <Modal
             isOpen={this.state.isModalOpen}
             onAfterOpen={this.afterOpenModal}
@@ -65,7 +72,7 @@ class SkillCategory extends React.Component {
     </div>
     )
     }
-  handleClick(e){this.openModal(e)}
+  //handleClick(e){this.openModal(e)}
   openModal(e) {
 
       this.setState({ isModalOpen: true })
@@ -76,7 +83,7 @@ class SkillCategory extends React.Component {
   }
   handleChange(e){
         e.preventDefault()
-        this.props.handler(this.refs.cn.value,this.state.SkillBoxes);
+        this.props.handler(this.refs.cn.value,this.state.SkillBoxes,this.state.iconUrl);
         this.closeModal()
   }
 }
