@@ -1,11 +1,6 @@
 const React = require('react');
 const Item = require('./Item');
-
-// const Row = require('./Row');
-// const Col = require('./Col');
-// const Container = require('./Container');
-//const ReactBootstrap=require('react-bootstrap')
-//import { Row,Col,Container,Navbar,Nav,Input,Button,NavItem} from 'react-bootstrap';
+const ReactBootstrap=require('react-bootstrap')
 class App extends React.Component {
   constructor(props) {
     super(props)
@@ -13,31 +8,57 @@ class App extends React.Component {
   }
 
   render() {
-    // require('react-bootstrap').Alert;
-     var Grid = require('react-bootstrap').Grid;
-     var Row = require('react-bootstrap').Row;
-     var Col=require('react-bootstrap').Col;
-    // var code = require('react-bootstrap').code;
+     const navbarInstance = (
+      <ReactBootstrap.Navbar inverse collapseOnSelect>
+        <ReactBootstrap.Navbar.Header>
+          <ReactBootstrap.Navbar.Brand>
+          <a href="#"><img src="https://facebook.github.io/react/img/logo.svg" width="40" height="40"/>React</a>
+          </ReactBootstrap.Navbar.Brand>
+          <ReactBootstrap.Navbar.Toggle />
+        </ReactBootstrap.Navbar.Header>
+        <ReactBootstrap.Navbar.Collapse>
+          <ReactBootstrap.Nav>
+            <ReactBootstrap.NavItem eventKey={1} href="#">Link</ReactBootstrap.NavItem>
+            <ReactBootstrap.NavItem eventKey={2} href="#">Link</ReactBootstrap.NavItem>
+            <ReactBootstrap.NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
+              <ReactBootstrap.MenuItem eventKey={3.1}>Action</ReactBootstrap.MenuItem>
+              <ReactBootstrap.MenuItem eventKey={3.2}>Another action</ReactBootstrap.MenuItem>
+              <ReactBootstrap.MenuItem eventKey={3.3}>Something else here</ReactBootstrap.MenuItem>
+              <ReactBootstrap.MenuItem divider />
+              <ReactBootstrap.MenuItem eventKey={3.3}>Separated link</ReactBootstrap.MenuItem>
+            </ReactBootstrap.NavDropdown>
+          </ReactBootstrap.Nav>
+          <ReactBootstrap.Nav pullRight>
+            <ReactBootstrap.NavItem eventKey={1} href="#">Link Right</ReactBootstrap.NavItem>
+            <ReactBootstrap.NavItem eventKey={2} href="#">Link Right</ReactBootstrap.NavItem>
+          </ReactBootstrap.Nav>
+        </ReactBootstrap.Navbar.Collapse>
+      </ReactBootstrap.Navbar>
+);
+
     const items =[1,2,3].map((e,i)=>{
-         return(   
-          <Col key={i} md={4}>
+         return(
+          <ReactBootstrap.Col key={i} md={4}>
               <Item key={i}/>
-          </Col>
+          </ReactBootstrap.Col>
                )
 
     })
     return (
-      <Grid >
-        <Row >
+    <div>
+    {navbarInstance}
+      <ReactBootstrap.Grid >
+        <ReactBootstrap.Row >
           {items}
-        </Row>
-          <Row >
-            <Col md={12}>
+        </ReactBootstrap.Row>
+          <ReactBootstrap.Row >
+            <ReactBootstrap.Col md={12}>
 
-            </Col>
+            </ReactBootstrap.Col>
 
-          </Row>
-      </Grid>
+          </ReactBootstrap.Row>
+      </ReactBootstrap.Grid>
+      </div>
     )
   }
 
