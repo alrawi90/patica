@@ -47,7 +47,7 @@ class SkillCategory extends React.Component {
         console.dir(e);
       //  var cn = this.refs.cn.value;
         //const url=this.state.selectedIconUrl
-        
+
         //this.refs.hexagon.update(this.state.iconUrl)
         this.props.handler(this.refs.cn.value);
         this.closeModal()
