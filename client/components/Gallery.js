@@ -6,7 +6,7 @@ var Thumbnail=require('react-bootstrap').Thumbnail;
 
 class Galary extends React.Component{
 
-   constructor(props){
+    constructor(props){
       super(props)
       this.handleClick=this.handleClick.bind(this)
       this.handleNext=this.handleNext.bind(this)
@@ -28,9 +28,9 @@ class Galary extends React.Component{
          counter:0
        }
    }
-   handleClick(e){this.props.pickedIcon(e.target.src)}
-   handlePrevious(e){this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
-   handleNext(e){this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})}
+    handleClick(e){this.props.pickedIcon(e.target.src)}
+    handlePrevious(e){this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
+    handleNext(e){this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})}
 
     render(){
   //    const cols=this.state.items.map((item,i)=>{

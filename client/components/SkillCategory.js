@@ -67,7 +67,7 @@ class SkillCategory extends React.Component {
           </label>
           <button onClick={(e) =>this.addSkillField(e)} > + </button>
           <p><button onClick={() => this.closeModal()}>Cancel</button></p>
-          <p><button onClick={this.handleChange}>Set</button></p>
+          <p><button onClick={this.set}>Set</button></p>
         </Modal>
     </div>
     )
@@ -81,7 +81,7 @@ class SkillCategory extends React.Component {
   closeModal() {
        this.setState({ isModalOpen: false })
   }
-  handleChange(e){
+  set(e){
         e.preventDefault()
         this.props.handler(this.refs.cn.value,this.state.SkillBoxes,this.state.iconUrl);
         this.closeModal()
