@@ -6,9 +6,7 @@ const ReactBootstrap=require('react-bootstrap')
 class App extends React.Component {
   constructor(props) {
     super(props)
-
   }
-
   render() {
      const navbarInstance = (
       <ReactBootstrap.Navbar inverse collapseOnSelect>
@@ -54,15 +52,23 @@ class App extends React.Component {
        <RoleLabel />
       </ReactBootstrap.Col>
       </ReactBootstrap.Row>
-        <ReactBootstrap.Row >
-          {items}
-        </ReactBootstrap.Row>
-          <ReactBootstrap.Row >
-            <ReactBootstrap.Col md={12}>
-            
-            </ReactBootstrap.Col>
-
-          </ReactBootstrap.Row>
+      <div style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
+         <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
+           <Item />
+           <Item />
+           <Item />
+         </div>
+         <div style={{display:'flex',flexDirection:'column'}} >
+           <Item />
+           <Item />
+           <Item />
+         </div>
+         <div style={{display:'flex',flexDirection:'column',}} >
+           <Item />
+           <Item />
+           <Item />
+         </div>
+      </div>
       </ReactBootstrap.Grid>
     </div>
     )
