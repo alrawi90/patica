@@ -78,3 +78,19 @@ html {
   text-align: left;
 }
 .item-role-details{text-align: left;display: inline-block;}
+.lego-container{
+  display: flex;
+  flex-direction: column;
+}
+.lego-up{
+  display: flex;
+  flex-direction: row;
+}
+.lego-down{
+  display: flex;
+  flex-direction: row;
+}
+.lego-img{
+  display: flex;
+  flex-direction: row;
+}

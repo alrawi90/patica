@@ -1,6 +1,7 @@
 const React = require('react');
 const Item = require('./Item');
 const RoleLabel = require('./RoleLabel');
+const Lego = require('./Lego');
 const ReactBootstrap=require('react-bootstrap')
 class App extends React.Component {
   constructor(props) {
@@ -43,11 +44,10 @@ class App extends React.Component {
               <Item key={i}/>
           </ReactBootstrap.Col>
                )
-
     })
     return (
     <div>
-    {navbarInstance}
+      {navbarInstance}
       <ReactBootstrap.Grid >
       <ReactBootstrap.Row >
       <ReactBootstrap.Col md={12}>
@@ -59,12 +59,12 @@ class App extends React.Component {
         </ReactBootstrap.Row>
           <ReactBootstrap.Row >
             <ReactBootstrap.Col md={12}>
-
+            
             </ReactBootstrap.Col>
 
           </ReactBootstrap.Row>
       </ReactBootstrap.Grid>
-      </div>
+    </div>
     )
   }
 
