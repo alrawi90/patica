@@ -1,5 +1,5 @@
 const React = require('react');
-const Item = require('./Item');
+const SkillCategoryLabel = require('./SkillCategoryLabel');
 const RoleLabel = require('./RoleLabel');
 const Lego = require('./Lego');
 const ReactBootstrap=require('react-bootstrap')
@@ -36,13 +36,7 @@ class App extends React.Component {
       </ReactBootstrap.Navbar>
 );
 
-    const items =[1,2,3].map((e,i)=>{
-         return(
-          <ReactBootstrap.Col key={i} md={4}>
-              <Item key={i}/>
-          </ReactBootstrap.Col>
-               )
-    })
+
     return (
     <div>
       {navbarInstance}
@@ -54,17 +48,17 @@ class App extends React.Component {
       </ReactBootstrap.Row>
       <div style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
          <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
-           <Item />
-           <Item />
-           <Item />
+           <SkillCategoryLabel />
+           <SkillCategoryLabel />
+           <SkillCategoryLabel />
          </div>
          <div style={{display:'block'}} >
            <Lego />
          </div>
-         <div style={{display:'flex',flexDirection:'column',}} >
-           <Item />
-           <Item />
-           <Item />
+         <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
+           <SkillCategoryLabel />
+           <SkillCategoryLabel />
+           <SkillCategoryLabel />
          </div>
       </div>
       </ReactBootstrap.Grid>

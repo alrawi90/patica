@@ -1,7 +1,7 @@
 const React = require('react');
 const 	Hexagon = require('./Hexagon');
 const SkillCategory = require('./SkillCategory');
-class Item extends React.Component {
+class SkillCategoryLabel extends React.Component {
   constructor(props) {
     super(props)
     this.state = { categoryName:'Category Name', skills: ['skill-1','skill-2','skill-3'] ,iconUrl: '', key:1}
@@ -31,4 +31,4 @@ class Item extends React.Component {
   }
 
 }
-module.exports = Item
+module.exports = SkillCategoryLabel
