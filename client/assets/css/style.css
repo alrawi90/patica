@@ -25,7 +25,7 @@ html {
 }
 
 #color-fill .hex {
-  fill: #ffff00;
+  fill: #dadfe8;
 }
 
 .hex:hover {
@@ -104,4 +104,9 @@ background-color: #dadfe8;
 .lego-img{
   height:16em;
   width:14em;
+}
+.up-trapezoid {
+}
+
+.down-trapezoid {
 }

@@ -1,8 +1,6 @@
 const React = require('react');
 var Swipeable = require('react-swipeable')
-var Row = require('react-bootstrap').Row;
-var Col=require('react-bootstrap').Col;
-var Thumbnail=require('react-bootstrap').Thumbnail;
+var Trapezoid=require('./Trapezoid') ;
 
 class Lego extends React.Component{
 
@@ -51,13 +49,13 @@ class Lego extends React.Component{
 
           <div className='lego-container' >
             <div className='lego-up' >
-              <button onClick={this.handleNext} >{'^'}</button>
+              <Trapezoid className='up-trapezoid' size={3} points="300,150 0,150 75,20 225,20" click={this.handleNext} />
             </div>
             <div className='logo-img' >
-                 <img  className="lego-img" onClick={this.handleClick}  src={this.state.items[this.state.counter]} />
+                 <img  className='lego-img' src={this.state.items[this.state.counter]} />
             </div  >
             <div className='lego-down'>
-              <button  onClick={this.handlePrevious} >{'v'}</button>
+              <Trapezoid className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
             </div>
           </div>
 
