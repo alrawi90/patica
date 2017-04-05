@@ -61,7 +61,7 @@ class App extends React.Component {
          <div style={{display:'block'}} >
            <Lego />
          </div>
-         <div style={{display:'flex',flexDirection:'column',}} >
+         <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
            <Item />
            <Item />
            <Item />
