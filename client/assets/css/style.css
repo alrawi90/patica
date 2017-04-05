@@ -70,3 +70,11 @@ html {
 .item-category-name{
   word-wrap: break-word;
 }
+.item-role-container{
+  text-align: center;
+  margin-bottom: 5em;
+}
+.item-role-name {
+  text-align: left;
+}
+.item-role-details{text-align: left;display: inline-block;}

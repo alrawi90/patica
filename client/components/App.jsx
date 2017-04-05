@@ -1,5 +1,6 @@
 const React = require('react');
 const Item = require('./Item');
+const RoleLabel = require('./RoleLabel');
 const ReactBootstrap=require('react-bootstrap')
 class App extends React.Component {
   constructor(props) {
@@ -48,6 +49,11 @@ class App extends React.Component {
     <div>
     {navbarInstance}
       <ReactBootstrap.Grid >
+      <ReactBootstrap.Row >
+      <ReactBootstrap.Col md={12}>
+       <RoleLabel />
+      </ReactBootstrap.Col>
+      </ReactBootstrap.Row>
         <ReactBootstrap.Row >
           {items}
         </ReactBootstrap.Row>
