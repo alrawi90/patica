@@ -63,7 +63,7 @@ html {
   flex-direction: column;
   word-wrap: break-word;
   margin-right: 3px;
-background-color: #dadfe8;  
+background-color: #dadfe8;
 }
 .item-hexagon{
   display: flex;
@@ -87,12 +87,21 @@ background-color: #dadfe8;
 .lego-up{
   display: flex;
   flex-direction: row;
+  text-align: center;
+  display: inline-block;
 }
 .lego-down{
   display: flex;
   flex-direction: row;
+  text-align: center;
+  display: inline-block;
 }
 .lego-img{
   display: flex;
   flex-direction: row;
+
+}
+.lego-img{
+  height:16em;
+  width:14em;
 }

@@ -22,6 +22,9 @@ class Lego extends React.Component{
            './client/assets/legos/7.png',
            './client/assets/legos/8.png',
            './client/assets/legos/9.png',
+           './client/assets/legos/10.png',
+           './client/assets/legos/11.png',
+           './client/assets/legos/12.png',
                ],
          url:'./client/assets/legos/1.png',
          counter:0
@@ -51,7 +54,7 @@ class Lego extends React.Component{
               <button onClick={this.handleNext} >{'^'}</button>
             </div>
             <div className='logo-img' >
-                 <img  onClick={this.handleClick} style={{height:'100%',width:'100%'}} src={this.state.items[this.state.counter]} />
+                 <img  className="lego-img" onClick={this.handleClick}  src={this.state.items[this.state.counter]} />
             </div  >
             <div className='lego-down'>
               <button  onClick={this.handlePrevious} >{'v'}</button>
