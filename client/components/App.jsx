@@ -14,15 +14,22 @@ class App extends React.Component {
       {skillCategoryName:'',skills:[],categoryImg:''},
       {skillCategoryName:'',skills:[],categoryImg:''},
       {skillCategoryName:'',skills:[],categoryImg:''}],
-      roleName:'',lego:'',kewords:[]
+      roleName:'role Name',lego:'',
+      keywords: ['keyword-1','keyword-2','keyword-3']
     }
     this.setRoleProps=this.setRoleProps.bind(this)
     this.setLego=this.setLego.bind(this)
   }
-  setRoleProps(roleName,keywords){
+  setRoleProps(roleName_,keywords_){
+
+    this.setState({
+      roleName: roleName_, keywords: keywords_
+    });
 
   }
   setLego(legoImg){this.setState({lego:legoImg})}
+
+  componentDidUpdate(){console.log(this.state.roleName)}
   render() {
      const navbarInstance = (
       <ReactBootstrap.Navbar inverse collapseOnSelect>
@@ -59,7 +66,7 @@ class App extends React.Component {
       <ReactBootstrap.Grid >
       <ReactBootstrap.Row >
       <ReactBootstrap.Col md={12}>
-       <RoleLabel setRoleProps={this.setRoleProps}/>
+       <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}/>
       </ReactBootstrap.Col>
       </ReactBootstrap.Row>
       <div style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>

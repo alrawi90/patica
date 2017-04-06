@@ -36,15 +36,15 @@ class Lego extends React.Component{
    handleClick(e){this.props.pickedIcon(e.target.src)}
    handlePrevious(e){
      this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})
-     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App
+     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App's state
    }
    handleNext(e){
      this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})
-     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App
+     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App's state
    }
    pick(index){
      this.setState({counter:index})
-     this.props.setLego(this.state.items[index]) // set the lego img url in the main App
+     this.props.setLego(this.state.items[index]) // set the lego img url in the main App's state
      this.closeModal()
    }
    openModal(e) {
