@@ -12,17 +12,14 @@ class LegoGallery extends React.Component{
       this.handleNext=this.handleNext.bind(this)
       this.handlePrevious=this.handlePrevious.bind(this)
       this.state={
-        key:Date.now()
-         items:[
-
-               ],
-         url:'./client/assets/icons/1.png',
+         key:Date.now(),
+         items:this.props.legos,
          counter:0
-       }
+              }
    }
     handleClick(e){
       let index=e.target.id.split('-')[1] -1
-      this.props.pickedLego(e.target.src);
+      this.props.pickedLego(index);
       this.setState({
           counter:index
       })
@@ -33,8 +30,8 @@ class LegoGallery extends React.Component{
     render(){
       const thumbs=this.state.items.map((item,index)=>{
         return(
-            <div key={this.state.key} className='thumb' >
-               <img id={`thumb-${index+1}`} onClick={this.handleClick} style={{height:'75px',width:'75px'}} src={this.state.items[this.state.counter]} />
+            <div key={index} className='thumb' >
+               <img id={`thumb-${index+1}`} onClick={this.handleClick} style={{height:'75px',width:'75px'}} src={this.state.items[index]} />
             </div>
         )
 
@@ -54,16 +51,12 @@ class LegoGallery extends React.Component{
           onSwiped={this.handleSwipeAction}>
 
           <div className='lego-gallery-container' >
-            <div id='lego-gallery-Lbtn-container'>
-              <button onClick={this.handleNext} >{'<'}</button>
-            <div>
+
             <div className='lego-gallery-thumbs-container'>
               {thumbs}
             </div>
-            <div>
-              <button id='lego-gallery-Rbtn-container'  onClick={this.handlePrevious} >{'>'}</button>
-            </div>
-            </div>
+
+         </div>
 
         </Swipeable>
 

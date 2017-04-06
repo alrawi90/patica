@@ -119,13 +119,14 @@ background-color: #dadfe8;
 /* Lego Gallery  */
 .lego-gallery-container{display:flex;flex-direction:column;justify-content: space-around}
 .lego-gallery-thumbs-container{
-  display:flex;flex-direction:row;justify-content: space-around;width:50%;height: auto;
+  display:flex;flex-direction:row;justify-content: space-around;width:30%;height: auto;flex-wrap: wrap;
 }
 .thumb{
   border: 2px solid #c5c6be;
   border-radius: 4px 4px;
+  position: relative;
 }
-.thumb:active{
+/*.thumb:active{
   border-color: blue;
 }
-.thumb::selection{border-color: red;}
+.thumb::selection{border-color: red;}*/
