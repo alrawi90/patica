@@ -36,11 +36,11 @@ class Lego extends React.Component{
    handleClick(e){this.props.pickedIcon(e.target.src)}
    handlePrevious(e){
      this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})
-     this.props.setLego(this.state.items[this.state.counter-1])
+     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App
    }
    handleNext(e){
      this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})
-     this.props.setLego(this.state.items[this.state.counter+1])
+     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App
    }
    pick(index){
      this.setState({counter:index})
@@ -76,7 +76,9 @@ class Lego extends React.Component{
               <Trapezoid className='up-trapezoid' size={3} points="300,150 0,150 75,20 225,20" click={this.handleNext} />
             </div>
             <div className='logo-img' >
-                 <img  className='lego-img' onClick={this.openModal} src={this.state.items[this.state.counter]} />
+                 <img  className='lego-img' onClick={this.openModal}
+                    src={this.props.currentLego !=='' ? this.props.currentLego : this.state.items[this.state.counter]}
+                     />
             </div  >
             <div className='lego-down'>
               <Trapezoid className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />

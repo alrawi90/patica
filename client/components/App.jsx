@@ -22,7 +22,7 @@ class App extends React.Component {
   setRoleProps(roleName,keywords){
 
   }
-  setLego(legoImg){console.log(legoImg)}
+  setLego(legoImg){this.setState({lego:legoImg})}
   render() {
      const navbarInstance = (
       <ReactBootstrap.Navbar inverse collapseOnSelect>
@@ -69,7 +69,7 @@ class App extends React.Component {
            <SkillCategoryLabel />
          </div>
          <div style={{display:'block'}} >
-           <Lego setLego={this.setLego}/>
+           <Lego setLego={this.setLego} currentLego={this.state.lego}/>
          </div>
          <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
            <SkillCategoryLabel />
