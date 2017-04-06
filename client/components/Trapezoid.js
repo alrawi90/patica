@@ -10,7 +10,7 @@ class Trapezoid extends React.Component {
 
   render() {
     return (
-      <div className="hexagon-container">
+      <div className="Trapezoid-container">
         <svg viewBox='0 0 300 300' key={this.state.key}
           id="color-fill" xmlns="http://www.w3.org/2000/svg"
           version="1.1" width={this.props.size+'em'} height={this.props.size+'em'}
