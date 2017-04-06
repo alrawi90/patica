@@ -6,7 +6,23 @@ const ReactBootstrap=require('react-bootstrap')
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.state={
+      categories:[
+      {skillCategoryName:'',skills:[],categoryImg:''},
+      {skillCategoryName:'',skills:[],categoryImg:''},
+      {skillCategoryName:'',skills:[],categoryImg:''},
+      {skillCategoryName:'',skills:[],categoryImg:''},
+      {skillCategoryName:'',skills:[],categoryImg:''},
+      {skillCategoryName:'',skills:[],categoryImg:''}],
+      roleName:'',lego:'',kewords:[]
+    }
+    this.setRoleProps=this.setRoleProps.bind(this)
+    this.setLego=this.setLego.bind(this)
   }
+  setRoleProps(roleName,keywords){
+
+  }
+  setLego(legoImg){console.log(legoImg)}
   render() {
      const navbarInstance = (
       <ReactBootstrap.Navbar inverse collapseOnSelect>
@@ -43,7 +59,7 @@ class App extends React.Component {
       <ReactBootstrap.Grid >
       <ReactBootstrap.Row >
       <ReactBootstrap.Col md={12}>
-       <RoleLabel />
+       <RoleLabel setRoleProps={this.setRoleProps}/>
       </ReactBootstrap.Col>
       </ReactBootstrap.Row>
       <div style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
@@ -53,7 +69,7 @@ class App extends React.Component {
            <SkillCategoryLabel />
          </div>
          <div style={{display:'block'}} >
-           <Lego />
+           <Lego setLego={this.setLego}/>
          </div>
          <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
            <SkillCategoryLabel />
