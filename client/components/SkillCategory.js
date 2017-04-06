@@ -6,7 +6,7 @@ class SkillCategory extends React.Component {
   constructor(props) {
     super(props)
     this.state = { isModalOpen: false,name:'',iconUrl:'',selectedIconUrl:'' ,key:1,SkillBoxes:['']}
-    this.handleChange=this.handleChange.bind(this)
+    this.set=this.set.bind(this)
     //this.handleClick=this.handleClick.bind(this)
     this.changeInputValue=this.changeInputValue.bind(this)
     this.setIcon=this.setIcon.bind(this)
