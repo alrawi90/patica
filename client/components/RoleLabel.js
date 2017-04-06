@@ -21,7 +21,7 @@ class RoleLabel extends React.Component {
 
       <div className="item-role-container">
         <div className="item-role-details">
-          <label className="item-role-name" onClick={(e)=>this.handleClick(e)} >{this.props.roleName}</label><br />
+          <label className="item-role-name" onClick={(e)=>this.handleClick(e)} >{`ROLE:${this.props.roleName}`}</label><br />
           <label><i>{this.props.keywords.join(' ')}</i> </label>
           <Role ref='r' handler={this.handler}  />
         </div>
