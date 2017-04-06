@@ -116,3 +116,16 @@ background-color: #dadfe8;
 
 .down-trapezoid {
 }
+/* Lego Gallery  */
+.lego-gallery-container{display:flex;flex-direction:column;justify-content: space-around}
+.lego-gallery-thumbs-container{
+  display:flex;flex-direction:row;justify-content: space-around;width:50%;height: auto;
+}
+.thumb{
+  border: 2px solid #c5c6be;
+  border-radius: 4px 4px;
+}
+.thumb:active{
+  border-color: blue;
+}
+.thumb::selection{border-color: red;}
