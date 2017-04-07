@@ -58,7 +58,7 @@ class SkillCategory extends React.Component {
           >
           <Galary pickedIcon={this.setIcon} />
           <label>
-            Category Name: <input  type='text' ref='cn' />
+            Category Name: <input defaultValue={this.props.name} type='text' ref='cn' />
           </label>
           <br />
           <label>
