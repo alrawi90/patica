@@ -15,7 +15,8 @@ class App extends React.Component {
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''}],
       roleName:'role Name',lego:'',description:'bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
-      keywords: ['keyword-1','keyword-2','keyword-3']
+      keywords: [{id:1,text:'keyword-1'},{id:1,text:'keyword-2'},{id:1,text:'keyword-3'}],
+      suggestions:["Banana", "Mango", "Pear", "Apricot"]
     }
     this.setRoleProps=this.setRoleProps.bind(this)
     this.setCategoryDetails=this.setCategoryDetails.bind(this)
@@ -80,7 +81,7 @@ class App extends React.Component {
       <ReactBootstrap.Row >
       <ReactBootstrap.Col md={12}>
        <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}
-         description={this.state.description}
+         description={this.state.description} suggestions={this.state.suggestions}
        />
       </ReactBootstrap.Col>
       </ReactBootstrap.Row>

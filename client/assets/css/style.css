@@ -2,7 +2,8 @@ html {
   background-color: #EDEDED;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
-
+.ReactTags__suggestions{position: absolute;}
+input.ReactTags__tagInputField{width:100px;}
 .container1 {
   width: calc(50% - 60px);
   margin: 20px;
