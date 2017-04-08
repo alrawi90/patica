@@ -4,7 +4,7 @@ const Galary=require('./Gallery');
 class Role extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isModalOpen: false,name:'' ,key:1,keywords:['']}
+    this.state = { isModalOpen: false,name:'' ,key:1,keywords:[''],description:''}
     this.handleChange=this.handleChange.bind(this)
     this.changeInputValue=this.changeInputValue.bind(this)
   }
@@ -48,6 +48,7 @@ class Role extends React.Component {
                 Role Name: <input  type='text' ref='rn' />
               </label>
               <br />
+              <label>Description:<br /><textarea ref='rd'></textarea></label>
               <label>
                 Keywords: {keywords}
               </label>
@@ -68,7 +69,7 @@ class Role extends React.Component {
   }
   handleChange(e){
         e.preventDefault()
-        this.props.handler(this.refs.rn.value,this.state.keywords);
+        this.props.handler(this.refs.rn.value,this.state.keywords,this.refs.rd.value);
         this.closeModal()
   }
 }

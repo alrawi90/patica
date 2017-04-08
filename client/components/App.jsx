@@ -14,21 +14,22 @@ class App extends React.Component {
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''}],
-      roleName:'role Name',lego:'',
+      roleName:'role Name',lego:'',description:'bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
       keywords: ['keyword-1','keyword-2','keyword-3']
     }
     this.setRoleProps=this.setRoleProps.bind(this)
     this.setCategoryDetails=this.setCategoryDetails.bind(this)
     this.setLego=this.setLego.bind(this)
   }
-  setRoleProps(roleName_,keywords_){
+  setRoleProps(roleName_,keywords_,description_){
 
     this.setState({
-      roleName: roleName_, keywords: keywords_
+      roleName: roleName_, keywords: keywords_,description:description_
     });
 
   }
   setLego(legoImg){this.setState({lego:legoImg})}
+
   setCategoryDetails(id,categoryName,skills,iconUrl){
     let c=this.state.categories
     c[id-1].skillCategoryName=categoryName;
@@ -39,7 +40,9 @@ class App extends React.Component {
     });
     console.log(id)
   }
+
   componentDidUpdate(){console.log(this.state.categories[0].categoryImg)}
+
   render() {
      const navbarInstance = (
       <ReactBootstrap.Navbar inverse collapseOnSelect>
@@ -76,7 +79,9 @@ class App extends React.Component {
       <ReactBootstrap.Grid >
       <ReactBootstrap.Row >
       <ReactBootstrap.Col md={12}>
-       <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}/>
+       <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}
+         description={this.state.description}
+       />
       </ReactBootstrap.Col>
       </ReactBootstrap.Row>
       <div style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
