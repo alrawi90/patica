@@ -18,12 +18,12 @@ class RoleLabel extends React.Component {
   }
   handleClick(e){this.refs.r.openModal(e)}
 
-  handler(rn,keywords,description) {
+  handler(rn,description) {
     this.setState({
       //RoleName: rn, keywords: keywords ,
        key: Math.random()
     })
-    this.props.setRoleProps(rn,keywords,description)
+    this.props.setRoleProps(rn,this.state.keywords,description)
   }
 
   handleDelete(i) {
