@@ -17,7 +17,7 @@ class Hexagon extends React.Component {
     const imageKey = `image-bg-${this.state.key}`;
     const imageUrl = `url('#image-bg-${this.state.key}')`;
     return (
-      <div className="hexagon-container">
+      <div className="hexagon-container rotate90">
         <svg viewBox='0 0 300 300'
           id="image-fill" xmlns="http://www.w3.org/2000/svg"
           version="1.1" width={this.props.size+'em'} height={this.props.size+'em'}

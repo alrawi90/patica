@@ -3,7 +3,7 @@ html {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
 }
 .ReactTags__suggestions{position: absolute;}
-input.ReactTags__tagInputField{width:100px;}
+input.ReactTags__tagInputField{width:87px;}
 .container1 {
   width: calc(50% - 60px);
   margin: 20px;
@@ -24,7 +24,15 @@ input.ReactTags__tagInputField{width:100px;}
   user-select: none;
 }
 
+.rotate90{
 
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+
+}
 .hex {
   cursor: pointer;
   fill-opacity: 0.4;

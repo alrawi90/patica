@@ -9,6 +9,17 @@ class Lego extends React.Component{
 
    constructor(props){
       super(props)
+      this.style = {
+                        content : {
+                          top                   : '50%',
+                          left                  : '50%',
+                          right                 : 'auto',
+                          bottom                : 'auto',
+                          marginRight           : '-50%',
+                          transform             : 'translate(-50%, -50%)',
+                          width:'20em' ,height:'20em',
+                        }
+                  };
       this.handleClick=this.handleClick.bind(this)
       this.handleNext=this.handleNext.bind(this)
       this.handlePrevious=this.handlePrevious.bind(this)
@@ -84,6 +95,7 @@ class Lego extends React.Component{
               <Trapezoid className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
             </div>
             <Modal
+              style={this.style}
               isOpen={this.state.isModalOpen}
               onAfterOpen={this.afterOpenModal}
               onRequestClose={() => this.closeModal()}

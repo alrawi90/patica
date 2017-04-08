@@ -5,6 +5,7 @@ const Galary=require('./Gallery');
 class Role extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = { isModalOpen: false,name:'' ,key:1,keywords:[''],description:''}
     this.handleChange=this.handleChange.bind(this)
     //this.changeInputValue=this.changeInputValue.bind(this)
