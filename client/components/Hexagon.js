@@ -17,24 +17,24 @@ class Hexagon extends React.Component {
     const imageKey = `image-bg-${this.state.key}`;
     const imageUrl = `url('#image-bg-${this.state.key}')`;
     return (
-      <div className="hexagon-container rotate90">
-        <svg viewBox='0 0 300 300'
+      <div className="hexagon-container">
+        <svg viewBox='0 0 110 110'
           id="image-fill" xmlns="http://www.w3.org/2000/svg"
           version="1.1" width={this.props.size+'em'} height={this.props.size+'em'}
           xmlnsXlink="http://www.w3.org/1999/xlink">
 
           <defs key={this.state.key} >
-            <pattern id={imageKey} x="0" y="0"
-              height="300" width="300"
+            <pattern id={imageKey} x="36" y="36"
+              height="110" width="110"
               patternUnits="userSpaceOnUse">
-              <image width="300" height="300" xlinkHref={this.state.url}></image>
+              <image width="50" height="50" xlinkHref={this.state.url}></image>
             </pattern>
           </defs>
           <polygon
-            className="hex" points="300,150 225,280 75,280 0,150 75,20 225,20"
+            className="hex" points="60,20 100,40 100,80 60,100 20,80 20,40"
             style={{fill:'lime',stroke:'purple',strokeWidth:1}}></polygon>
           <polygon onClick={this.props.click}
-            className="hex" points="300,150 225,280 75,280 0,150 75,20 225,20"
+            className="hex" points="60,20 100,40 100,80 60,100 20,80 20,40"
             fill={imageUrl}></polygon>
         </svg>
       </div>
