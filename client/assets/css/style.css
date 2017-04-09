@@ -24,7 +24,7 @@ input.ReactTags__tagInputField{width:87px;}
   user-select: none;
 }
 
-.rotate90{
+/*.rotate90{
 
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
@@ -32,7 +32,7 @@ input.ReactTags__tagInputField{width:87px;}
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
 
-}
+}*/
 .hex {
   cursor: pointer;
   fill-opacity: 0.4;
@@ -46,7 +46,7 @@ input.ReactTags__tagInputField{width:87px;}
 
 .hex:hover {
   fill-opacity: 1;
-  stroke: #ff0000;
+  stroke: silver;
   stroke-width: 5;
   transform: scale(0.9);
   -webkit-transform: scale(0.9);
@@ -60,7 +60,7 @@ input.ReactTags__tagInputField{width:87px;}
   transition-duration: 1s;
   -webkit-transition-duration: 1s;
 }
-.thumb:active{
+.:active{
 	border-width:10px;
     box-shadow:1px;
     border-radius:0;
@@ -127,15 +127,17 @@ background-color: #dadfe8;
 }
 /* Lego Gallery  */
 .lego-gallery-container{display:flex;flex-direction:column;justify-content: space-around}
-.lego-gallery-thumbs-container{
+.lego-gallery-s-container{
   display:flex;flex-direction:row;justify-content: space-around;width:30%;height: auto;flex-wrap: wrap;
 }
 .thumb{
   border: 2px solid #c5c6be;
   border-radius: 4px 4px;
   position: relative;
+  background-color: silver;
 }
 /*.thumb:active{
   border-color: blue;
 }
 .thumb::selection{border-color: red;}*/
+.thumb::focus{border-color: red;box-shadow: 0 0 10px }

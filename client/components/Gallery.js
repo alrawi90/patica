@@ -25,13 +25,22 @@ class Galary extends React.Component{
            'http://placekitten.com/306/306'
                ],
          url:'./client/assets/icons/1.png',
-         counter:0
+         counter:0, selected:''
        }
    }
-    handleClick(e){this.props.pickedIcon(e.target.src)}
-    handlePrevious(e){this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
-    handleNext(e){this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})}
 
+    handleClick(e){this.props.pickedIcon(e.target.src);
+      e.target.parentNode.style.borderColor="red";
+      this.setState({selected:e.target.src})
+    }
+    handlePrevious(e){
+      this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})
+      let div =this.refs.thumb;
+    }
+    handleNext(e){
+      this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})
+    }
+    componentDidUpdate(){this.refs.thumb.firstChild.src==this.state.selected  ? this.refs.thumb.style.borderColor="red" : this.refs.thumb.style.borderColor="gray"}
     render(){
   //    const cols=this.state.items.map((item,i)=>{
   //      return(
@@ -63,9 +72,10 @@ class Galary extends React.Component{
               <button onClick={this.handleNext} >{'<'}</button>
             </Col>
             <Col md={4} >
-              <Thumbnail ref='thumb' >
-                 <img  onClick={this.handleClick} style={{height:'100%',width:'100%'}} src={this.state.items[this.state.counter]} />
-              </Thumbnail>
+              <div className='thumb' ref="thumb" >
+                 <img  onClick={this.handleClick} style={{height:'100%',width:'100%'}}
+                 src={this.state.items[this.state.counter]} />
+              </div>
             </Col>
             <Col md={1} >
               <button    onClick={this.handlePrevious} >{'>'}</button>
