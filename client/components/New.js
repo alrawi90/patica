@@ -10,12 +10,12 @@ class App extends React.Component {
     this.state={
       error:'' ,
       categories:[
-      {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:'client/assets/icons/1.png'},
+      {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3','skill-3','skill-3','skill-3'],categoryImg:'client/assets/icons/1.png'},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
-      {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''}],
+      {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3','skill-3','skill-3','skill-3'],categoryImg:''}],
       roleName:'role Name',lego:'',description:'bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
       keywords: [{id:1,text:'keyword-1'},{id:1,text:'keyword-2'},{id:1,text:'keyword-3'}],
       suggestions:["Banana", "Mango", "Pear", "Apricot"]
@@ -87,76 +87,81 @@ class App extends React.Component {
   render() {
 
     return (
-    <div>
-      <ReactBootstrap.Grid >
-      <ReactBootstrap.Row >
-      <ReactBootstrap.Col md={12}>
-       <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}
-         description={this.state.description} suggestions={this.state.suggestions}
-       />
-      </ReactBootstrap.Col>
-      </ReactBootstrap.Row>
-      <div style={{display:'flex',flexDirection:'row',justifyContent: 'space-around'}}>
-         <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
-           <SkillCategoryLabel
-               id={1}
-               setCategoryDetails={this.setCategoryDetails}
-               skills={this.state.categories[0].skills}
-               iconUrl={this.state.categories[0].categoryImg}
-               categoryName={this.state.categories[0].skillCategoryName}
-               />
-           <SkillCategoryLabel
-               id={2}
-               setCategoryDetails={this.setCategoryDetails}
-               skills={this.state.categories[1].skills}
-               iconUrl={this.state.categories[1].categoryImg}
-               categoryName={this.state.categories[1].skillCategoryName}
-            />
-            <SkillCategoryLabel
-                id={3}
-                setCategoryDetails={this.setCategoryDetails}
-                skills={this.state.categories[2].skills}
-                iconUrl={this.state.categories[2].categoryImg}
-                categoryName={this.state.categories[2].skillCategoryName}
-             />
+      <div className='col' >
+          <div className='row' style={{justifyContent:'center'}}>
+           <div className='' >
+              <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}
+                description={this.state.description} suggestions={this.state.suggestions}
+              />
+          </div>
          </div>
-         <div style={{display:'block'}} >
-           <Lego setLego={this.setLego} currentLego={this.state.lego}/>
-         </div>
-         <div style={{display:'flex',flexDirection:'column',justifyContent: 'space-between'}} >
-         <SkillCategoryLabel
-             id={4}
-             setCategoryDetails={this.setCategoryDetails}
-             skills={this.state.categories[3].skills}
-             iconUrl={this.state.categories[3].categoryImg}
-             categoryName={this.state.categories[3].skillCategoryName}
-          />
-          <SkillCategoryLabel
-              id={5}
-              setCategoryDetails={this.setCategoryDetails}
-              skills={this.state.categories[4].skills}
-              iconUrl={this.state.categories[4].categoryImg}
-              categoryName={this.state.categories[4].skillCategoryName}
-           />
-           <SkillCategoryLabel
-               id={6}
-               setCategoryDetails={this.setCategoryDetails}
-               skills={this.state.categories[5].skills}
-               iconUrl={this.state.categories[5].categoryImg}
-               categoryName={this.state.categories[5].skillCategoryName}
-            />
-         </div>
-      </div>
-       <ReactBootstrap.Row >
-        <ReactBootstrap.Col md={6} style={{textAlign:'right',marginTop:'20px'}}>
-          <button  onClick={this.create}>Create Role</button>
-        </ReactBootstrap.Col>
-        <ReactBootstrap.Col md={6} style={{textAlign:'left',marginTop:'20px'}}>
-          <h6 id="msg" style={{color:'red',marginLeft:'5px',backgroundColor:'silver',display:'inline-block'}}>{this.state.error}</h6>
-        </ReactBootstrap.Col>
-       </ReactBootstrap.Row>
-      </ReactBootstrap.Grid>
-    </div>
+          <div className='main-container' >
+             <div className="col-left" >
+               <div className="item" >
+               <SkillCategoryLabel
+                    id={1}
+                    setCategoryDetails={this.setCategoryDetails}
+                    skills={this.state.categories[0].skills}
+                    iconUrl={this.state.categories[0].categoryImg}
+                    categoryName={this.state.categories[0].skillCategoryName}
+                 />
+                 </div>
+               <div className="item" >
+               <SkillCategoryLabel
+                    id={2}
+                    setCategoryDetails={this.setCategoryDetails}
+                    skills={this.state.categories[1].skills}
+                    iconUrl={this.state.categories[1].categoryImg}
+                    categoryName={this.state.categories[1].skillCategoryName}
+                 />           </div>
+               <div className="item" >
+               <SkillCategoryLabel
+                    id={3}
+                    setCategoryDetails={this.setCategoryDetails}
+                    skills={this.state.categories[2].skills}
+                    iconUrl={this.state.categories[2].categoryImg}
+                    categoryName={this.state.categories[2].skillCategoryName}
+                 />
+                  </div>
+             </div>
+             <div className="col-center" >
+
+             <div className="item" >
+                <Lego setLego={this.setLego} currentLego={this.state.lego}/>
+             </div>
+
+             </div>
+             <div className="col-right" >
+                 <div className="item" >
+                   <SkillCategoryLabel
+                        id={4}
+                        setCategoryDetails={this.setCategoryDetails}
+                        skills={this.state.categories[3].skills}
+                        iconUrl={this.state.categories[3].categoryImg}
+                        categoryName={this.state.categories[3].skillCategoryName}
+                     />
+                   </div>
+                 <div className="item" >
+                 <SkillCategoryLabel
+                      id={5}
+                      setCategoryDetails={this.setCategoryDetails}
+                      skills={this.state.categories[4].skills}
+                      iconUrl={this.state.categories[4].categoryImg}
+                      categoryName={this.state.categories[4].skillCategoryName}
+                   />
+                 </div>
+                 <div className="item" >
+                 <SkillCategoryLabel
+                      id={6}
+                      setCategoryDetails={this.setCategoryDetails}
+                      skills={this.state.categories[5].skills}
+                      iconUrl={this.state.categories[5].categoryImg}
+                      categoryName={this.state.categories[5].skillCategoryName}
+                   />
+                   </div>
+             </div>
+          </div>
+        </div>
     )
   }
 
