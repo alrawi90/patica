@@ -5,6 +5,8 @@ html {
 * {
     box-sizing: border-box;
 }
+.hidden{display: none}
+.small-font{font-size: 12px}
 .ReactTags__suggestions{position: absolute;}
 input.ReactTags__tagInputField{width:87px;}
 .container1 {

@@ -10,7 +10,7 @@ class App extends React.Component {
     this.state={
       error:'' ,
       categories:[
-      {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3','skill-3','skill-3','skill-3'],categoryImg:'client/assets/icons/1.png'},
+      {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3','skill-4','skill-5','skill-6'],categoryImg:'client/assets/icons/1.png'},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
       {skillCategoryName:'Category Name',skills:['skill-1','skill-2','skill-3'],categoryImg:''},
@@ -42,7 +42,6 @@ class App extends React.Component {
     this.setState({
       categories: c
     });
-    console.log(id)
   }
 
   componentDidUpdate(){console.log(this.state.categories[0].categoryImg)}
@@ -70,7 +69,7 @@ class App extends React.Component {
                 }
       )})
       const app=this
-      fetch('http://localhost:3002/role', {
+      fetch('http://patica-role.mertdogar.com/role', {
        method: 'post',
        headers: {
           'Accept': 'application/json, text/plain, */*',
@@ -160,6 +159,19 @@ class App extends React.Component {
                    />
                    </div>
              </div>
+          </div>
+          <div className='row' style={{justifyContent:'center'}}>
+              <div className="item" >
+                 <button onClick={this.create}>Create Role</button>
+              </div>
+              <div className="item" >
+                 <label style={{color:'red',fontSize:'12px'}}>{this.state.error}</label>
+              </div>
+          </div>
+          <div className='row' style={{justifyContent:'center'}}>
+              <div className="item" >
+                 <label style={{color:'red',fontSize:'12px'}}>{this.state.error}</label>
+              </div>
           </div>
         </div>
     )
