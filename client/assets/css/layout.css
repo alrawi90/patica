@@ -24,7 +24,7 @@
 [class*="col-"] {
     /*float: left;*/
     padding: 1px;
-    border: 1px solid red;
+     /*border: 1px solid red;*/
 }
 .main-container{
    display: -webkit-flex;

@@ -35,6 +35,7 @@ class App extends React.Component {
   setLego(legoImg){this.setState({lego:legoImg})}
 
   setCategoryDetails(id,categoryName,skills,iconUrl){
+    console.log('New.js',iconUrl)
     let c=this.state.categories
     c[id-1].skillCategoryName=categoryName;
     c[id-1].skills=skills;
@@ -53,14 +54,7 @@ class App extends React.Component {
       opts.description=this.state.description
       opts.image=this.state.lego
       opts.keywords=this.state.keywords.map((item,index)=>{return(item.text)})//['a','b','c']
-      opts.skillCategory=
-          [
-            // {
-            //   name:this.state.categories[0].skillCategoryName,
-            //   skills:this.state.categories[0].skills,
-            //   image:this.state.categories[0].categoryImg
-            // }
-          ]
+      opts.skillCategory=[]
       opts.skillCategory=[1,2,3,4,5,6].map((item,index)=>{
         return(
         {         name:this.state.categories[index].skillCategoryName,
@@ -68,6 +62,7 @@ class App extends React.Component {
                   image:this.state.categories[index].categoryImg
                 }
       )})
+      console.log(opts)
       const app=this
       fetch('http://patica-role.mertdogar.com/role', {
        method: 'post',
