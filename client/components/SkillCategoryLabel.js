@@ -3,18 +3,14 @@ const Modal = require('react-modal');
 const Hexagon=require('./Hexagon');
 const LegoGallery=require('./LegoGallery');
 const SkillCategory = require('./SkillCategory');
-// const  Col=require('react-bootstrap').Col
-// const  Row=require('react-bootstrap').Row
-// const  Grid=require('react-bootstrap').Grid
+const  Col=require('react-bootstrap').Col
+const  Row=require('react-bootstrap').Row
+const  Grid=require('react-bootstrap').Grid
 
 class SkillCategoryLabel extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      key:1,name:this.props.categoryName,
-      skills:this.props.skills,
-      icon:this.props.iconUrl,
-      //isShown:[true,true,true,true,true,true],
+    this.state = {key:1,name:this.props.categoryName,skills:this.props.skills,icon:this.props.iconUrl,
       isModalOpen: false,currentWidth:'90px',
       items:[
         './client/assets/icons/1.png',
@@ -57,11 +53,12 @@ class SkillCategoryLabel extends React.Component {
 
   closeModal() {
      this.setState({ isModalOpen: false })
-     this.updateCategory()
+     //this.updateCategory()
   }
   handleClick(e){this.openModal(e)}
+
   toggleShow(e){
-    e.stopPropagation()
+   // e.stopPropagation()
     let input =e.target.parentNode.childNodes[0]
     let index=input.id.split('-')[1]-1
     let skills=this.state.skills
@@ -80,6 +77,7 @@ class SkillCategoryLabel extends React.Component {
       name:name
     })
   }
+  componentWillMount(){console.log()}
   // showText(e){
   //   e.stopPropagation()
   //   let index=e.target.id.split('-')[1]-1
@@ -126,28 +124,32 @@ class SkillCategoryLabel extends React.Component {
       key: Math.random()
     })
   }
-  componentDidUpdate(p,s){s.icon!=this.state.icon ? this.updateCategory(): null}//fixed sync icon with the main state
+  componentDidUpdate(p,s){s.icon!=this.state.icon ? this.updateCategory(): null}//fixed icon image sync with App's state
   render() {
     const skills=this.props.skills.map((skill,index)=>{
       return(
         <div  style={{width:'5em'}} key={index} >
         <input   id={`skill-${index+1}`}
-          key={index}  placeholder='skill'
-          onKeyUp={this.onEnter}
+          key={index}  placeholder='skill' onKeyUp={this.onEnter}
           style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`}}
-          onBlur={(e)=>this.showText(e)} onChange={(e)=>this.syncSkills(e)}
+          onBlur={(e)=>this.updateCategory(e)} onChange={(e)=>this.syncSkills(e)}
           defaultValue={skill} />
         </div>
 
     )})
+    let name= this.props.categoryName
+    console.log('name'+ name)
     return (
 
       <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
         <div className="col"  style={{}}>
           <div className='row' style={{}}>
-              <input size='20' style={{border:'none',borderSize:'0px',readOnly:true}} onFocus={this.toggleShow}
+              <input size='20' style={{border:'none',borderSize:'0px',readOnly:false}} 
+                 onFocus={this.toggleShow}
                  onChange={(e)=>this.syncCategoryName(e)}
                  onBlur={this.updateCategory}
+                  placeholder='Category'
+                 key={Math.random()}
                  className="item-category-name" defaultValue={this.props.categoryName} />
           </div>
           <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
@@ -156,7 +158,7 @@ class SkillCategoryLabel extends React.Component {
 
       </div>
 
-      <Hexagon size={6} className="item-hexagon" key={this.state.key} change={this.updateCategory} setIcon={this.state.icon} click={(e)=>this.handleClick(e)} />
+      <Hexagon size={6} className="item-hexagon" key={Math.random()} change={this.updateCategory} setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
       <div style={{height:'20%' , with:'20%'}}>
           <Modal
               isOpen={this.state.isModalOpen}

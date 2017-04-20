@@ -1,8 +1,8 @@
 const React = require('react');
-var Swipeable = require('react-swipeable')
-var Trapezoid=require('./Trapezoid') ;
-var LegoGallery=require('./LegoGallery') ;
-var Modal=require('react-modal') ;
+const Swipeable = require('react-swipeable')
+const Trapezoid=require('./Trapezoid') ;
+const LegoGallery=require('./LegoGallery') ;
+const Modal=require('react-modal') ;
 
 
 class Lego extends React.Component{
@@ -27,7 +27,7 @@ class Lego extends React.Component{
       this.pick=this.pick.bind(this)
       this.state={
          items:[
-           './client/assets/legos/1.png',
+           //'./client/assets/legos/1.png',
            './client/assets/legos/2.png',
            './client/assets/legos/3.png',
            './client/assets/legos/4.png',
@@ -40,7 +40,7 @@ class Lego extends React.Component{
            './client/assets/legos/11.png',
            './client/assets/legos/12.png',
                ],
-         url:'./client/assets/legos/1.png',
+         url:'',
          counter:0,isModalOpen:false
        }
    }
@@ -95,7 +95,7 @@ class Lego extends React.Component{
               <Trapezoid className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
             </div>
             <Modal
-              style={this.style}
+              style={{}}
               isOpen={this.state.isModalOpen}
               onAfterOpen={this.afterOpenModal}
               onRequestClose={() => this.closeModal()}
