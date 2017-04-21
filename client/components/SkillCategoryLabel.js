@@ -3,9 +3,6 @@ const Modal = require('react-modal');
 const Hexagon=require('./Hexagon');
 const LegoGallery=require('./LegoGallery');
 const SkillCategory = require('./SkillCategory');
-const  Col=require('react-bootstrap').Col
-const  Row=require('react-bootstrap').Row
-const  Grid=require('react-bootstrap').Grid
 
 class SkillCategoryLabel extends React.Component {
   constructor(props) {
@@ -40,7 +37,6 @@ class SkillCategoryLabel extends React.Component {
 //   prevState !== this.state.icon ? this.updateCategory() : null
 // }
   setIcon(index){
-    console.log(index)
     let icon=this.state.items[index]
     this.setState({
       icon: icon ,
@@ -63,6 +59,7 @@ class SkillCategoryLabel extends React.Component {
   toggleShow(e){
    // e.stopPropagation()
     let input =e.target.parentNode.childNodes[0]
+    input.select()
     let index=input.id.split('-')[1]-1
     let skills=this.state.skills
     //let isShown=this.state.isShown
@@ -80,7 +77,7 @@ class SkillCategoryLabel extends React.Component {
       name:name,
     })
   }
-  componentWillMount(){console.log()}
+  componentWillMount(){}
   // showText(e){
   //   e.stopPropagation()
   //   let index=e.target.id.split('-')[1]-1
@@ -118,7 +115,6 @@ class SkillCategoryLabel extends React.Component {
   syncSkills(e) {
     let inputs=e.target.parentNode.childNodes
     inputs= [ ...inputs ];
-    console.log(inputs.length)
     let value=e.target.value
 
     let skills=this.props.skills//inputs.map((input,index)=>input.value)
@@ -143,13 +139,13 @@ class SkillCategoryLabel extends React.Component {
         <input   id={`skill-${index+1}`}
           key={index}  placeholder='skill' onKeyUp={this.onEnter}
           style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`}}
+          onFocus={this.toggleShow}
           onBlur={(e)=>this.syncSkills(e)} 
           defaultValue={skill} />
         </div>
         
     )})
     let key=  Date.now()
-    console.log('name'+ name)
     return (
 
       <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
@@ -157,7 +153,7 @@ class SkillCategoryLabel extends React.Component {
           <div className='row' style={{}}>
               <input size='20' style={{border:'none',borderSize:'0px',readOnly:false}} 
                  onFocus={this.toggleShow}
-                 
+                 onKeyUp={this.onEnter}
                  onBlur={this.syncCategoryName}
                  placeholder='Category'
                  key={Math.random()}

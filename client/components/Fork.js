@@ -28,8 +28,24 @@ class Fork extends React.Component {
     this.onCategorySkillsChanged=this.onCategorySkillsChanged.bind(this)
     this.setLego=this.setLego.bind(this)
     this.create=this.create.bind(this)
+    this.addNewCategory=this.addNewCategory.bind(this)
+    this.removeCategory=this.removeCategory.bind(this)
   }
-  componentDidUpdate(){console.log('categories', this.state.categories)}
+  addNewCategory(){
+    let SkillCategory={name:'',skills:['','',''],image:''}
+    let categories=this.state.categories
+    categories.push(SkillCategory)
+    this.setState({categories:categories})
+  }
+
+  removeCategory(e){
+
+    let CategoryIndex=parseInt(e.target.id)-1
+    let categories=this.state.categories
+    categories.splice(CategoryIndex,1)
+    this.setState({categories:categories})
+     console.log(CategoryIndex+1 +' removed')
+  }
   componentWillMount(){
       let app=this;
       console.log('forking ...')
@@ -42,7 +58,7 @@ class Fork extends React.Component {
                    {id:index,text:item}
                  )
                })
-               console.log(kwrds)
+              
                let categories=data.skillCategory.map((item,index)=>{
                  return(
 
@@ -56,7 +72,6 @@ class Fork extends React.Component {
                  keywords:kwrds,
                  categories:categories
                });
-              console.log(data)
       })  .catch(function(error) {
     console.log(error);
   });
@@ -132,6 +147,7 @@ class Fork extends React.Component {
         return(
 
               <div className="item" key={index} >
+                <button id={index+1} onClick={this.removeCategory}>-</button>
                 <SkillCategoryLabel
                   key={index}
                   id={index+1}
@@ -154,6 +170,9 @@ class Fork extends React.Component {
               <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}
                 description={this.state.description} suggestions={this.state.suggestions}
               />
+          </div>
+          <div className='' style={{float:'right',backgroundColor:''}}>
+             <button onClick={this.addNewCategory} >Add New Category</button>
           </div>
          </div>
           <div className='main-container' >
