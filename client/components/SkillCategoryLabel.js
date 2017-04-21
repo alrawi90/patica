@@ -10,8 +10,13 @@ const  Grid=require('react-bootstrap').Grid
 class SkillCategoryLabel extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {key:1,name:this.props.categoryName,skills:this.props.skills,icon:this.props.iconUrl,
-      isModalOpen: false,currentWidth:'90px',
+    this.state = {
+      key:Math.random(),
+      name:this.props.categoryName,
+      skills:this.props.skills, 
+      icon:this.props.iconUrl,
+      isModalOpen: false,
+      currentWidth:'90px',
       items:[
         './client/assets/icons/1.png',
         './client/assets/icons/2.png',
@@ -25,9 +30,9 @@ class SkillCategoryLabel extends React.Component {
             ]
     }
     this.toggleShow=this.toggleShow.bind(this)
-    this.updateCategory=this.updateCategory.bind(this)
     this.onEnter=this.onEnter.bind(this)
     this.setIcon=this.setIcon.bind(this)
+    this.syncCategoryName=this.syncCategoryName.bind(this)
 
   }
 //   componentDidUpdate(prevProps,prevState){
@@ -43,9 +48,7 @@ class SkillCategoryLabel extends React.Component {
    })
    this.closeModal()
  }
-  updateCategory(e){
-    this.props.setCategoryDetails(this.props.id,this.state.name,this.state.skills,this.state.icon)
-  }
+
   openModal(e) {
 
     this.setState({ isModalOpen: true })
@@ -74,7 +77,7 @@ class SkillCategoryLabel extends React.Component {
   syncCategoryName(e){
     let name=e.target.value
     this.setState({
-      name:name
+      name:name,
     })
   }
   componentWillMount(){console.log()}
@@ -113,10 +116,14 @@ class SkillCategoryLabel extends React.Component {
     if( e.which==13){ (e.target).blur()}
   }
   syncSkills(e) {
-    //this.props.setCategoryDetails(this.props.id,cn,skills,iconUrl)
+    let inputs=e.target.parentNode.childNodes
+    inputs= [ ...inputs ];
+    console.log(inputs.length)
     let value=e.target.value
+
+    let skills=this.props.skills//inputs.map((input,index)=>input.value)
     let index=e.target.id.split('-')[1]-1
-    let skills=this.state.skills
+    //let skills=this.state.skills
     value.length > 15 ?  skills[index] = skills[index].slice(0,15) : skills[index]=value
     e.target.value=skills[index];
     this.setState({
@@ -124,7 +131,11 @@ class SkillCategoryLabel extends React.Component {
       key: Math.random()
     })
   }
-  componentDidUpdate(p,s){s.icon!=this.state.icon ? this.updateCategory(): null}//fixed icon image sync with App's state
+  componentDidUpdate(p,s){
+    s.icon!=this.state.icon ? this.props.onCategoryImageChanged(this.props.id,this.state.icon): null
+    s.name!=this.state.name ? this.props.onCategoryNameChanged(this.props.id,this.state.name): null
+    s.skills!=this.state.skills ? this.props.onCategorySkillsChanged(this.props.id,this.state.skills): null
+  }//fixed icon image sync with App's state
   render() {
     const skills=this.props.skills.map((skill,index)=>{
       return(
@@ -132,12 +143,12 @@ class SkillCategoryLabel extends React.Component {
         <input   id={`skill-${index+1}`}
           key={index}  placeholder='skill' onKeyUp={this.onEnter}
           style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`}}
-          onBlur={(e)=>this.updateCategory(e)} onChange={(e)=>this.syncSkills(e)}
+          onBlur={(e)=>this.syncSkills(e)} 
           defaultValue={skill} />
         </div>
-
+        
     )})
-    let name= this.props.categoryName
+    let key=  Date.now()
     console.log('name'+ name)
     return (
 
@@ -146,11 +157,12 @@ class SkillCategoryLabel extends React.Component {
           <div className='row' style={{}}>
               <input size='20' style={{border:'none',borderSize:'0px',readOnly:false}} 
                  onFocus={this.toggleShow}
-                 onChange={(e)=>this.syncCategoryName(e)}
-                 onBlur={this.updateCategory}
-                  placeholder='Category'
+                 
+                 onBlur={this.syncCategoryName}
+                 placeholder='Category'
                  key={Math.random()}
-                 className="item-category-name" defaultValue={this.props.categoryName} />
+                 className="item-category-name" 
+                 defaultValue={this.props.categoryName} />
           </div>
           <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
                 {skills}
@@ -158,7 +170,7 @@ class SkillCategoryLabel extends React.Component {
 
       </div>
 
-      <Hexagon size={6} className="item-hexagon" key={Math.random()} change={this.updateCategory} setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+      <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
       <div style={{height:'20%' , with:'20%'}}>
           <Modal
               isOpen={this.state.isModalOpen}

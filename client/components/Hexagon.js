@@ -7,9 +7,9 @@ class Hexagon extends React.Component {
       url: props.setIcon,
       key:Date.now()
     };
-    this.change=this.change.bind(this)
+    //this.change=this.change.bind(this)
   }
-  change(e){this.props.change(e)}
+  //change(e){this.props.change(e)}
   update(url) {
     this.setState({url: url});
   }
@@ -28,7 +28,7 @@ class Hexagon extends React.Component {
             <pattern id={imageKey} x="36" y="36"
               height="110" width="110"
               patternUnits="userSpaceOnUse">
-              <image onChange={this.change} width="50" height="50" xlinkHref={this.state.url}></image>
+              <image  width="50" height="50" xlinkHref={this.state.url}></image>
             </pattern>
           </defs>
           <polygon

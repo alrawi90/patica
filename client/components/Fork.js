@@ -23,7 +23,9 @@ class Fork extends React.Component {
       key:Date.now()
     }
     this.setRoleProps=this.setRoleProps.bind(this)
-    this.setCategoryDetails=this.setCategoryDetails.bind(this)
+    this.onCategoryNameChanged=this.onCategoryNameChanged.bind(this)
+    this.onCategoryImageChanged=this.onCategoryImageChanged.bind(this)
+    this.onCategorySkillsChanged=this.onCategorySkillsChanged.bind(this)
     this.setLego=this.setLego.bind(this)
     this.create=this.create.bind(this)
   }
@@ -69,17 +71,27 @@ class Fork extends React.Component {
   }
   setLego(legoImg){this.setState({lego:legoImg})}
 
-  setCategoryDetails(id,categoryName,skills,iconUrl){
-    console.log('New.js',iconUrl)
+  onCategoryNameChanged(id,categoryName){
     let categories=this.state.categories
     categories[id-1].name=categoryName;
-    categories[id-1].skills=skills;
-    categories[id-1].image=iconUrl;
     this.setState({
       categories: categories
     });
   }
-
+  onCategoryImageChanged(id,image){
+    let categories=this.state.categories
+    categories[id-1].image=image;
+    this.setState({
+      categories: categories
+    });
+  }
+  onCategorySkillsChanged(id,skills){
+    let categories=this.state.categories
+    categories[id-1].skills=skills;
+    this.setState({
+      categories: categories
+    });
+  }
   //componentDidUpdate(){console.log(this.state.categories[0].categoryImg)}
 
   create(){
@@ -115,6 +127,26 @@ class Fork extends React.Component {
   }
   render() {
 
+    const items=this.state.categories.map((category, index) =>{
+
+        return(
+
+              <div className="item" key={index} >
+                <SkillCategoryLabel
+                  key={index}
+                  id={index+1}
+                  setCategoryDetails={this.setCategoryDetails}
+                  onCategoryNameChanged={this.onCategoryNameChanged}
+                  onCategoryImageChanged={this.onCategoryImageChanged}
+                  onCategorySkillsChanged={this.onCategorySkillsChanged}
+                  skills={category.skills}
+                  iconUrl={category.image}
+                  categoryName={category.name}
+                />
+              </div>
+
+        ) })
+
     return (
       <div className='col' >
           <div className='row' style={{justifyContent:'center'}}>
@@ -126,75 +158,18 @@ class Fork extends React.Component {
          </div>
           <div className='main-container' >
              <div className="col-left" >
-               <div className="item" >
-               <SkillCategoryLabel
-                    id={1}
-                    obj={this.state.categories[0]}
-                    setCategoryDetails={this.setCategoryDetails}
-                    skills={this.state.categories[0].skills}
-                    iconUrl={this.state.categories[0].image}
-                    categoryName={this.state.categories[0].name}
-                 />
-                 </div>
-               <div className="item" >
-               <SkillCategoryLabel
-                    id={2}
-                    obj={this.state.categories[1]}
-                    setCategoryDetails={this.setCategoryDetails}
-                    skills={this.state.categories[1].skills}
-                    iconUrl={this.state.categories[1].image}
-                    categoryName={this.state.categories[1].name}
-                 />           
-                 </div>
-               <div className="item" >
-               <SkillCategoryLabel
-                    id={3}
-                    obj={this.state.categories[2]}
-                    setCategoryDetails={this.setCategoryDetails}
-                    skills={this.state.categories[2].skills}
-                    iconUrl={this.state.categories[2].image}
-                    categoryName={this.state.categories[2].name}
-                 />
-                  </div>
+                 {items.map((item,index)=>{if(index % 2==0) return (item)})}
              </div>
              <div className="col-center" >
 
-             <div className="item" >
-                <Lego setLego={this.setLego} currentLego={this.state.lego}/>
-             </div>
+                <div className="item" >
+                  <Lego setLego={this.setLego} currentLego={this.state.lego}/>
+                </div>
 
-             </div>
+            </div>
+
              <div className="col-right" >
-                 <div className="item" >
-                   <SkillCategoryLabel
-                        id={4}
-                        obj={this.state.categories[3]}
-                        setCategoryDetails={this.setCategoryDetails}
-                        skills={this.state.categories[3].skills}
-                        iconUrl={this.state.categories[3].image}
-                        categoryName={this.state.categories[3].name}
-                     />
-                   </div>
-                 <div className="item" >
-                 <SkillCategoryLabel
-                      id={5}
-                      obj={this.state.categories[4]}
-                      setCategoryDetails={this.setCategoryDetails}
-                      skills={this.state.categories[4].skills}
-                      iconUrl={this.state.categories[4].image}
-                      categoryName={this.state.categories[4].name}
-                   />
-                 </div>
-                 <div className="item" >
-                 <SkillCategoryLabel
-                      id={6}
-                      obj={this.state.categories[5]}
-                      setCategoryDetails={this.setCategoryDetails}
-                      skills={this.state.categories[5].skills}
-                      iconUrl={this.state.categories[5].image}
-                      categoryName={this.state.categories[5].name}
-                   />
-                   </div>
+              {items.map((item,index)=>{if(index % 2 >0) return (item)})}
              </div>
           </div>
           <div className='row' style={{justifyContent:'center'}}>
