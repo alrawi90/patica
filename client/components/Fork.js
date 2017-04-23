@@ -3,7 +3,7 @@ const React = require('react');
 const SkillCategoryLabel = require('./SkillCategoryLabel');
 const RoleLabel = require('./RoleLabel');
 const Lego = require('./Lego');
-const ReactBootstrap=require('react-bootstrap')
+const SkillCategory = require('./SkillCategory');
 class Fork extends React.Component {
   constructor(props) {
     super(props)
@@ -30,7 +30,13 @@ class Fork extends React.Component {
     this.create=this.create.bind(this)
     this.addNewCategory=this.addNewCategory.bind(this)
     this.removeCategory=this.removeCategory.bind(this)
+    this.showAdvancedSettings=this.showAdvancedSettings.bind(this)
   }
+  showAdvancedSettings(e){
+   let factor=e.target.id
+   this.refs['sc-' + factor].openModal(e)
+  }
+
   addNewCategory(){
     let SkillCategory={name:'',skills:['','',''],image:''}
     let categories=this.state.categories
@@ -148,10 +154,17 @@ class Fork extends React.Component {
 
               <div className="item" key={index} >
                 <button id={index+1} onClick={this.removeCategory}>-</button>
+                <button id={index+1} onClick={this.showAdvancedSettings}>#</button>
+                <SkillCategory 
+                  id={index+1} 
+                  ref={'sc-'+(index+1)} 
+                  onAdvancedEdit={this.onAdvancedEdit}
+                  skills={category.skills}
+                  categoryName={category.name}
+                  />
                 <SkillCategoryLabel
                   key={index}
                   id={index+1}
-                  setCategoryDetails={this.setCategoryDetails}
                   onCategoryNameChanged={this.onCategoryNameChanged}
                   onCategoryImageChanged={this.onCategoryImageChanged}
                   onCategorySkillsChanged={this.onCategorySkillsChanged}

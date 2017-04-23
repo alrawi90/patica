@@ -2,7 +2,6 @@ const React = require('react');
 const Modal = require('react-modal');
 const Hexagon=require('./Hexagon');
 const LegoGallery=require('./LegoGallery');
-const SkillCategory = require('./SkillCategory');
 
 class SkillCategoryLabel extends React.Component {
   constructor(props) {
@@ -137,7 +136,9 @@ class SkillCategoryLabel extends React.Component {
       return(
         <div  style={{width:'5em'}} key={index} >
         <input   id={`skill-${index+1}`}
-          key={index}  placeholder='skill' onKeyUp={this.onEnter}
+          key={index}  
+          placeholder='skill' 
+          onKeyUp={this.onEnter}
           style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`,textOverflow: 'ellipsis'}}
           onFocus={this.toggleShow}
           onBlur={(e)=>this.syncSkills(e)} 
@@ -151,7 +152,8 @@ class SkillCategoryLabel extends React.Component {
       <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
         <div className="col"  style={{}}>
           <div className='row' style={{}}>
-              <input size='20' style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',fontWeight:'bold',textOverflow: 'ellipsis'}} 
+              <input size='20' 
+              style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',fontWeight:'bold',textOverflow: 'ellipsis'}} 
                  onFocus={this.toggleShow}
                  onKeyUp={this.onEnter}
                  onBlur={this.syncCategoryName}

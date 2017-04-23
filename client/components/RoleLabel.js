@@ -53,7 +53,7 @@ class RoleLabel extends React.Component {
       // re-render
       this.setState({ keywords });
     }
-    RoleNameChanged(data) {
+  RoleNameChanged(data) {
     // data = { description: "New validated text comes here" }
     // Update your model from here
     console.log(data)
@@ -61,17 +61,17 @@ class RoleLabel extends React.Component {
 
     this.setState({})
 }
-    DescriptionChanged(data){
+  DescriptionChanged(data){
       console.log(data)
       this.props.setRoleProps(this.props.roleName,this.state.keywords,data.message)
     }
 
-customValidateText(text) {
-  return (text.length > 0 && text.length < 64);
+  customValidateText(text) {
+    return (text.length > 0 && text.length < 64);
 }
 
   render() {
-     const { keywords, suggestions } = this.state;
+    const { keywords, suggestions } = this.props;
     return (
 
       <div className="item-role-container">
