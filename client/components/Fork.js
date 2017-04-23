@@ -159,6 +159,8 @@ class Fork extends React.Component {
                   id={index+1} 
                   ref={'sc-'+(index+1)} 
                   onAdvancedEdit={this.onAdvancedEdit}
+                  onCategoryNameChanged={this.onCategoryNameChanged}
+                  onCategorySkillsChanged={this.onCategorySkillsChanged}
                   skills={category.skills}
                   categoryName={category.name}
                   />

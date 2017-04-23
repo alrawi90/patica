@@ -5,17 +5,15 @@ const Galary=require('./Gallery');
 class SkillCategory extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isModalOpen: false,name:'',set:false,skills:[] ,key:1,SkillBoxes:props.skills}
-    this.set_=this.set_.bind(this)
-    //this.handleClick=this.handleClick.bind(this)
+    this.state = { isModalOpen: false,name:props.categoryName,set:false,skills:[] ,key:1,SkillBoxes:props.skills}
+    this.onCategoryNameChanged=this.onCategoryNameChanged.bind(this)
     this.changeInputValue=this.changeInputValue.bind(this)
-    this.setIcon=this.setIcon.bind(this)
   }
 
-  setIcon(url){
+  onCategoryNameChanged(e){
 
     this.setState({
-      iconUrl: url,
+      name: e.target.value,
       key: Math.random(),
    })
   }
@@ -26,7 +24,12 @@ class SkillCategory extends React.Component {
             this.setState({
           SkillBoxes:nextProps.skills
         })
-      }       
+      }   
+      if (nextProps.categoryName !== this.state.name) {
+            this.setState({
+          name:nextProps.categoryName
+        })
+      }     
   }
   // componentWillUpdate(p,s){ 
   //   if(s.set!= this.state.set)
@@ -83,7 +86,12 @@ class SkillCategory extends React.Component {
           >
           
           <label>
-            Category Name: <input key={Date.now()} defaultValue={this.props.categoryName} type='text' ref='cn' />
+            Category Name: <input 
+            key={Date.now()} 
+            defaultValue={this.state.name} 
+            type='text' ref='cn'
+            onBlur={this.onCategoryNameChanged}
+             />
           </label>
           <br />
           <label>
@@ -91,8 +99,7 @@ class SkillCategory extends React.Component {
             Skills: {outcome}
           </label>
           <button onClick={(e) =>this.addSkillField(e)} > + </button>
-          <p><button onClick={() => this.closeModal(false)}>Cancel</button></p>
-          <p><button onClick={this.set}>Set</button></p>
+
         </Modal>
     </div>
     )
@@ -105,12 +112,11 @@ class SkillCategory extends React.Component {
 
   closeModal(set) {
        this.setState({ isModalOpen: false,set:set }) 
+       console.log(this.state.name)
 
+       this.props.onCategoryNameChanged(this.props.id,this.state.name)
+       
   }
-  set_(e){
-        e.preventDefault()
-        this.props.handler(this.refs.cn.value,this.state.SkillBoxes,this.state.iconUrl);
-        this.closeModal(true)
-  }
+
 }
 module.exports = SkillCategory
