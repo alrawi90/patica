@@ -133,8 +133,11 @@ class SkillCategoryLabel extends React.Component {
   }//fixed icon image sync with App's state
   render() {
     const skills=this.props.skills.map((skill,index)=>{
+    let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
+
       return(
-        <div  style={{width:'5em'}} key={index} >
+
+        <div  style={{width:'5em'}} key={key} >
         <input   id={`skill-${index+1}`}
           key={index}  
           placeholder='skill' 

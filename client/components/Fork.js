@@ -48,7 +48,7 @@ class Fork extends React.Component {
 
     let CategoryIndex=parseInt(e.target.id)-1
     let categories=this.state.categories
-    categories.splice(CategoryIndex,1)
+    categories.splice(CategoryIndex,1)// remove Category
     this.setState({categories:categories})
      console.log(CategoryIndex+1 +' removed')
   }

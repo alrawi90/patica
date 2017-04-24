@@ -5,7 +5,7 @@ const Galary=require('./Gallery');
 class SkillCategory extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { isModalOpen: false,name:props.categoryName,set:false,skills:[] ,key:1,SkillBoxes:props.skills}
+    this.state = { isModalOpen: false,name:props.categoryName,set:false,key:1,SkillBoxes:props.skills}
     this.onCategoryNameChanged=this.onCategoryNameChanged.bind(this)
     this.changeInputValue=this.changeInputValue.bind(this)
   }
@@ -62,7 +62,7 @@ class SkillCategory extends React.Component {
     const outcome =this.state.SkillBoxes.map((value,index)=>{
       return(
         <div key={index}>
-                <span style={{position:'absolute',width:'100px',height:'3px',color:'red'}} >{'ــــــــــــــــــــ'}</span>
+                <span style={{display:'none',position:'absolute',width:'100px',height:'3px',color:'red'}} >{'ــــــــــــــــــــ'}</span>
                 <input 
                   style={{marginRight:0}} 
                   onChange={this.changeInputValue} 
@@ -115,6 +115,7 @@ class SkillCategory extends React.Component {
        console.log(this.state.name)
 
        this.props.onCategoryNameChanged(this.props.id,this.state.name)
+       //this.props.onCategorySkillsChanged(this.props.id,this.state.skillBoxes)
        
   }
 
