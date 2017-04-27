@@ -6,7 +6,8 @@
   "author": "Ali Alrawi",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "rm -rf dist && ./node_modules/.bin/webpack && mkdir dist/client && cp -r client/assets/ dist/client/"
   },
   "dependencies": {
     "html-webpack-plugin": "^2.28.0",
