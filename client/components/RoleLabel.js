@@ -6,9 +6,9 @@ class RoleLabel extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      RoleName:this.props.roleName,
-      keywords:this.props.keywords,
-      suggestions:this.props.suggestions,
+      // RoleName:props.roleName,
+      // keywords:props.keywords,
+      // suggestions:props.suggestions,
        key:1
      }
     this.handleDelete = this.handleDelete.bind(this);
@@ -19,28 +19,15 @@ class RoleLabel extends React.Component {
 
   }
 
-
   handleDelete(i) {
-    this.setState({
-      keywords: this.state.keywords.filter((tag, index) => index !== i)
-    });
+    //alert()
+     this.props.onRoleKeywordsDelete(i)
   }
 
-  handleAddition(tag) {
-    const keywords = [ ...this.state.keywords ];
-    let t=this.state.keywords.map((obj,i)=>obj.text)
-    console.log(t)
-    if(! t.includes(tag)) {
-        this.setState({
-          keywords: [
-            ...this.state.keywords,
-            {
-              id: keywords.length + 1,
-              text: tag
-            }
-          ]
-        });
-      }
+  handleAddition(keyword) {
+
+          this.props.setRoleKeywords(keyword)
+
   }
 
   handleDrag(tag, currPos, newPos) {
@@ -57,13 +44,13 @@ class RoleLabel extends React.Component {
     // data = { description: "New validated text comes here" }
     // Update your model from here
     console.log(data)
-    this.props.setRoleProps(data.message.toUpperCase(),this.state.keywords,this.props.description)
+    this.props.setRoleName(data.message.toUpperCase())
 
-    this.setState({})
+    //this.setState({RoleName:data.message.toUpperCase()})
 }
   DescriptionChanged(data){
       console.log(data)
-      this.props.setRoleProps(this.props.roleName,this.state.keywords,data.message)
+      this.props.setRoleDescription(data.message)
     }
 
   customValidateText(text) {
@@ -111,7 +98,9 @@ class RoleLabel extends React.Component {
                 }}
               />
               <br />
-          <ReactTags tags={keywords}
+          <ReactTags  
+                     key={this.key}
+                     tags={keywords}
                      suggestions={suggestions}
                      handleDelete={this.handleDelete}
                      handleAddition={this.handleAddition}

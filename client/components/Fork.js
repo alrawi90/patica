@@ -22,7 +22,9 @@ class Fork extends React.Component {
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
       key:Date.now()
     }
-    this.setRoleProps=this.setRoleProps.bind(this)
+    this.setRoleName=this.setRoleName.bind(this)
+    this.setRoleDescription=this.setRoleDescription.bind(this)
+    this.setRoleKeywords=this.setRoleKeywords.bind(this)
     this.onCategoryNameChanged=this.onCategoryNameChanged.bind(this)
     this.onCategoryImageChanged=this.onCategoryImageChanged.bind(this)
     this.onCategorySkillsChanged=this.onCategorySkillsChanged.bind(this)
@@ -30,6 +32,7 @@ class Fork extends React.Component {
     this.create=this.create.bind(this)
     this.addNewCategory=this.addNewCategory.bind(this)
     this.removeCategory=this.removeCategory.bind(this)
+    this.onRoleKeywordsDelete=this.onRoleKeywordsDelete.bind(this)
     this.showAdvancedSettings=this.showAdvancedSettings.bind(this)
   }
   showAdvancedSettings(e){
@@ -83,10 +86,44 @@ class Fork extends React.Component {
   });
 
   }
-  setRoleProps(roleName_,keywords_,description_){
+  setRoleName(roleName){
 
     this.setState({
-      roleName: roleName_, keywords: keywords_,description:description_
+      roleName: roleName
+    });
+
+  }
+    
+  setRoleDescription(description){
+
+    this.setState({
+      description:description
+    });
+
+  }
+  
+  setRoleKeywords(keyword){
+
+    const keywords = [ ...this.state.keywords ];
+    let t=this.state.keywords.map((obj,i)=>obj.text)
+    //console.log('keywords ##',t)
+    if(! t.includes(keyword)) {
+        this.setState({
+          keywords: [
+            ...this.state.keywords,
+            {
+              id: keywords.length + 1,
+              text: keyword
+            }
+          ],key:Math.random()
+        });
+      }
+
+  }
+  onRoleKeywordsDelete(i){
+
+    this.setState({
+      keywords: this.state.keywords.filter((tag, index) => index !== i)
     });
 
   }
@@ -182,8 +219,15 @@ class Fork extends React.Component {
       <div className='col' >
           <div className='row' style={{justifyContent:'center'}}>
            <div className='' >
-              <RoleLabel setRoleProps={this.setRoleProps} roleName={this.state.roleName} keywords={this.state.keywords}
-                description={this.state.description} suggestions={this.state.suggestions}
+              <RoleLabel 
+                 setRoleName={this.setRoleName} 
+                 setRoleDescription={this.setRoleDescription}
+                 setRoleKeywords={this.setRoleKeywords}
+                 onRoleKeywordsDelete={this.onRoleKeywordsDelete}
+                 roleName={this.state.roleName} 
+                 keywords={this.state.keywords}
+                 description={this.state.description} 
+                 suggestions={this.state.suggestions}
               />
           </div>
           <div className='' style={{float:'right',backgroundColor:''}}>
