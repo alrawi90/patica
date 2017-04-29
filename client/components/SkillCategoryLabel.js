@@ -154,7 +154,7 @@ class SkillCategoryLabel extends React.Component {
                         }
                   }
     const skills=this.props.skills.map((skill,index)=>{
-    let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
+      let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
 
       return(
 

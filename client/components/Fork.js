@@ -49,8 +49,8 @@ class Fork extends React.Component {
   }
 
   removeCategory(e){
-
-    let CategoryIndex=parseInt(e.target.id)-1
+    
+    let CategoryIndex=parseInt(e.target.id.split('-')[1])-1
     let categories=this.state.categories
     categories.splice(CategoryIndex,1)// remove Category
     this.setState({categories:categories})
@@ -191,8 +191,8 @@ class Fork extends React.Component {
         return(
 
               <div className="item" key={index} >
-                <button id={index+1} onClick={this.removeCategory}><i className="fa fa-remove"></i></button>
-                <button id={`editBtn-${index+1}`} onClick={this.showAdvancedSettings}><i id={`faBtn-${index+1}`} className="fa fa-edit"></i></button>
+                <button id={`removeBtn-${index+1}`} onClick={this.removeCategory}><i id={`faRemoveBtn-${index+1}`} className="fa fa-remove"></i></button>
+                <button id={`editBtn-${index+1}`} onClick={this.showAdvancedSettings}><i id={`faEditBtn-${index+1}`} className="fa fa-edit"></i></button>
                 <SkillCategory 
                   id={index+1} 
                   ref={'sc-'+(index+1)} 
@@ -215,11 +215,11 @@ class Fork extends React.Component {
               </div>
 
         ) })
-        items.push(          
+
+    items.push(          
         <div className='' key={Date.now()} style={{position:'relative'}}>
              <button onClick={this.addNewCategory} alt='add new category' ><i className="fa fa-plus-circle"></i> New Category</button>
           </div>)
-
     return (
       <div className='col' >
           <div className='row' style={{justifyContent:'center'}}>
