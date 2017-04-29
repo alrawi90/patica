@@ -1,5 +1,5 @@
 const React = require('react');
-const FA = require('react-fontawesome')
+//const FA = require('react-fontawesome')
 class Hexagon extends React.Component {
   constructor(props){
     super(props)
