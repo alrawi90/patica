@@ -30,7 +30,7 @@ class Hexagon extends React.Component {
               height="110" width="110"
               patternUnits="userSpaceOnUse">
              
-              <g ><text textAnchor='middle' x="25px" y="40px"  >{this.state.url}</text></g> 
+              <g ><text textAnchor='middle' x="25px" y="35px"  >{this.state.url}</text></g> 
             </pattern>
 
           </defs>

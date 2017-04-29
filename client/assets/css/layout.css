@@ -26,6 +26,10 @@
     padding: 1px;
      /*border: 1px solid red;*/
 }
+*{
+  outline-width: 1px;
+  outline-style: hidden;
+}
 .main-container{
    display: -webkit-flex;
    display: flex;
@@ -63,11 +67,6 @@
 
 }
 
-
-
-
-
-
 .thumbs-container { 
   padding: .5vw;
   font-size: 0;
@@ -81,7 +80,7 @@
   overflow: hidden;
 }
 
-header div img { 
+/*header div img { 
   width: 100%; 
   height: auto; 
 }
@@ -89,4 +88,4 @@ header div img {
   header div { margin: 0; }
   header { padding: 0; }
   
-}
+}*/

@@ -12,7 +12,7 @@ class LegoGallery extends React.Component{
          items:this.props.legos,
          counter:0
               }
-   }
+    }
     handleClick(e){
       let index=e.target.id.split('-')[1] -1
       this.props.pickedLego(index);
@@ -34,7 +34,7 @@ class LegoGallery extends React.Component{
       })
      return(
 
-       <Swipeable
+      <Swipeable
           onSwiping={this.swiping}
           onSwipingUp={this.swipingUp}
           onSwipingRight={this.swipingRight}
@@ -52,9 +52,9 @@ class LegoGallery extends React.Component{
               {thumbs}
             </div>
 
-         </div>
+          </div>
 
-        </Swipeable>
+      </Swipeable>
 
      )
    }

@@ -70,7 +70,7 @@ class SkillCategory extends React.Component {
                   key={index} 
                   id={`skill-${index+1}`}
                  />
-                <button id={`Removeskill-${index+1}`} onClick={(e)=>this.removeSkill(e)} >-</button>
+                <button id={`Removeskill-${index+1}`} onClick={(e)=>this.removeSkill(e)} ><i className="fa fa-remove"></i></button>
                 <br />
         </div>
       )
@@ -98,7 +98,7 @@ class SkillCategory extends React.Component {
           <br />
             Skills: {outcome}
           </label>
-          <button onClick={(e) =>this.addSkillField(e)} > + </button>
+          <button onClick={(e) =>this.addSkillField(e)} ><i className="fa fa-plus"></i></button>
 
         </Modal>
     </div>

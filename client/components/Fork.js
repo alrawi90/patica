@@ -36,7 +36,8 @@ class Fork extends React.Component {
     this.showAdvancedSettings=this.showAdvancedSettings.bind(this)
   }
   showAdvancedSettings(e){
-   let factor=e.target.id
+   e.stopPropagation()
+   let factor=e.target.id.split('-')[1];
    this.refs['sc-' + factor].openModal(e)
   }
 
@@ -190,8 +191,8 @@ class Fork extends React.Component {
         return(
 
               <div className="item" key={index} >
-                <button id={index+1} onClick={this.removeCategory}>-</button>
-                <button id={index+1} onClick={this.showAdvancedSettings}>#</button>
+                <button id={index+1} onClick={this.removeCategory}><i className="fa fa-remove"></i></button>
+                <button id={`editBtn-${index+1}`} onClick={this.showAdvancedSettings}><i id={`faBtn-${index+1}`} className="fa fa-edit"></i></button>
                 <SkillCategory 
                   id={index+1} 
                   ref={'sc-'+(index+1)} 
@@ -214,6 +215,10 @@ class Fork extends React.Component {
               </div>
 
         ) })
+        items.push(          
+        <div className='' style={{position:'relative'}}>
+             <button onClick={this.addNewCategory} ><i className="fa fa-plus-circle"></i> New Category</button>
+          </div>)
 
     return (
       <div className='col' >
@@ -230,9 +235,7 @@ class Fork extends React.Component {
                  suggestions={this.state.suggestions}
               />
           </div>
-          <div className='' style={{float:'right',backgroundColor:''}}>
-             <button onClick={this.addNewCategory} >Add New Category</button>
-          </div>
+
          </div>
           <div className='main-container' >
              <div className="col-left" >

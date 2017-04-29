@@ -12,7 +12,7 @@ class SkillCategoryLabel extends React.Component {
       skills:this.props.skills, 
       icon:this.props.iconUrl,
       isModalOpen: false,
-      currentWidth:'90px',
+      currentWidth:'78px',
       items:[
         // './client/assets/icons/1.png',
         // './client/assets/icons/2.png',
