@@ -1,7 +1,7 @@
-const React = require('react');
-const Modal = require('react-modal');
-const Hexagon=require('./Hexagon');
-const LegoGallery=require('./LegoGallery');
+const React = require('react')
+const Modal = require('react-modal')
+const Hexagon=require('./Hexagon')
+const Gallery=require('./Gallery')
 
 class SkillCategoryLabel extends React.Component {
   constructor(props) {
@@ -14,15 +14,25 @@ class SkillCategoryLabel extends React.Component {
       isModalOpen: false,
       currentWidth:'90px',
       items:[
-        './client/assets/icons/1.png',
-        './client/assets/icons/2.png',
-        './client/assets/icons/3.png',
-        './client/assets/icons/4.png',
-        './client/assets/icons/5.png',
-        './client/assets/icons/6.png',
-        './client/assets/icons/7.png',
-        './client/assets/icons/8.png',
-        './client/assets/icons/9.png',
+        // './client/assets/icons/1.png',
+        // './client/assets/icons/2.png',
+        // './client/assets/icons/3.png',
+        // './client/assets/icons/4.png',
+        // './client/assets/icons/5.png',
+        // './client/assets/icons/6.png',
+        // './client/assets/icons/7.png',
+        // './client/assets/icons/8.png',
+        // './client/assets/icons/9.png',
+                   '\uf19c',
+           '\uf15a',
+           '\uf2dc',
+           '\uf17a',
+           '\uf13c',
+           '\uf13b',
+           '\uf270',
+           '\uf179',
+           '\uf294',
+           '\uf1f4','\uf06e'
             ]
     }
     this.toggleShow=this.toggleShow.bind(this)
@@ -62,7 +72,7 @@ class SkillCategoryLabel extends React.Component {
     let index=input.id.split('-')[1]-1
     let skills=this.state.skills
     //let isShown=this.state.isShown
-    //isShown[index]=true;
+    //isShown[index]=true
     input.readOnly = false
     input.borderSize='1px'
     // this.setState({
@@ -113,14 +123,14 @@ class SkillCategoryLabel extends React.Component {
   }
   syncSkills(e) {
     let inputs=e.target.parentNode.childNodes
-    inputs= [ ...inputs ];
+    inputs= [ ...inputs ]
     let value=e.target.value
 
     let skills=this.props.skills//inputs.map((input,index)=>input.value)
     let index=e.target.id.split('-')[1]-1
     //let skills=this.state.skills
     value.length > 15 ?  skills[index] = skills[index].slice(0,15) : skills[index]=value
-    e.target.value=skills[index];
+    e.target.value=skills[index]
     this.setState({
       skills: skills ,
       key: Math.random()
@@ -132,6 +142,17 @@ class SkillCategoryLabel extends React.Component {
     s.skills!=this.state.skills ? this.props.onCategorySkillsChanged(this.props.id,this.state.skills): null
   }//fixed icon image sync with App's state
   render() {
+    let style = {
+                        content : {
+                          top                   : '50%',
+                          left                  : '50%',
+                          right                 : 'auto',
+                          bottom                : 'auto',
+                          marginRight           : '-50%',
+                          transform             : 'translate(-50%, -50%)',
+                          width:'20em' ,height:'20em',overflow:'hidden'
+                        }
+                  }
     const skills=this.props.skills.map((skill,index)=>{
     let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
 
@@ -174,12 +195,13 @@ class SkillCategoryLabel extends React.Component {
       <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
       <div style={{height:'20%' , with:'20%'}}>
           <Modal
+              style={style}
               isOpen={this.state.isModalOpen}
               onAfterOpen={this.afterOpenModal}
               onRequestClose={() => this.closeModal()}
               contentLabel="Icon Picker"
             >
-            <LegoGallery pickedLego={this.setIcon} legos={this.state.items}/>
+            <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
           </Modal>
       </div>
       </div>

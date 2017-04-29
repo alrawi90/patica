@@ -95,7 +95,7 @@ class Lego extends React.Component{
               <Trapezoid className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
             </div>
             <Modal
-              style={{}}
+              style={this.style}
               isOpen={this.state.isModalOpen}
               onAfterOpen={this.afterOpenModal}
               onRequestClose={() => this.closeModal()}

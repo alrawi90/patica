@@ -33,18 +33,22 @@ input.ReactTags__tagInputField{width:87px;}
   padding: 0;margin: 0;
 }
 
-/*.rotate90{
+svg text {
+   font-family: FontAwesome;
+   font-size:30px;
+/*    color:#fff ;
+*/    fill: #fff;
 
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
+}
+.fontAwesome{
+     font-family: FontAwesome;
+   font-size:50px;
+    color: #fff;
+}
 
-}*/
 .hex {
   cursor: pointer;
-  fill-opacity: 0.4;
+  fill-opacity: .9;
   stroke: #000;
   stroke-width: 1;
 }
@@ -63,12 +67,12 @@ input.ReactTags__tagInputField{width:87px;}
   -webkit-transform-origin: 50% 50%;
 }
 
-.hex {
+/*.hex {
   transition: transform, fill-opacity, stroke-width;
   -webkit-transition: transform, fill-opacity, stroke-width;
   transition-duration: 1s;
   -webkit-transition-duration: 1s;
-}
+}*/
 .:active{
 	border-width:10px;
     box-shadow:1px;

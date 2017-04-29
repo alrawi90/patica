@@ -1,9 +1,5 @@
 const React = require('react');
 var Swipeable = require('react-swipeable')
-var Row = require('react-bootstrap').Row;
-var Col=require('react-bootstrap').Col;
-var Thumbnail=require('react-bootstrap').Thumbnail;
-
 class LegoGallery extends React.Component{
 
     constructor(props){
@@ -50,9 +46,9 @@ class LegoGallery extends React.Component{
           onSwipedLeft={this.swipedLeft}
           onSwiped={this.handleSwipeAction}>
 
-          <div className='lego-gallery-container' >
+          <div className='thumbs-wrapper' >
 
-            <div className='lego-gallery-thumbs-container'>
+            <div className='thumbs-container'>
               {thumbs}
             </div>
 
