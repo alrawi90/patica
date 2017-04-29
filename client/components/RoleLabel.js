@@ -13,7 +13,6 @@ class RoleLabel extends React.Component {
      }
     this.handleDelete = this.handleDelete.bind(this);
     this.handleAddition = this.handleAddition.bind(this);
-    this.handleDrag = this.handleDrag.bind(this);
     this.RoleNameChanged = this.RoleNameChanged.bind(this);
     this.DescriptionChanged = this.DescriptionChanged.bind(this);
 
@@ -30,16 +29,7 @@ class RoleLabel extends React.Component {
 
   }
 
-  handleDrag(tag, currPos, newPos) {
-      const keywords = [ ...this.state.keywords ];
 
-      // mutate array
-      keywords.splice(currPos, 1);
-      keywords.splice(newPos, 0, tag);
-
-      // re-render
-      this.setState({ keywords });
-    }
   RoleNameChanged(data) {
     // data = { description: "New validated text comes here" }
     // Update your model from here
@@ -104,7 +94,7 @@ class RoleLabel extends React.Component {
                      suggestions={suggestions}
                      handleDelete={this.handleDelete}
                      handleAddition={this.handleAddition}
-                     handleDrag={this.handleDrag} />
+                     />
 
         </div>
       </div>

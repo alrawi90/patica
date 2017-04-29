@@ -216,8 +216,8 @@ class Fork extends React.Component {
 
         ) })
         items.push(          
-        <div className='' style={{position:'relative'}}>
-             <button onClick={this.addNewCategory} ><i className="fa fa-plus-circle"></i> New Category</button>
+        <div className='' key={Date.now()} style={{position:'relative'}}>
+             <button onClick={this.addNewCategory} alt='add new category' ><i className="fa fa-plus-circle"></i> New Category</button>
           </div>)
 
     return (
