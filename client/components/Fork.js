@@ -50,7 +50,7 @@ class Fork extends React.Component {
 
   removeCategory(e){
 
-    let CategoryIndex=parseInt(e.target.id)-1
+    let CategoryIndex=parseInt(e.target.id.split('-')[1])-1
     let categories=this.state.categories
     categories.splice(CategoryIndex,1)// remove Category
     this.setState({categories:categories})
@@ -161,7 +161,7 @@ class Fork extends React.Component {
       opts.image=this.state.lego
       opts.keywords=this.state.keywords.map((item,index)=>{return(item.text)})//['a','b','c']
       opts.skillCategory=[]
-      opts.skillCategory=[1,2,3,4,5,6].map((item,index)=>{
+      opts.skillCategory=this.state.categories.map((item,index)=>{
         return(
         {         name:this.state.categories[index].name,
                   skills:this.state.categories[index].skills,
@@ -189,11 +189,21 @@ class Fork extends React.Component {
     const items=this.state.categories.map((category, index) =>{
         let dir;(index+1) %2 >0 ? dir='left' : dir='right'
         return(
-
+              
               <div className="item" key={index} >
                 <div style={{textAlign:`${dir}`}} >
-                  <button id={index+1} onClick={this.removeCategory}><i className="fa fa-remove"></i></button>
-                  <button id={`editBtn-${index+1}`} onClick={this.showAdvancedSettings}><i id={`faBtn-${index+1}`} className="fa fa-edit"></i></button>
+                  <button 
+                    id={`removeBtn-${index+1}`} onClick={this.removeCategory}
+                    className="white" style={{backgroundColor:'#0d6d04',margin:'3px'}}
+                    >
+                    <i  id={`faRemoveBtn-${index+1}`} className="fa fa-remove white"></i>
+                  </button>
+                  <button id={`editBtn-${index+1}`} 
+                     onClick={this.showAdvancedSettings}
+                     className="white" style={{backgroundColor:'#0d6d04',margin:'3px'}}
+                     >
+                     <i id={`faBtn-${index+1}`} className="fa fa-edit white"></i>
+                  </button>
                 </div>
                 <SkillCategory 
                   id={index+1} 
@@ -217,10 +227,10 @@ class Fork extends React.Component {
               </div>
 
         ) })
-        items.push(          
-        <div className='' key={Date.now()} style={{position:'relative'}}>
-             <button onClick={this.addNewCategory} alt='add new category' ><i className="fa fa-plus-circle"></i> New Category</button>
-          </div>)
+        // items.push(          
+        // <div className='' key={Date.now()} style={{position:'relative'}}>
+        //      <button onClick={this.addNewCategory} className="white" style={{backgroundColor:'#0d6d04'}} ><i className="fa fa-plus-circle white"></i> New Category</button>
+        //   </div>)
 
     return (
       <div className='col' >
@@ -236,6 +246,23 @@ class Fork extends React.Component {
                  description={this.state.description} 
                  suggestions={this.state.suggestions}
               />
+              <div className='row' style={{justifyContent:'space-around'}}>
+                    <div className="item" >
+                       <button onClick={this.create} className='white' style={{backgroundColor:'#0d6d04'}}>
+                         <i className="fa fa-plus-square white"></i> Create New Role
+                       </button>
+                    </div>
+                    <div className="item" >
+                       <button onClick={this.copy} style={{backgroundColor:'#0d6d04'}} className='white' >
+                          <i className="fa fa-copy white"></i> Copy Role
+                       </button>
+                    </div>
+                    <div className='' key={Date.now()} style={{position:'relative'}}>
+                        <button onClick={this.addNewCategory} className="white" style={{backgroundColor:'#0d6d04'}} >
+                          <i className="fa fa-plus-circle white"></i> Add New Category
+                        </button>
+                    </div>                   
+              </div>
           </div>
 
          </div>
@@ -256,9 +283,7 @@ class Fork extends React.Component {
              </div>
           </div>
           <div className='row' style={{justifyContent:'center'}}>
-              <div className="item" >
-                 <button onClick={this.create}>Create Role</button>
-              </div>
+
               <div className="item" >
                  <label style={{color:'red',fontSize:'12px'}}>{this.state.error}</label>
               </div>

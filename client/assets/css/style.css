@@ -1,15 +1,18 @@
 html {
   background-color: #fff;
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-family: font-family: "Montserrat","Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif,
+  Helvetica "Neue",Helvetica,'Inconsolata',sans-serif;
+
 }
 * {
     box-sizing: border-box;
 }
+.white{color:#fff;}
 .hidden{display: none}
 .small-font{font-size: 12px;box-shadow: 0 0 2px 2px #d9d9d9;}
 .ReactTags__suggestions{position: absolute;}
 input.ReactTags__tagInputField{width:87px;}
-.ReactTags__tag{background-color: #0d6d04;color:#fff;border-radius: 5px}
+.ReactTags__tag{background-color: #0d6d04;color:#fff;border-radius: 5px;font-size: 12px;}
 .ReactTags__remove{color: silver;margin: 2px}
 .container1 {
   width: calc(50% - 60px);
@@ -47,11 +50,13 @@ svg text {
 }
 
 .hex {
+  border-radius: 1em/ .5em;
   cursor: pointer;
   fill-opacity: .9;
   stroke: #0d6d04;
   stroke-width: 0;
   border: 1px solid rgba(255, 255, 255, 0); 
+
 }
 
 #color-fill .hex {
@@ -104,7 +109,7 @@ background-color: #dadfe8;
 }
 .item-role-container{
   text-align: center;
-  margin-bottom: 5em;
+  margin-bottom: 1.5em;
 }
 .item-role-name {
   text-align: left;
@@ -129,8 +134,8 @@ background-color: #dadfe8;
 .lego-img{
   display: flex;
   flex-direction: row;
-  height:16em;
-  width:14em;
+  height:22em;
+  width:20em;
 
 }
 

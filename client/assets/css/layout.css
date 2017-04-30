@@ -64,6 +64,7 @@
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
+  white-space: wrap;
 
 }
 

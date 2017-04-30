@@ -74,7 +74,7 @@ class RoleLabel extends React.Component {
           <div>
 
               <textarea
-                 style={{border:'none',borderSize:'0px',width:'70em',height:'7em',resize:'none',
+                 style={{border:'none',borderSize:'0px',width:'50em',height:'5em',resize:'none',
                  readOnly:false,fontSize:'10px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}} 
                  onFocus={this.toggleShow}
                  onKeyUp={this.onEnter}
@@ -85,9 +85,11 @@ class RoleLabel extends React.Component {
                  className="item-category-name" >{this.props.description}</textarea>
           </div>
           <ReactTags  
+
                      style={{margin:'2px'}}          
                      key={this.key}
                      tags={keywords}
+                     placeholder='add keyword'
                      suggestions={suggestions}
                      handleDelete={this.handleDelete}
                      handleAddition={this.handleAddition}

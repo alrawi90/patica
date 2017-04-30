@@ -7,9 +7,9 @@ class Hexagon extends React.Component {
       url: props.setIcon,
       key:Date.now()
     };
-    //this.change=this.change.bind(this)
+    
   }
-  //change(e){this.props.change(e)}
+  
   update(url) {
     this.setState({url: url});
   }
@@ -30,15 +30,15 @@ class Hexagon extends React.Component {
               height="110" width="110"
               patternUnits="userSpaceOnUse">
              
-              <g ><text textAnchor='middle' x="25px" y="35px"  >{this.state.url}</text></g> 
+              <g ><text textAnchor='middle' x="25px" y="40px"  >{this.state.url}</text></g> 
             </pattern>
 
           </defs>
           <polygon
-            className="hex" points="60,20 100,40 100,80 60,100 20,80 20,40"
+            className="hex" points="60,20 100,45 100,87 60,110 20,87 20,45" 
             style={{fill:'#0d6d04'}}></polygon>
           <polygon onClick={this.props.click}
-            className="hex" points="60,20 100,40 100,80 60,100 20,80 20,40"
+            className="hex" points="60,20 100,45 100,87 60,110 20,87 20,45"
             fill={imageUrl}></polygon>
         </svg>
       </div>
