@@ -163,7 +163,8 @@ class SkillCategoryLabel extends React.Component {
           key={index}  
           placeholder='skill' 
           onKeyUp={this.onEnter}
-          style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`,textOverflow: 'ellipsis'}}
+          style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`,
+          textOverflow: 'ellipsis',textAlign:'center'}}
           onFocus={this.toggleShow}
           onBlur={(e)=>this.syncSkills(e)} 
           defaultValue={skill} />
@@ -171,41 +172,83 @@ class SkillCategoryLabel extends React.Component {
         
     )})
     let key=  Date.now()
-    return (
+    if(this.props.id % 2 >0)
+        return (
+          
+          <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
+            <div className="col"  style={{}}>
+              <div className='row' style={{}}>
+                  <input size='20' 
+                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',
+                       fontWeight:'bold',textAlign:'center',
+                       textOverflow: 'ellipsis'}} 
+                     onFocus={this.toggleShow}
+                     onKeyUp={this.onEnter}
+                     onBlur={this.syncCategoryName}
+                     placeholder='Category'
+                     key={Math.random()}
+                     className="item-category-name" 
+                     defaultValue={this.props.categoryName} />
+              </div>
+                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
+                    {skills}
+                </div>
 
-      <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
-        <div className="col"  style={{}}>
-          <div className='row' style={{}}>
-              <input size='20' 
-              style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',fontWeight:'bold',textOverflow: 'ellipsis'}} 
-                 onFocus={this.toggleShow}
-                 onKeyUp={this.onEnter}
-                 onBlur={this.syncCategoryName}
-                 placeholder='Category'
-                 key={Math.random()}
-                 className="item-category-name" 
-                 defaultValue={this.props.categoryName} />
+            </div>
+
+          <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+          <div style={{height:'20%' , with:'20%'}}>
+              <Modal
+                  style={style}
+                  isOpen={this.state.isModalOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={() => this.closeModal()}
+                  contentLabel="Icon Picker"
+                >
+                <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
+              </Modal>
           </div>
-          <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
-                {skills}
+          </div>
+        )
+    else  
+        return (
+          
+          <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
+
+          <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+          <div style={{height:'20%' , with:'20%'}}>
+              <Modal
+                  style={style}
+                  isOpen={this.state.isModalOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={() => this.closeModal()}
+                  contentLabel="Icon Picker"
+                >
+                <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
+              </Modal>
+          </div>
+            <div className="col"  style={{}}>
+              <div className='row' style={{}}>
+                  <input size='20' 
+                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',
+                       fontWeight:'bold',textAlign:'center',
+                       textOverflow: 'ellipsis'}}                      
+                     onFocus={this.toggleShow}
+                     onKeyUp={this.onEnter}
+                     onBlur={this.syncCategoryName}
+                     placeholder='Category'
+                     key={Math.random()}
+                     className="item-category-name" 
+                     defaultValue={this.props.categoryName} />
+              </div>
+              <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
+                    {skills}
+              </div>
+
           </div>
 
-      </div>
-
-      <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
-      <div style={{height:'20%' , with:'20%'}}>
-          <Modal
-              style={style}
-              isOpen={this.state.isModalOpen}
-              onAfterOpen={this.afterOpenModal}
-              onRequestClose={() => this.closeModal()}
-              contentLabel="Icon Picker"
-            >
-            <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
-          </Modal>
-      </div>
-      </div>
-    )
+          </div>
+        )
   }
 
 }

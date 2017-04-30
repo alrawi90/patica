@@ -39,8 +39,9 @@ class RoleLabel extends React.Component {
     //this.setState({RoleName:data.message.toUpperCase()})
 }
   DescriptionChanged(data){
-      console.log(data)
-      this.props.setRoleDescription(data.message)
+      let description=e.target.value
+      this.props.setRoleDescription(description)
+
     }
 
   customValidateText(text) {
@@ -70,25 +71,21 @@ class RoleLabel extends React.Component {
               }}
             />
             </div>
-            <div>
-            <InlineEdit
-                validate={this.customValidateText}
-                activeClassName="editing"
-                text={this.props.description}
-                paramName="message"
-                change={this.DescriptionChanged}
-                style={{
-                  minWidth: 300,
-                  display: 'inline-block',
-                  margin: 0,
-                  padding: 0,
-                  fontSize: 15,
-                  outline: 0,
-                  border: 0
-                }}
-              />
-              <br />
+          <div>
+
+              <textarea
+                 style={{border:'none',borderSize:'0px',width:'70em',height:'7em',resize:'none',
+                 readOnly:false,fontSize:'10px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}} 
+                 onFocus={this.toggleShow}
+                 onKeyUp={this.onEnter}
+                 onBlur={this.DescriptionChanged}
+                 placeholder='Role Description'
+                 key={Math.random()}
+                 cols="42" rows="5"
+                 className="item-category-name" >{this.props.description}</textarea>
+          </div>
           <ReactTags  
+                     style={{margin:'2px'}}          
                      key={this.key}
                      tags={keywords}
                      suggestions={suggestions}
@@ -97,7 +94,6 @@ class RoleLabel extends React.Component {
                      />
 
         </div>
-      </div>
 
     )
   }

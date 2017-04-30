@@ -187,12 +187,14 @@ class Fork extends React.Component {
   render() {
 
     const items=this.state.categories.map((category, index) =>{
-
+        let dir;(index+1) %2 >0 ? dir='left' : dir='right'
         return(
 
               <div className="item" key={index} >
-                <button id={index+1} onClick={this.removeCategory}><i className="fa fa-remove"></i></button>
-                <button id={`editBtn-${index+1}`} onClick={this.showAdvancedSettings}><i id={`faBtn-${index+1}`} className="fa fa-edit"></i></button>
+                <div style={{textAlign:`${dir}`}} >
+                  <button id={index+1} onClick={this.removeCategory}><i className="fa fa-remove"></i></button>
+                  <button id={`editBtn-${index+1}`} onClick={this.showAdvancedSettings}><i id={`faBtn-${index+1}`} className="fa fa-edit"></i></button>
+                </div>
                 <SkillCategory 
                   id={index+1} 
                   ref={'sc-'+(index+1)} 

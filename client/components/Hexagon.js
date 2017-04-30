@@ -36,7 +36,7 @@ class Hexagon extends React.Component {
           </defs>
           <polygon
             className="hex" points="60,20 100,40 100,80 60,100 20,80 20,40"
-            style={{fill:'#0d6d04',stroke:'purple',strokeWidth:1}}></polygon>
+            style={{fill:'#0d6d04'}}></polygon>
           <polygon onClick={this.props.click}
             className="hex" points="60,20 100,40 100,80 60,100 20,80 20,40"
             fill={imageUrl}></polygon>

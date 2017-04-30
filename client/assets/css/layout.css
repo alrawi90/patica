@@ -36,7 +36,7 @@
    -webkit-flex-direction: row;
    flex-direction: row;
    -webkit-justify-content: center;
-   justify-content: space-around;;
+   justify-content: center;;
   /*-webkit-align-items: flex-start;
    align-items: flex-start;*/
 }
