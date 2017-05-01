@@ -15,7 +15,12 @@ class RoleLabel extends React.Component {
     this.handleAddition = this.handleAddition.bind(this);
     this.RoleNameChanged = this.RoleNameChanged.bind(this);
     this.DescriptionChanged = this.DescriptionChanged.bind(this);
+    this.onEnter=this.onEnter.bind(this)
 
+  }
+  
+    onEnter(e){
+    if( e.which==13){ (e.target).blur()}
   }
 
   handleDelete(i) {
@@ -38,7 +43,7 @@ class RoleLabel extends React.Component {
 
     //this.setState({RoleName:data.message.toUpperCase()})
 }
-  DescriptionChanged(data){
+  DescriptionChanged(e){
       let description=e.target.value
       this.props.setRoleDescription(description)
 
@@ -75,7 +80,7 @@ class RoleLabel extends React.Component {
 
               <textarea
                  style={{border:'none',borderSize:'0px',width:'50em',height:'5em',resize:'none',
-                 readOnly:false,fontSize:'10px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}} 
+                       readOnly:false,fontSize:'10px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}} 
                  onFocus={this.toggleShow}
                  onKeyUp={this.onEnter}
                  onBlur={this.DescriptionChanged}

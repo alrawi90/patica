@@ -8,7 +8,7 @@ class Fork extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      roleId:'59044285f3958abbc84d19a1',//show be a prop (set from the router)
+      roleId:'5906d30df3958abbc84d19a9',//show be a prop (set from the router)
       error:'' ,
       categories:[
       {name:'',skills:[],image:''},
@@ -35,6 +35,7 @@ class Fork extends React.Component {
     this.onRoleKeywordsDelete=this.onRoleKeywordsDelete.bind(this)
     this.showAdvancedSettings=this.showAdvancedSettings.bind(this)
   }
+
   showAdvancedSettings(e){
    e.stopPropagation()
    let factor=e.target.id.split('-')[1];
@@ -285,11 +286,7 @@ class Fork extends React.Component {
                  <label style={{color:'red',fontSize:'12px'}}>{this.state.error}</label>
               </div>
           </div>
-          <div className='row' style={{justifyContent:'center'}}>
-              <div className="item" >
-                 <label style={{color:'red',fontSize:'12px'}}>{this.state.error}</label>
-              </div>
-          </div>
+
         </div>
     )
   }
