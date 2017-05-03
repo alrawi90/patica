@@ -207,7 +207,7 @@ class Fork extends React.Component {
                      onClick={this.showAdvancedSettings}
                      style={{backgroundColor:'#0d6d04',margin:'3px'}}
                      >
-                     <i id={`faBtn-${index+1}`} style={{margin:'2px 1px 2px 2px'}} className="fa fa-edit white"></i>
+                     <i id={`faBtn-${index+1}`} style={{margin:'2px 0px 2px 2px'}} className="fa fa-edit white"></i>
                   </a>
                 </div>
                 <SkillCategory 
