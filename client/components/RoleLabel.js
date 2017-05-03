@@ -92,7 +92,7 @@ class RoleLabel extends React.Component {
           </div>
           <ReactTags  
 
-                     style={{margin:'2px'}}          
+                     style={{margin:'2px',outline:'none'}}          
                      key={this.key}
                      tags={keywords}
                      placeholder='add keyword'

@@ -200,14 +200,14 @@ class Fork extends React.Component {
                     id={`removeBtn-${index+1}`} onClick={this.removeCategory}
                     style={{backgroundColor:'#0d6d04',margin:'3px'}}
                     >
-                    <i  id={`faRemoveBtn-${index+1}`} className="fa fa-remove white"></i>
+                    <i  id={`faRemoveBtn-${index+1}`} style={{margin:'2px'}} className="fa fa-remove white"></i>
                   </a>
                   <a className="button white"
                      id={`editBtn-${index+1}`} 
                      onClick={this.showAdvancedSettings}
                      style={{backgroundColor:'#0d6d04',margin:'3px'}}
                      >
-                     <i id={`faBtn-${index+1}`} className="fa fa-edit white"></i>
+                     <i id={`faBtn-${index+1}`} style={{margin:'2px 1px 2px 2px'}} className="fa fa-edit white"></i>
                   </a>
                 </div>
                 <SkillCategory 
