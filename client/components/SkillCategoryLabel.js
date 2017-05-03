@@ -12,7 +12,7 @@ class SkillCategoryLabel extends React.Component {
       skills:this.props.skills, 
       icon:this.props.iconUrl,
       isModalOpen: false,
-      currentWidth:'78px',
+      currentWidth:'64px',
       items:[
         // './client/assets/icons/1.png',
         // './client/assets/icons/2.png',
@@ -155,19 +155,20 @@ class SkillCategoryLabel extends React.Component {
                   }
     const skills=this.props.skills.map((skill,index)=>{
       let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
-
+       let dir;(parseInt(this.props.id)-1) %2 >0 ? dir='left' : dir='right'
+       //let comma= index!=(this.props.skills.length-1) ? ',' : '' 
       return(
 
-        <div  style={{width:'5em'}} key={key} >
-        <input   id={`skill-${index+1}`}
-          key={index}  
-          placeholder='skill' 
-          onKeyUp={this.onEnter}
-          style={{border:'none',borderSize:'0px',readOnly:true,marginLeft:'1px',width:`${this.state.currentWidth}`,
-          textOverflow: 'ellipsis',textAlign:'center'}}
-          onFocus={this.toggleShow}
-          onBlur={(e)=>this.syncSkills(e)} 
-          defaultValue={skill} />
+        <div  style={{width:'4em'}} key={key} >
+          <input   id={`skill-${index+1}`}
+            key={index}  
+            placeholder='skill' 
+            onKeyUp={this.onEnter}
+            style={{border:'none',borderSize:'0px',readOnly:true,margin:'auto',width:`${this.state.currentWidth}`,
+            textOverflow: 'ellipsis',textAlign:`${dir}`}}
+            onFocus={this.toggleShow}
+            onBlur={(e)=>this.syncSkills(e)} 
+            defaultValue={skill} />
         </div>
         
     )})
@@ -175,12 +176,15 @@ class SkillCategoryLabel extends React.Component {
     if(this.props.id % 2 >0)
         return (
           
-          <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
-            <div className="col"  style={{}}>
+          <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
+            <div className="col"  style={{marginTop:'10px'}}>
               <div className='row' style={{}}>
                   <input size='20' 
-                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',
-                       fontWeight:'bold',textAlign:'center',
+                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'16px',
+                       textAlign:'right',    textTransform: 'uppercase',color:'#556d7e',
+                       fontFamily: "Montserrat",
+                       marginTop: '0px',
+                       fontWeight: '400px',
                        textOverflow: 'ellipsis'}} 
                      onFocus={this.toggleShow}
                      onKeyUp={this.onEnter}
@@ -190,13 +194,13 @@ class SkillCategoryLabel extends React.Component {
                      className="item-category-name" 
                      defaultValue={this.props.categoryName} />
               </div>
-                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
+                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'flex-end'}}>
                     {skills}
                 </div>
 
             </div>
 
-          <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+          <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
           <div style={{height:'20%' , with:'20%'}}>
               <Modal
                   style={style}
@@ -213,9 +217,9 @@ class SkillCategoryLabel extends React.Component {
     else  
         return (
           
-          <div className="main-container" style={{backgroundColor:'white',width:'270px'}}>
+          <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
 
-          <Hexagon size={6} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+          <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
           <div style={{height:'20%' , with:'20%'}}>
               <Modal
                   style={style}
@@ -227,12 +231,15 @@ class SkillCategoryLabel extends React.Component {
                 <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
               </Modal>
           </div>
-            <div className="col"  style={{}}>
+            <div className="col"  style={{marginTop:'10px'}}>
               <div className='row' style={{}}>
                   <input size='20' 
-                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'13px',
-                       fontWeight:'bold',textAlign:'center',
-                       textOverflow: 'ellipsis'}}                      
+                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'16px',
+                       textAlign:'left',    textTransform: 'uppercase',color:'#556d7e',
+                       fontFamily: 'Montserrat',
+                       marginTop: '0px',
+                       fontWeight: '400px',
+                       textOverflow: 'ellipsis'}}                       
                      onFocus={this.toggleShow}
                      onKeyUp={this.onEnter}
                      onBlur={this.syncCategoryName}

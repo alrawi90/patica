@@ -29,6 +29,7 @@
 *{
   outline-width: 1px;
   outline-style: hidden;
+  padding: 1px;
 }
 .main-container{
    display: -webkit-flex;
@@ -40,7 +41,19 @@
   /*-webkit-align-items: flex-start;
    align-items: flex-start;*/
 }
+.category-container{
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+/*   -webkit-justify-content: flex-start;
+   justify-content: flex-start;;*/
+  -webkit-align-items: flex-start;
+   align-items: flex-start;
+}
+
 .col-left .col-right{
+  /*background-color: blue;*/
    max-width: 35%;
    min-width: 35%;
    display: -webkit-flex;

@@ -58,11 +58,12 @@ class RoleLabel extends React.Component {
     return (
 
       <div className="item-role-container">
-        <div className="item-role-details">
+        <div className="item-role-details" style={{fontSize: 28,fontWeight:'400px',fontFamily:'Montserrat',textTransform: 'uppercase',color:'#556d7e'}}>
+          ROLE:
           <InlineEdit
               validate={this.customValidateText}
               activeClassName="editing"
-              text={`ROLE:${this.props.roleName}`}
+              text={`${this.props.roleName}`}
               paramName="message"
               change={this.RoleNameChanged}
               style={{
@@ -70,7 +71,7 @@ class RoleLabel extends React.Component {
                 display: 'inline-block',
                 margin: 0,
                 padding: 0,
-                fontSize: 18,
+                fontSize: 28,fontWeight:'400px',fontFamily:'Montserrat',textTransform: 'uppercase',color:'#556d7e',
                 outline: 0,
                 border: 0
               }}
@@ -86,8 +87,8 @@ class RoleLabel extends React.Component {
                  onBlur={this.DescriptionChanged}
                  placeholder='Role Description'
                  key={Math.random()}
-                 cols="42" rows="5"
-                 className="item-category-name" >{this.props.description}</textarea>
+                 cols="42" rows="5" defaultValue={this.props.description}
+                 className="item-category-name"  ></textarea>
           </div>
           <ReactTags  
 

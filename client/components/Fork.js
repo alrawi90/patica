@@ -20,7 +20,9 @@ class Fork extends React.Component {
       roleName:'',lego:'',description:'',
       keywords: [],// each element is an object of  {id:1,text:'keyword-1'}
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
-      key:Date.now()
+      key:Date.now(),
+      RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
+       'Product Marketing Manager']
     }
     this.setRoleName=this.setRoleName.bind(this)
     this.setRoleDescription=this.setRoleDescription.bind(this)
@@ -194,23 +196,25 @@ class Fork extends React.Component {
               <div className="item" key={index} >
 
                 <div style={{textAlign:`${dir}`}} >
-                  <button 
+                  <a  className="button white"
                     id={`removeBtn-${index+1}`} onClick={this.removeCategory}
-                    className="white" style={{backgroundColor:'#0d6d04',margin:'3px'}}
+                    style={{backgroundColor:'#0d6d04',margin:'3px'}}
                     >
                     <i  id={`faRemoveBtn-${index+1}`} className="fa fa-remove white"></i>
-                  </button>
-                  <button id={`editBtn-${index+1}`} 
+                  </a>
+                  <a className="button white"
+                     id={`editBtn-${index+1}`} 
                      onClick={this.showAdvancedSettings}
-                     className="white" style={{backgroundColor:'#0d6d04',margin:'3px'}}
+                     style={{backgroundColor:'#0d6d04',margin:'3px'}}
                      >
                      <i id={`faBtn-${index+1}`} className="fa fa-edit white"></i>
-                  </button>
+                  </a>
                 </div>
                 <SkillCategory 
                   id={index+1} 
                   ref={'sc-'+(index+1)} 
                   onAdvancedEdit={this.onAdvancedEdit}
+                  iconUrl={category.image}
                   onCategoryNameChanged={this.onCategoryNameChanged}
                   onCategorySkillsChanged={this.onCategorySkillsChanged}
                   skills={category.skills}
@@ -231,7 +235,14 @@ class Fork extends React.Component {
         ) })
 
     return (
+
       <div className='col' >
+            <div className="item" style={{position:'absolute',right:'50px',top:'70px'}} >
+                       <a className="white button"
+                          onClick={this.copy} style={{backgroundColor:'#0d6d04'}} >
+                          <i className="fa fa-copy white"></i> Copy Role
+                       </a>
+            </div>
           <div className='row' style={{justifyContent:'center'}}>
            <div className='' >
               <RoleLabel 
@@ -244,23 +255,34 @@ class Fork extends React.Component {
                  description={this.state.description} 
                  suggestions={this.state.suggestions}
               />
+              <div className='row' style={{justifyContent:'center',marginBottom:'15px',
+                    cursor: 'auto',fontSize:'17px',fontWeight:'300px',
+                    fontFamily:'Inconsolata'}}>Related Roles:
+                  {this.state.RelatedRoles.map((role,index)=>{
+                    return (
+                      <span key={index} >
+                          <a style={{textDecoration:'none',cursor: 'auto',fontSize:'17px',color:'#2a9639',
+                                      fontWeight:'300px',fontFamily:'Inconsolata'}}
+                           href='#'>{role}</a>{index!=(this.state.RelatedRoles.length-1) ? ' - ' : '' }
+                      </span>)
+                  })}
+              </div>
+
               <div className='row' style={{justifyContent:'space-around'}}>
                     <div className="item" >
-                       <button onClick={this.create} className='white' style={{backgroundColor:'#0d6d04'}}>
+                       <a onClick={this.create} className='white button' style={{backgroundColor:'#0d6d04'}}>
                          <i className="fa fa-plus-square white"></i> Create New Role
-                       </button>
+                       </a>
                     </div>
-                    <div className="item" >
-                       <button onClick={this.copy} style={{backgroundColor:'#0d6d04'}} className='white' >
-                          <i className="fa fa-copy white"></i> Copy Role
-                       </button>
-                    </div>
+
                     <div className='' key={Date.now()} style={{position:'relative'}}>
-                        <button onClick={this.addNewCategory} className="white" style={{backgroundColor:'#0d6d04'}} >
+                        <a onClick={this.addNewCategory} className="button white" style={{backgroundColor:'#0d6d04'}} >
                           <i className="fa fa-plus-circle white"></i> Add New Category
-                        </button>
+                        </a>
                     </div>                   
-              </div>
+              </div> 
+
+
           </div>
 
          </div>

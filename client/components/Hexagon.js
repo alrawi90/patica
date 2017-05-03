@@ -20,11 +20,14 @@ class Hexagon extends React.Component {
     return (
       <div className="hexagon-container">
         
-        <svg viewBox='0 0 110 110'
+        <svg viewBox='0 18 110 110' style={{margineft:'0px'}}
           id="image-fill" xmlns="http://www.w3.org/2000/svg"
           version="1.1" width={this.props.size+'em'} height={this.props.size+'em'}
           xmlnsXlink="http://www.w3.org/1999/xlink">
-            
+          <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.1" />
+          </filter>
+
           <defs key={this.state.key} >
             <pattern id={imageKey} x="36" y="36"
               height="110" width="110"
@@ -34,9 +37,9 @@ class Hexagon extends React.Component {
             </pattern>
 
           </defs>
-          <polygon
-            className="hex" points="60,20 100,45 100,87 60,110 20,87 20,45" 
-            style={{fill:'#0d6d04'}}></polygon>
+          <polygon id='glow'
+            className="" points="60,20 100,45 100,87 60,110 20,87 20,45" 
+            strokeMiterlimit="10"    style={{fill:'#0d6d04'}}></polygon>
           <polygon onClick={this.props.click}
             className="hex" points="60,20 100,45 100,87 60,110 20,87 20,45"
             fill={imageUrl}></polygon>
