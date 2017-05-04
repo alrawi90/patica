@@ -4,8 +4,8 @@ const SkillCategoryLabel = require('./SkillCategoryLabel');
 const RoleLabel = require('./RoleLabel');
 const Lego = require('./Lego');
 const SkillCategory = require('./SkillCategory');
-import Draggable from 'react-draggable'; // The default
-import DragSortableList from 'react-drag-sortable'
+// import Draggable from 'react-draggable'; // The default
+// import DragSortableList from 'react-drag-sortable'
 import {SortableContainer, SortableElement,arrayMove,SortableHandle} from 'react-sortable-hoc';
 const Modal = require('react-modal')
 
