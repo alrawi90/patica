@@ -7,7 +7,7 @@ html {
     box-sizing: border-box;   color: #38417a;
 }
 input, textarea{outline: 0px;}
-.button{border-width: 0;border-radius: 8px;padding:5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); display: inline-block;}
+.button{border-width: 0;border-radius: 8px;padding:5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block;}
 .button:hover {
   fill-opacity: .8;
   border-color: silver;
@@ -16,7 +16,7 @@ input, textarea{outline: 0px;}
   -webkit-transform: scale(0.9);
   transform-origin: 50% 50%;
   -webkit-transform-origin: 50% 50%;
-  color: gold;
+  cursor:pointer;
 }
 /*.button { transition: all .2s ease-in-out; }
 .button:hover { transform: scale(1.1); padding:10px;}*/
@@ -26,15 +26,15 @@ input, textarea{outline: 0px;}
 .ReactTags__suggestions{position: absolute;}
 input.ReactTags__tagInputField{width:87px;margin: 3px 0px;}
 .ReactTags__tag{background-color: rgb(13, 109, 4);color:#fff;border-radius: 
-                5px;font-size: 12px;margin: 0 5px;padding:3px 5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                5px;font-size: 12px;margin: 0 5px;padding:3px 5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
               }
-.ReactTags__remove{color: aqua;margin: 2px;padding: 1px 2px;display:inline-block;} 
+.ReactTags__remove{color: #fff;margin: 2px;padding: 1px 2px;display:inline-block;} 
 .ReactTags__remove:hover{
   transform: scale(1.5);
   -webkit-transform: scale(1.5);
   transform-origin: 50% 50%;
   -webkit-transform-origin: 50% 50%;
-  color: gold;
+    cursor:pointer;
 }
 }
 .container1 {
@@ -98,7 +98,7 @@ svg text {
   -webkit-transform-origin: 50% 50%;
 }
 #glow { 
-  stroke: rgba(0, 0, 0, 0.3);
+  stroke: rgba(0, 0, 0, 0.1);
   filter: url(#blur-filter);
 }
 /*.hex {
