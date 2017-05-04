@@ -258,7 +258,7 @@ class Fork extends React.Component {
           {items.map((category, index) =>{
              let value =(
 
-              <div  className="box" style={{border:'solid 1px',padding:'5px',backgroundColor:'gray'}} key={index} >                  
+              <div  className="box" style={{border:'solid 1px #57a300 ',padding:'5px',backgroundColor:'#fff'}} key={index} >                  
                     <SkillCategoryLabel
                       activeSort={true}
                       key={index}
