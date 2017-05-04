@@ -27,8 +27,8 @@
      /*border: 1px solid red;*/
 }
 *{
-  outline-width: 1px;
-  outline-style: hidden;
+/*  outline-width: 1px;
+  outline-style: hidden;*/
   padding: 1px;
 }
 .main-container{

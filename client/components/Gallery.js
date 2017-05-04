@@ -48,9 +48,6 @@ class Gallery extends React.Component{
             </svg>
 
             </div>
-
-
-
         )
 
       })

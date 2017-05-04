@@ -4,10 +4,16 @@ const SkillCategoryLabel = require('./SkillCategoryLabel');
 const RoleLabel = require('./RoleLabel');
 const Lego = require('./Lego');
 const SkillCategory = require('./SkillCategory');
+import Draggable from 'react-draggable'; // The default
+import DragSortableList from 'react-drag-sortable'
+import {SortableContainer, SortableElement,arrayMove,SortableHandle} from 'react-sortable-hoc';
+const Modal = require('react-modal')
+
 class Fork extends React.Component {
   constructor(props) {
     super(props)
     this.state={
+      isModalOpen:false,
       roleId:'5909976af3958abbc84d19c4',//show be a prop (set from the router)
       error:'' ,
       categories:[
@@ -22,7 +28,15 @@ class Fork extends React.Component {
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
       key:Date.now(),
       RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
-       'Product Marketing Manager']
+       'Product Marketing Manager'],
+      //  activeDrags: 0,
+      // deltaPosition: {
+      //   x: 0, y: 0
+      // },
+      // controlledPosition: {
+      //   x: -400, y: 200
+      // }
+    
     }
     this.setRoleName=this.setRoleName.bind(this)
     this.setRoleDescription=this.setRoleDescription.bind(this)
@@ -36,6 +50,10 @@ class Fork extends React.Component {
     this.removeCategory=this.removeCategory.bind(this)
     this.onRoleKeywordsDelete=this.onRoleKeywordsDelete.bind(this)
     this.showAdvancedSettings=this.showAdvancedSettings.bind(this)
+    // this.handleDrag=this.handleDrag.bind(this)
+    // this.onStart=this.onStart.bind(this)
+    // this.onStop=this.onStop.bind(this)
+    this.onSortEnd=this.onSortEnd.bind(this)
   }
 
   showAdvancedSettings(e){
@@ -48,7 +66,12 @@ class Fork extends React.Component {
     let SkillCategory={name:'',skills:['','',''],image:''}
     let categories=this.state.categories
     categories.push(SkillCategory)
-    this.setState({categories:categories})
+    this.setState({categories:categories,    activeDrags: 0,  
+      deltaPosition: {
+        x: 0,
+        y: 0
+      }})
+
   }
 
   removeCategory(e){
@@ -187,14 +210,85 @@ class Fork extends React.Component {
 
      });
   }
+
+
+  onSortEnd (obj) {
+    let {categories} = this.state;
+    console.log(obj)
+    this.setState({
+      categories: arrayMove(categories, obj.oldIndex, obj.newIndex),
+    });
+  }
+  openModal(e) {
+
+    this.setState({ isModalOpen: true })
+  }
+
+  closeModal() {
+     this.setState({ isModalOpen: false })
+     //this.updateCategory()
+  }
+  handleClick(e){this.openModal(e)}
   render() {
+  
+    const DragHandle = SortableHandle(() => 
+      <button className='button' style={{backgroundColor:'#0d6d04'}}><i className='fa fa-hand-paper-o white'></i></button>);
+    const SortableItem = SortableElement(({value}) => {
+      return (
+        <div>
+          <DragHandle index={value.index}/>
+          {value}
+        </div>
+      );
+    });
+
+    const SortableList = SortableContainer(({items}) => {
+      
+      return (
+        
+          <div className='row' style={{  
+            display: '-ms-flexbox',
+
+            flexFlow: 'row wrap', 
+            display: '-webkit-box',
+            display: 'flex',
+            overflow: 'hidden'}}
+            >
+
+          {items.map((category, index) =>{
+             let value =(
+
+              <div  className="box" style={{border:'solid 1px',padding:'5px',backgroundColor:'gray'}} key={index} >                  
+                    <SkillCategoryLabel
+                      activeSort={true}
+                      key={index}
+                      id={index+1}
+                      skills={category.skills}
+                      iconUrl={category.image}
+                      categoryName={category.name}
+                    />
+              </div>
+              )
+
+            return (
+            <SortableItem key={`item-${index}`} index={index} value={value} /> 
+            ) 
+            }
+           )
+          }
+        
+            
+
+         </div>
+      );
+    });
 
     const items=this.state.categories.map((category, index) =>{
-        let dir;(index+1) %2 >0 ? dir='left' : dir='right'
-        return(
-              
-              <div className="item" key={index} >
+      let dir;(index+1) %2 >0 ? dir='left' : dir='right'
 
+        return(
+             
+              <div  className="box"  key={index} >
                 <div style={{textAlign:`${dir}`}} >
                   <a  className="button white"
                     id={`removeBtn-${index+1}`} onClick={this.removeCategory}
@@ -210,6 +304,7 @@ class Fork extends React.Component {
                      <i id={`faBtn-${index+1}`} style={{margin:'2px 0px 2px 2px'}} className="fa fa-edit white"></i>
                   </a>
                 </div>
+                 
                 <SkillCategory 
                   id={index+1} 
                   ref={'sc-'+(index+1)} 
@@ -221,6 +316,7 @@ class Fork extends React.Component {
                   categoryName={category.name}
                   />
                 <SkillCategoryLabel
+                  activeSort={false}
                   key={index}
                   id={index+1}
                   onCategoryNameChanged={this.onCategoryNameChanged}
@@ -231,18 +327,25 @@ class Fork extends React.Component {
                   categoryName={category.name}
                 />
               </div>
-
         ) })
 
     return (
-
+      
       <div className='col' >
-            <div className="item" style={{position:'absolute',right:'50px',top:'70px'}} >
-                       <a className="white button"
-                          onClick={this.copy} style={{backgroundColor:'#0d6d04'}} >
-                          <i className="fa fa-copy white"></i> Copy Role
-                       </a>
-            </div>
+      
+      <Modal
+                  style={{}}
+                  isOpen={this.state.isModalOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={() => this.closeModal()}
+                  contentLabel="Icon Picker"
+                >
+
+              <SortableList axis="xy" items={this.state.categories} onSortEnd={this.onSortEnd} useDragHandle={true} />
+
+                             
+      </Modal>
+
           <div className='row' style={{justifyContent:'center'}}>
            <div className='' >
               <RoleLabel 
@@ -274,7 +377,19 @@ class Fork extends React.Component {
                          <i className="fa fa-plus-square white"></i> Create New Role
                        </a>
                     </div>
-
+                    
+              <div className="item"  >
+                       <a className="white button"
+                          onClick={this.copy} style={{backgroundColor:'#0d6d04'}} >
+                          <i className="fa fa-copy white"></i> Copy Role
+                       </a>
+              </div>
+              <div className="item" >
+                       <a className="white button"
+                          onClick={(e)=>this.handleClick(e)} style={{backgroundColor:'#0d6d04'}} >
+                          <i className="fa fa-sort-amount-asc white"></i> Sort Categories
+                       </a>
+              </div>
                     <div className='' key={Date.now()} style={{position:'relative'}}>
                         <a onClick={this.addNewCategory} className="button white" style={{backgroundColor:'#0d6d04'}} >
                           <i className="fa fa-plus-circle white"></i> Add New Category

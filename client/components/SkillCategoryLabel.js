@@ -156,6 +156,7 @@ class SkillCategoryLabel extends React.Component {
     const skills=this.props.skills.map((skill,index)=>{
       let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
        let dir;(parseInt(this.props.id)-1) %2 >0 ? dir='left' : dir='right'
+       this.props.activeSort ? dir='left': null
        //let comma= index!=(this.props.skills.length-1) ? ',' : '' 
       return(
 
@@ -166,97 +167,129 @@ class SkillCategoryLabel extends React.Component {
             onKeyUp={this.onEnter}
             style={{border:'none',borderSize:'0px',readOnly:true,margin:'auto',width:`${this.state.currentWidth}`,
             textOverflow: 'ellipsis',textAlign:`${dir}`}}
-            onFocus={this.toggleShow}
-            onBlur={(e)=>this.syncSkills(e)} 
+            
+            onFocus={(! this.props.activeSort) ?  this.toggleShow : (e)=>e.target.blur()}
+            onBlur={(! this.props.activeSort) ? (e)=>this.syncSkills(e) : null} 
             defaultValue={skill} />
         </div>
         
     )})
     let key=  Date.now()
-    if(this.props.id % 2 >0)
-        return (
-          
-          <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
-            <div className="col"  style={{marginTop:'10px'}}>
-              <div className='row' style={{}}>
-                  <input size='20' 
-                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'16px',
-                       textAlign:'right',    textTransform: 'uppercase',color:'#556d7e',
-                       fontFamily: "Montserrat",
-                       marginTop: '0px',
-                       fontWeight: '400px',
-                       textOverflow: 'ellipsis'}} 
-                     onFocus={this.toggleShow}
-                     onKeyUp={this.onEnter}
-                     onBlur={this.syncCategoryName}
-                     placeholder='Category'
-                     key={Math.random()}
-                     className="item-category-name" 
-                     defaultValue={this.props.categoryName} />
+    if (! this.props.activeSort)
+      if(this.props.id % 2 >0)
+          return (
+            
+            <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
+              <div className="col"  style={{marginTop:'10px'}}>
+                <div className='row' style={{}}>
+                    <input size='20' 
+                       style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'16px',
+                         textAlign:'right',    textTransform: 'uppercase',color:'#556d7e',
+                         fontFamily: "Montserrat",
+                         marginTop: '0px',
+                         fontWeight: '400px',
+                         textOverflow: 'ellipsis'}} 
+                       onFocus={this.toggleShow}
+                       onKeyUp={this.onEnter}
+                       onBlur={this.syncCategoryName}
+                       placeholder='Category'
+                       key={Math.random()}
+                       className="item-category-name" 
+                       defaultValue={this.props.categoryName} />
+                </div>
+                  <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'flex-end'}}>
+                      {skills}
+                  </div>
+
               </div>
-                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'flex-end'}}>
-                    {skills}
+
+            <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+            <div style={{height:'20%' , with:'20%'}}>
+                <Modal
+                    style={style}
+                    isOpen={this.state.isModalOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={() => this.closeModal()}
+                    contentLabel="Icon Picker"
+                  >
+                  <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
+                </Modal>
+            </div>
+            </div>
+          )
+      else  
+          return (
+            
+            <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
+
+            <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+            <div style={{height:'20%' , with:'20%'}}>
+                <Modal
+                    style={style}
+                    isOpen={this.state.isModalOpen}
+                    onAfterOpen={this.afterOpenModal}
+                    onRequestClose={() => this.closeModal()}
+                    contentLabel="Icon Picker"
+                  >
+                  <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
+                </Modal>
+            </div>
+              <div className="col"  style={{marginTop:'10px'}}>
+                <div className='row' style={{}}>
+                    <input size='20' 
+                       style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'16px',
+                         textAlign:'left',    textTransform: 'uppercase',color:'#556d7e',
+                         fontFamily: 'Montserrat',
+                         marginTop: '0px',
+                         fontWeight: '400px',
+                         textOverflow: 'ellipsis'}}                       
+                       onFocus={this.toggleShow}
+                       onKeyUp={this.onEnter}
+                       onBlur={this.syncCategoryName}
+                       placeholder='Category'
+                       key={Math.random()}
+                       className="item-category-name" 
+                       defaultValue={this.props.categoryName} />
+                </div>
+                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
+                      {skills}
                 </div>
 
             </div>
 
-          <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
-          <div style={{height:'20%' , with:'20%'}}>
-              <Modal
-                  style={style}
-                  isOpen={this.state.isModalOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={() => this.closeModal()}
-                  contentLabel="Icon Picker"
-                >
-                <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
-              </Modal>
-          </div>
-          </div>
-        )
-    else  
-        return (
-          
+            </div>
+          )
+      else
+            return (      
           <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
 
-          <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
-          <div style={{height:'20%' , with:'20%'}}>
-              <Modal
-                  style={style}
-                  isOpen={this.state.isModalOpen}
-                  onAfterOpen={this.afterOpenModal}
-                  onRequestClose={() => this.closeModal()}
-                  contentLabel="Icon Picker"
-                >
-                <Gallery pickedIcon={this.setIcon} icons={this.state.items}/>
-              </Modal>
-          </div>
-            <div className="col"  style={{marginTop:'10px'}}>
-              <div className='row' style={{}}>
-                  <input size='20' 
-                     style={{border:'none',borderSize:'0px',readOnly:false,fontSize:'16px',
-                       textAlign:'left',    textTransform: 'uppercase',color:'#556d7e',
-                       fontFamily: 'Montserrat',
-                       marginTop: '0px',
-                       fontWeight: '400px',
-                       textOverflow: 'ellipsis'}}                       
-                     onFocus={this.toggleShow}
-                     onKeyUp={this.onEnter}
-                     onBlur={this.syncCategoryName}
-                     placeholder='Category'
-                     key={Math.random()}
-                     className="item-category-name" 
-                     defaultValue={this.props.categoryName} />
-              </div>
-              <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
-                    {skills}
+            <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl}  />
+
+              <div className="col"  style={{marginTop:'10px'}}>
+                <div className='row' style={{}}>
+                    <input size='20' 
+                       onFocus={(e)=>e.target.blur()}
+                       style={{border:'none',borderSize:'0px',fontSize:'16px',
+                         textAlign:'left',    textTransform: 'uppercase',color:'#556d7e',
+                         fontFamily: 'Montserrat',
+                         marginTop: '0px',
+                         fontWeight: '400px',
+                         textOverflow: 'ellipsis'}}                       
+                       placeholder='Category'
+                       key={Math.random()}
+                       className="item-category-name" 
+                       defaultValue={this.props.categoryName} />
+                </div>
+                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
+                      {skills}
+                </div>
+
               </div>
 
           </div>
+          )      
+    }
 
-          </div>
-        )
-  }
 
 }
 module.exports = SkillCategoryLabel
