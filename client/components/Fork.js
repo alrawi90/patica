@@ -284,25 +284,28 @@ class Fork extends React.Component {
     });
 
     const items=this.state.categories.map((category, index) =>{
-      let dir;(index+1) %2 >0 ? dir='left' : dir='right'
-
-        return(
-             
-              <div  className="box"  key={index} >
-                <div style={{textAlign:`${dir}`}} >
-                  <a  className="button white"
+      let dir;
+      (index+1) %2 >0 ? dir='left' : dir='right'
+      let removeBtn=(
+                    <a  className="button white" key={Math.random()+1}
                     id={`removeBtn-${index+1}`} onClick={this.removeCategory}
                     style={{backgroundColor:'#0d6d04',margin:'3px'}}
                     >
                     <i  id={`faRemoveBtn-${index+1}`} style={{margin:'2px'}} className="fa fa-remove white"></i>
-                  </a>
-                  <a className="button white"
+                    </a>)
+      let showAvdancedBnt=(                  
+                     <a className="button white" key={Math.random()+2}
                      id={`editBtn-${index+1}`} 
                      onClick={this.showAdvancedSettings}
                      style={{backgroundColor:'#0d6d04',margin:'3px'}}
                      >
                      <i id={`faBtn-${index+1}`} style={{margin:'2px 0px 2px 2px'}} className="fa fa-edit white"></i>
-                  </a>
+                     </a>)
+        return(
+             
+              <div  className="box"  key={index} >
+                <div style={{textAlign:`${dir}`}} >
+                    {dir=='left' ? [removeBtn,showAvdancedBnt] : [showAvdancedBnt,removeBtn]  }
                 </div>
                  
                 <SkillCategory 

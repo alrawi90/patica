@@ -28,7 +28,7 @@
 }
 *{
 /*  outline-width: 1px;
-  outline-style: hidden;*/
+  outline-style: solid;*/
   padding: 1px;
 }
 .main-container{
@@ -46,8 +46,8 @@
    display: flex;
    -webkit-flex-direction: row;
    flex-direction: row;
-/*   -webkit-justify-content: flex-start;
-   justify-content: flex-start;;*/
+   -webkit-justify-content: flex-start;
+   justify-content: flex-start;;
   -webkit-align-items: flex-start;
    align-items: flex-start;
 }

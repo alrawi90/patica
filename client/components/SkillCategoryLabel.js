@@ -203,7 +203,7 @@ class SkillCategoryLabel extends React.Component {
 
               </div>
 
-            <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+            <Hexagon size={7} isActive={true} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
             <div style={{height:'20%' , with:'20%'}}>
                 <Modal
                     style={style}
@@ -222,7 +222,7 @@ class SkillCategoryLabel extends React.Component {
             
             <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
 
-            <Hexagon size={7} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
+            <Hexagon size={7} isActive={true} className="item-hexagon" key={Math.random()}  setIcon={this.props.iconUrl} click={(e)=>this.handleClick(e)} />
             <div style={{height:'20%' , with:'20%'}}>
                 <Modal
                     style={style}
@@ -251,7 +251,7 @@ class SkillCategoryLabel extends React.Component {
                        className="item-category-name" 
                        defaultValue={this.props.categoryName} />
                 </div>
-                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'space-between'}}>
+                <div className='' style={{display:'flex',flexBasis:'max-content',flexWrap:'wrap',justifyContent:'flex-start'}}>
                       {skills}
                 </div>
 

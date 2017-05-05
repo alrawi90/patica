@@ -17,8 +17,9 @@ class Hexagon extends React.Component {
   render() {
     const imageKey = `image-bg-${this.state.key}`;
     const imageUrl = `url('#image-bg-${this.state.key}')`;
+    let fillParent=this.props.isActive ? 'fill-parent' : ''
     return (
-      <div className="hexagon-container">
+      <div className={`hexagon-container ${fillParent}` } >
         
         <svg viewBox='0 18 110 110' style={{margineft:'0px'}}
           id="image-fill" xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +42,7 @@ class Hexagon extends React.Component {
             className="" points="60,20 100,45 100,87 60,110 20,87 20,45" 
             strokeMiterlimit="10"    style={{fill:'#0d6d04'}}></polygon>
           <polygon onClick={this.props.click}
-            className="hex" points="60,20 100,45 100,87 60,110 20,87 20,45"
+             className={this.props.isActive ? "hex" :""} points="60,20 100,45 100,87 60,110 20,87 20,45"
             fill={imageUrl}></polygon>
         </svg>
       </div>

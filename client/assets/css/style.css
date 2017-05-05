@@ -56,8 +56,9 @@ input.ReactTags__tagInputField{width:87px;margin: 3px 0px;}
  -o-user-select: none;
   user-select: none;
   /*background-color: blue;*/
-  padding: 0;margin: 0;width: 100%
+  padding: 0;margin: 0;
 }
+.fill-parent{width:100%;}
 svg{margin-top:0px;}
 svg text {
    font-family: FontAwesome;
@@ -90,7 +91,7 @@ svg text {
 
 .hex:hover {
   fill-opacity: 1;
-  stroke: silver;
+  /*stroke: #0a8205;*/
   stroke-width: 5;
   transform: scale(0.9);
   -webkit-transform: scale(0.9);
@@ -101,6 +102,12 @@ svg text {
   stroke: rgba(0, 0, 0, 0.1);
   filter: url(#blur-filter);
 }
+/*#glow:hover:{
+    transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+  transform-origin: 50% 50%;
+  -webkit-transform-origin: 50% 50%;
+}*/
 /*.hex {
   transition: transform, fill-opacity, stroke-width;
   -webkit-transition: transform, fill-opacity, stroke-width;
