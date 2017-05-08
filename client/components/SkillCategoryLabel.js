@@ -129,7 +129,7 @@ class SkillCategoryLabel extends React.Component {
     let skills=this.props.skills//inputs.map((input,index)=>input.value)
     let index=e.target.id.split('-')[1]-1
     //let skills=this.state.skills
-    value.length > 15 ?  skills[index] = skills[index].slice(0,15) : skills[index]=value
+    value.length > 15 ?  skills[index].title = skills[index].title.slice(0,15) : skills[index].title=value
     e.target.value=skills[index]
     this.setState({
       skills: skills ,
@@ -170,7 +170,7 @@ class SkillCategoryLabel extends React.Component {
             
             onFocus={(! this.props.activeSort) ?  this.toggleShow : (e)=>e.target.blur()}
             onBlur={(! this.props.activeSort) ? (e)=>this.syncSkills(e) : null} 
-            defaultValue={skill} />
+            defaultValue={skill.title} />
         </div>
         
     )})

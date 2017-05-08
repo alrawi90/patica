@@ -7,12 +7,15 @@ class SkillCategory extends React.Component {
     super(props)
     this.state = { isModalOpen: false,set:false,name:props.categoryName,key:1,SkillBoxes:[],
       description:`Learning Outcome
+
 After following this skill path, you should be able to:
 + display confidence in using systems concepts and language
 + describe accurately the set of key systems concepts
 + understand what is distinctive about systems thinking as opposed to other forms of thinking
 + understand how systems thinking is useful in analysing and improving situations
-+ understand the notion of a system as a creation of the observer, i.e. as an intellectual construct, as opposed to using the term system in other ways, i.e. as entities that exist ‘out there’.`
++ understand the notion of a system as a creation of the observer, i.e. as an intellectual construct,
+ as opposed to using the term system in other ways, i.e. as entities that exist ‘out there’.` ,
+ modules:[]
     }
     this.onCategoryNameChanged=this.onCategoryNameChanged.bind(this)
     this.changeInputValue=this.changeInputValue.bind(this)
@@ -56,7 +59,7 @@ After following this skill path, you should be able to:
   addSkillField(e) {
     let sbs = this.state.SkillBoxes;
     console.log(sbs[sbs.length-1])
-    sbs.push('')
+    sbs.push(['',{isEditMode:false}])
     this.setState({SkillBoxes: sbs});
   }
   removeSkill(e){
@@ -104,7 +107,7 @@ After following this skill path, you should be able to:
                   readOnly:false,fontSize:'14px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}}  
                   onChange={this.changeInputValue} 
                   onBlur={(e)=>this.finishEditMode(e)}
-                  defaultValue={item[0]} 
+                  defaultValue={item[0].title} 
                   onFocus={(e)=>{e.target.focus();e.target.select()}}
                   key={index} 
                        ref={function(input) {
@@ -115,13 +118,19 @@ After following this skill path, you should be able to:
                  />)
       }else{
         element=(                
-          <a    href="#"  onClick={(e)=>this.setState({description:"hello world"})}
+          <a    href="#"  onClick={
+                    (e)=>this.setState({
+                      description:this.state.SkillBoxes[index][0].path.description,
+                      skillSelected:this.state.SkillBoxes[index][0].title,
+                      modules:this.state.SkillBoxes[index][0].path.modules,
+
+                     })}
                   style={{border:'none',borderSize:'0px',width:'190px',whiteSpace: 'no-wrap',display: 'inline-block',
 
                   fontSize:'14px',fontWeight:'bold',overflow:'hidden'}}  
                   key={index} 
                   id={`skill_link-${index+1}`}
-                 >{item[0]}</a>
+                 >{item[0].title}</a>
                  ) 
       }
       return(
@@ -146,7 +155,7 @@ After following this skill path, you should be able to:
             onRequestClose={() => this.closeModal(false)}
             contentLabel="Create New Category "
           >
-          <div className='category-container row' 
+          <div className='category-container' 
           style={{display:'inline-flex',justifyContent:'space-around'}} >
           <Hexagon size={5} className="item-hexagon" isActive={false} key={Math.random()}  setIcon={this.props.iconUrl}  />
           <div style={{margin:'6% 0%'}}> 
@@ -160,7 +169,7 @@ After following this skill path, you should be able to:
           </label>
           </div>
           </div>
-          <div className='main-container' >
+          <div className='main-container'  style={{justifyContent:'space-around', backgroundColor:'gray'}}>
               <div className='col-left'>
                   <label>
                    Skills:
@@ -172,13 +181,16 @@ After following this skill path, you should be able to:
                   <div><h3>
                    {this.state.skillSelected}
                   </h3></div>
-                  <div><p>{this.state.description}</p></div>
+                  <div><p style={{width:'470px'}}>{this.state.description}</p></div>
               </div>
               <div className='col-right'>
                   <label>
-                   Skills:
+                   Modules:
                   </label>
-                  
+
+                  <div style={{width:'300px',height:'400px',backgroundColor:'red'}} >
+                    <ul>{this.state.modules.map((item,index)=>{return <li><h6>{item.trim()}</h6></li>})}</ul>
+                  </div>
 
               </div>    
           </div>    

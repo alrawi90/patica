@@ -9,34 +9,21 @@ const SkillCategory = require('./SkillCategory');
 import {SortableContainer, SortableElement,arrayMove,SortableHandle} from 'react-sortable-hoc';
 const Modal = require('react-modal')
 
-class Fork extends React.Component {
+class Show extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      isModalOpen:false,
+      isModalOpen:false,isOk:false,
       roleId:'5909976af3958abbc84d19c4',//show be a prop (set from the router)
       error:'' ,
-      categories:[
-      {name:'',skills:[],image:''},
-      {name:'',skills:[],image:''},
-      {name:'',skills:[],image:''},
-      {name:'',skills:[],image:''},
-      {name:'',skills:[],image:''},
-      {name:'',skills:[],image:''},],
-      roleName:'',lego:'',description:'',
-      keywords: [],// each element is an object of  {id:1,text:'keyword-1'}
+      categories:props.categories,
+      roleName:props.roleName,lego:props.lego,description:props.description,
+      keywords: props.keywords,// each element is an object of  {id:1,text:'keyword-1'}
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
       key:Date.now(),
       RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
        'Product Marketing Manager'],
-      //  activeDrags: 0,
-      // deltaPosition: {
-      //   x: 0, y: 0
-      // },
-      // controlledPosition: {
-      //   x: -400, y: 200
-      // }
-    
+
     }
     this.setRoleName=this.setRoleName.bind(this)
     this.setRoleDescription=this.setRoleDescription.bind(this)
@@ -63,14 +50,11 @@ class Fork extends React.Component {
   }
 
   addNewCategory(){
-    let SkillCategory={name:'',skills:['','',''],image:''}
+    let SkillCategory={name:'',skills:[{id:1,title:'',path:{}},{id:2,title:'',path:{}},{id:1,title:'',path:{}}],image:''}
     let categories=this.state.categories
     categories.push(SkillCategory)
-    this.setState({categories:categories,    activeDrags: 0,  
-      deltaPosition: {
-        x: 0,
-        y: 0
-      }})
+    this.setState({categories:categories
+      })
 
   }
 
@@ -82,37 +66,7 @@ class Fork extends React.Component {
     this.setState({categories:categories})
      console.log(CategoryIndex+1 +' removed')
   }
-  componentWillMount(){
-      let app=this;
-      console.log('forking ...')
-      fetch('http://patica-role.mertdogar.com/role/'+this.state.roleId
-          ).then(function(response) {
-              return response.json();
-            }).then(function(data) {
-               let kwrds=data.keywords.map((item,index)=>{
-                 return(
-                   {id:index,text:item}
-                 )
-               })
-              
-               let categories=data.skillCategory.map((item,index)=>{
-                 return(
-
-                   {name:item.name,skills:item.skills,image:item.image}
-                 )
-               })
-               app.setState({
-                 roleName: data.name,
-                 description:data.description,
-                 lego:data.image,
-                 keywords:kwrds,
-                 categories:categories
-               });
-      })  .catch(function(error) {
-    console.log(error);
-  });
-
-  }
+  
   setRoleName(roleName){
 
     this.setState({
@@ -432,5 +386,50 @@ class Fork extends React.Component {
   }
 
 }
-
-module.exports = Fork
+// Show.propTypes = {
+//     title: React.PropTypes.string.isRequired,
+//     price: React.PropTypes.number.isRequired,
+//     initialQty: React.PropTypes.number
+// };
+Show.defaultProps = {
+      isModalOpen:false,
+      roleId:'5909976af3958abbc84d19c4',//show be a prop (set from the router)
+      error:'' ,
+      categories:[
+      {name:'fundamentals',
+       skills:[
+          {id:1,title:'variables',path:{description:getRandomText('variables'),modules:[]} },
+           {id:2,title:'booleans',path:{description:getRandomText('booleans'),modules:[]} },
+            {id:3,title:'integers',path:{description:getRandomText('integers'),modules:[]} },
+        ]
+       ,image:''},
+      {name:'',skills:[],image:''},
+      {name:'paypal',
+      skills:[
+          {id:1,title:'variables-2',path:{description:getRandomText('variables-2'),modules:getRandomList('variables-2')} },
+           {id:2,title:'booleans-2',path:{description:getRandomText('booleans-2'),modules:getRandomList('booleans-2')} },
+            {id:3,title:'integers-2',path:{description:getRandomText('integers-2'),modules:getRandomList('integers-2')} },
+       ],
+      image:''},
+      {name:'aaaaa',skills:[],image:''},
+      {name:'bbbbb',skills:[],image:''},
+      {name:'ccccc',skills:[],image:''},],
+      roleName:'',lego:'',
+      description:'DESCRIPTION: This one of the most likely repeated test to make sure that all Role features are working perfectly.',
+      keywords: [],// each element is an object of  {id:1,text:'keyword-1'}
+      suggestions:["Banana", "Mango", "Pear", "Apricot"],
+      key:Date.now(),
+      RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
+       'Product Marketing Manager'],
+};
+function getRandomText(x){
+   let text='\n';
+   for(var i=0;i<50 ;i++){text+=x+' description '}
+   return text;
+}
+function getRandomList(x){
+   let text=[]
+   for(var i=0;i<10 ;i++){text.push('module-details_'+i+1)}
+   return text;
+}
+module.exports = Show
