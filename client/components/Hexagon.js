@@ -40,7 +40,7 @@ class Hexagon extends React.Component {
           </defs>
           <polygon id='glow'
             className="" points="60,20 100,45 100,87 60,110 20,87 20,45" 
-            strokeMiterlimit="10"    style={{fill:'#0d6d04'}}></polygon>
+            strokeMiterlimit="10"    style={{fill:'#2a9639'}}></polygon>
           <polygon onClick={this.props.click}
              className={this.props.isActive ? "hex" :""} points="60,20 100,45 100,87 60,110 20,87 20,45"
             fill={imageUrl}></polygon>

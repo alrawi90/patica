@@ -241,17 +241,17 @@ class Show extends React.Component {
       let dir;
       (index+1) %2 >0 ? dir='left' : dir='right'
       let removeBtn=(
-                    <a  className="button white" key={Math.random()+1}
+                    <a  className="button white patica-bg-color" key={Math.random()+1}
                     id={`removeBtn-${index+1}`} onClick={this.removeCategory}
-                    style={{backgroundColor:'#0d6d04',margin:'3px'}}
+                    style={{margin:'3px'}}
                     >
                     <i  id={`faRemoveBtn-${index+1}`} style={{margin:'2px'}} className="fa fa-remove white"></i>
                     </a>)
       let showAvdancedBnt=(                  
-                     <a className="button white" key={Math.random()+2}
+                     <a className="button white patica-bg-color" key={Math.random()+2}
                      id={`editBtn-${index+1}`} 
                      onClick={this.showAdvancedSettings}
-                     style={{backgroundColor:'#0d6d04',margin:'3px'}}
+                     style={{margin:'3px'}}
                      >
                      <i id={`faBtn-${index+1}`} style={{margin:'2px 0px 2px 2px'}} className="fa fa-edit white"></i>
                      </a>)
@@ -330,25 +330,25 @@ class Show extends React.Component {
 
               <div className='row' style={{justifyContent:'space-around'}}>
                     <div className="item" >
-                       <a onClick={this.create} className='white button' style={{backgroundColor:'#0d6d04'}}>
+                       <a onClick={this.create} className='white button patica-bg-color' >
                          <i className="fa fa-plus-square white"></i> Create New Role
                        </a>
                     </div>
                     
               <div className="item"  >
-                       <a className="white button"
-                          onClick={this.copy} style={{backgroundColor:'#0d6d04'}} >
+                       <a className="white button patica-bg-color"
+                          onClick={this.copy}  >
                           <i className="fa fa-copy white"></i> Copy Role
                        </a>
               </div>
               <div className="item" >
-                       <a className="white button"
-                          onClick={(e)=>this.handleClick(e)} style={{backgroundColor:'#0d6d04'}} >
+                       <a className="white button patica-bg-color"
+                          onClick={(e)=>this.handleClick(e)} >
                           <i className="fa fa-sort-amount-asc white"></i> Sort Categories
                        </a>
               </div>
                     <div className='' key={Date.now()} style={{position:'relative'}}>
-                        <a onClick={this.addNewCategory} className="button white" style={{backgroundColor:'#0d6d04'}} >
+                        <a onClick={this.addNewCategory} className="button white patica-bg-color"  >
                           <i className="fa fa-plus-circle white"></i> Add New Category
                         </a>
                     </div>                   

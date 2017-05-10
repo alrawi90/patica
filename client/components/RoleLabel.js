@@ -91,7 +91,6 @@ class RoleLabel extends React.Component {
                  className="item-category-name"  ></textarea>
           </div>
           <ReactTags  
-
                      style={{margin:'2px',outline:'none'}}          
                      key={this.key}
                      tags={keywords}

@@ -6,6 +6,9 @@ html {
 * {
     box-sizing: border-box;   color: #38417a;
 }
+.patica-bg-color{
+  background-color: #2a9639;
+}
 input, textarea{outline: 0px;}
 .button{border-width: 0;border-radius: 8px;padding:5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block;}
 .button:hover {
@@ -25,7 +28,7 @@ input, textarea{outline: 0px;}
 .small-font{font-size: 12px;box-shadow: 0 0 2px 2px #d9d9d9;}
 .ReactTags__suggestions{position: absolute;}
 input.ReactTags__tagInputField{width:87px;margin: 3px 0px;}
-.ReactTags__tag{background-color: rgb(13, 109, 4);color:#fff;border-radius: 
+.ReactTags__tag{background-color: #2a9639;color:#fff;border-radius: 
                 5px;font-size: 12px;margin: 0 5px;padding:3px 5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
               }
 .ReactTags__remove{color: #fff;margin: 2px;padding: 1px 2px;display:inline-block;} 
@@ -77,7 +80,8 @@ svg text {
   border-radius: 1em/ .5em;
   cursor: pointer;
   fill-opacity: .9;
-  stroke: #0d6d04;
+  /*stroke: #0d6d04;*/
+  stroke: #2a9639;
   stroke-width: 0;
   border: 1px solid rgba(255, 255, 255, 0); 
 

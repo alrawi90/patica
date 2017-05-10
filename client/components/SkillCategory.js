@@ -135,7 +135,7 @@ After following this skill path, you should be able to:
       }
       return(
         <span key={index} onClick={(e)=> e.stopPropagation()} className='row' 
-        style={{backgroundColor:'#fff999',whiteSpace:'wrap'}} >
+        style={{backgroundColor:'',whiteSpace:'wrap'}} >
           <span style={{display:'none',position:'absolute',width:'100px',height:'3px',color:'red'}} >{'ــــــــــــــــــــ'}</span>
           <div>{element}</div>
           <div> 
@@ -148,51 +148,71 @@ After following this skill path, you should be able to:
     })
 
     return (
-    <div style={{height:'100%' , with:'100%'}}>
+    <div style={{height:'20%' , with:'20%'}}>
         <Modal
+            style={{
+                  content : {
+                          top                   : '50%',
+                          left                  : '50%',
+                          right                 : 'auto',
+                          bottom                : 'auto',
+                          marginRight           : '-50%',
+                          transform             : 'translate(-50%, -50%)',
+                          width:'85%' ,height:'70%',borderColor:'green',borderSize:'5px'
+                        },
+                        overlay: {
+  perspective: '100px',
+  opacity: '1',transition: 'opacity 1500ms ease-out'
+}
+
+            }}
             isOpen={this.state.isModalOpen}
             onAfterOpen={this.afterOpenModal}
             onRequestClose={() => this.closeModal(false)}
             contentLabel="Create New Category "
           >
-          <div className='category-container' 
-          style={{display:'inline-flex',justifyContent:'space-around'}} >
-          <Hexagon size={5} className="item-hexagon" isActive={false} key={Math.random()}  setIcon={this.props.iconUrl}  />
-          <div style={{margin:'6% 0%'}}> 
-          <label>
-            Category Name: <input 
-            key={Date.now()} 
-            defaultValue={this.state.name} 
-            type='text' ref='cn'
-            onBlur={this.onCategoryNameChanged}
-             />
-          </label>
-          </div>
-          </div>
-          <div className='main-container'  style={{justifyContent:'space-around', backgroundColor:'gray'}}>
-              <div className='col-left'>
-                  <label>
-                   Skills:
-                  </label>
-                    {outcome}
-                  <button onClick={(e) =>this.addSkillField(e)} ><i className="fa fa-plus"></i></button>
+          <div className='main-container'  style={{justifyContent:'space-around'}}>
+              <div className='col-left' style={{width:'380px',backgroundColor:''}}>
+                  <div 
+                     style={{display:'inline-flex',justifyContent:'space-around'}} >
+                    <Hexagon size={5} className="item-hexagon" isActive={false} key={Math.random()}  setIcon={this.props.iconUrl}  />
+                      <div style={{margin:'6% 0%'}}> 
+                        <label>
+                          <input size='10'
+                            key={Date.now()} 
+                            defaultValue={this.state.name} 
+                            type='text' ref='cn'
+                            onBlur={this.onCategoryNameChanged}
+                           /> Skills
+                        </label>
+                      </div>
+                  </div>  
+    
+                      <div className='' >
+                          <label>
+                           Skills:
+                          </label>
+                            {outcome}
+                          <button className='patica-bg-color' onClick={(e) =>this.addSkillField(e)} ><i className="fa fa-plus"></i></button>
+                      </div>
               </div>
-              <div className='col-center'>
-                  <div><h3>
-                   {this.state.skillSelected}
-                  </h3></div>
-                  <div><p style={{width:'470px'}}>{this.state.description}</p></div>
-              </div>
-              <div className='col-right'>
-                  <label>
-                   Modules:
-                  </label>
-
-                  <div style={{width:'300px',height:'400px',backgroundColor:'red'}} >
-                    <ul>{this.state.modules.map((item,index)=>{return <li><h6>{item.trim()}</h6></li>})}</ul>
+    
+                  <div className='col-center' style={{width:'380px' }}>
+                      <div  ><h3>
+                       {this.state.skillSelected}
+                      </h3></div>
+                      <div><p style={{color:'#fff'}}>{this.state.description}</p></div>
                   </div>
+                  <div className='col-right' style={{width:'380px',backgroundColor:''}}>
+                      <label>
+                       Modules:
+                      </label>
 
-              </div>    
+                      <div style={{width:'300px',height:'400px',backgroundColor:''}} >
+                        <ul>{this.state.modules.map((item,index)=>{return <li><h6>{item.trim()}</h6></li>})}</ul>
+                      </div>
+
+                  </div>    
           </div>    
         </Modal>
     </div>
