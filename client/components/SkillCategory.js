@@ -145,7 +145,7 @@ After following this skill path, you should be able to:
       let key=Math.random()
       let greenIfSelected= index==this.state.skillSelected ? 'green' : '#38417a'
       let redLineIfDisabled= item[0].disabled ? 'block' : 'none'
-      let btnIcon=item[0].disabled ? 'fa-unlock' : 'fa-lock'
+      let btnIcon=item[0].disabled ? 'fa-unlock-alt' : 'fa-lock'
       let isDisabled=item[0].disabled ? 'readOnly' : ''
       if(this.state.SkillBoxes[index][1].isEditMode){
         element=(                
@@ -184,7 +184,7 @@ After following this skill path, you should be able to:
             </div>
             <div style={{marginTop:'0px'}}> 
               <button disabled={item[0].disabled}
-                className="button patica-bg-color"
+                className={!item[0].disabled ? `button patica-bg-color` : `button-inactive`}
                 style={{display: 'inline-block',margin:'0px 3px',border:'none'}} 
                 id={`Editkill-${index+1}`} 
                 onClick={this.startEditMode} >

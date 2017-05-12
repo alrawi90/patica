@@ -9,8 +9,10 @@ html {
 .patica-bg-color{
   background-color: #2a9639;
 }
+.gray{background-color: gray}
 input, textarea{outline: 0px;}
 .button{border-width: 0;border-radius: 8px;padding:5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block;}
+.button-inactive{border-width: 0;border-radius: 8px;padding:5px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); display: inline-block;}
 .button:hover {
   fill-opacity: .8;
   border-color: silver;
