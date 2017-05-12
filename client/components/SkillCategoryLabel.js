@@ -155,8 +155,8 @@ class SkillCategoryLabel extends React.Component {
       return(
 
         <div  style={{width:'4em'}} key={key} >
-         <span style={{
-            position:'absolute',
+         <span style={{ 
+            position:'absolute',margin:'auto 0px',
             fontSize:'20px',color:'red',
             display:`${redLineIfDisabled}`,
             width:`${this.state.currentWidth}`,

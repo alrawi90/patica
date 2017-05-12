@@ -179,7 +179,7 @@ After following this skill path, you should be able to:
         <span key={key} onClick={(e)=> e.target.blur()} className='row'
           style={{backgroundColor:'',whiteSpace:'wrap'}} >
             <div style={{padding: '0px'}}>
-              <span style={{margin:'50% 50%',position:'absolute',color:'red',display:`${redLineIfDisabled}`}} >{'----------------'}</span>
+              <span style={{position:'absolute',color:'red',display:`${redLineIfDisabled}`}} >{'----------------'}</span>
               <li style={{color:`${greenIfSelected}`,listStylePosition: 'inside'}}>{element}</li> 
             </div>
             <div style={{marginTop:'0px'}}> 
