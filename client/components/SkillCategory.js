@@ -179,17 +179,17 @@ After following this skill path, you should be able to:
         <span key={key} onClick={(e)=> e.target.blur()} className='row'
           style={{backgroundColor:'',whiteSpace:'wrap'}} >
             <div style={{padding: '0px'}}>
-              <span style={{position:'absolute',color:'red',display:`${redLineIfDisabled}`}} >{'----------------'}</span>
+              <span style={{margin:'50% 50%',position:'absolute',color:'red',display:`${redLineIfDisabled}`}} >{'----------------'}</span>
               <li style={{color:`${greenIfSelected}`,listStylePosition: 'inside'}}>{element}</li> 
             </div>
             <div style={{marginTop:'0px'}}> 
-              <a disabled
+              <button disabled={item[0].disabled}
                 className="button patica-bg-color"
-                style={{display: 'inline-block',margin:'0px 3px'}} 
+                style={{display: 'inline-block',margin:'0px 3px',border:'none'}} 
                 id={`Editkill-${index+1}`} 
                 onClick={this.startEditMode} >
                 <i id={`fa_EditSkill-${index+1}`} className="fa fa-edit white"></i>
-              </a>
+              </button>
 
               <a 
                 className="button patica-bg-color"
