@@ -19,7 +19,7 @@ class RoleLabel extends React.Component {
 
   }
   
-    onEnter(e){
+  onEnter(e){
     if( e.which==13){ (e.target).blur()}
   }
 

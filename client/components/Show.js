@@ -398,25 +398,35 @@ Show.defaultProps = {
       categories:[
       {name:'fundamentals',
        skills:[
-          {id:1,title:'variables',path:{description:getRandomText('variables'),modules:[]} },
-           {id:2,title:'booleans',path:{description:getRandomText('booleans'),modules:[]} },
-            {id:3,title:'integers',path:{description:getRandomText('integers'),modules:[]} },
+          {title:'variables', description:getRandomText('variables'),disabled:false },
+           {title:'booleans',description:getRandomText('booleans'),disabled:false },
+            {title:'integers', description:getRandomText('integers') ,disabled:true },
         ]
-       ,image:''},
-      {name:'',skills:[],image:''},
+       ,image:'\uf2dc'},
+      {name:'functions',skills:[
+          {title:'variables-3', description:getRandomText('variables-3'),disabled:false },
+           {title:'booleans-3',description:getRandomText('booleans-3'),disabled:false },
+            {title:'integers-3', description:getRandomText('integers-3') ,disabled:true },
+      ],image: '\uf17a'},
       {name:'paypal',
       skills:[
-          {id:1,title:'variables-2',path:{description:getRandomText('variables-2'),modules:getRandomList('variables-2')} },
-           {id:2,title:'booleans-2',path:{description:getRandomText('booleans-2'),modules:getRandomList('booleans-2')} },
-            {id:3,title:'integers-2',path:{description:getRandomText('integers-2'),modules:getRandomList('integers-2')} },
+          {title:'variables-2',description:getRandomText('variables-2'),disabled:false },
+           {title:'booleans-2',description:getRandomText('booleans-2') ,disabled:true},
+            {title:'integers-2',description:getRandomText('integers-2') ,disabled:false},
        ],
-      image:''},
-      {name:'aaaaa',skills:[],image:''},
-      {name:'bbbbb',skills:[],image:''},
-      {name:'ccccc',skills:[],image:''},],
-      roleName:'',lego:'',
+      image:'\uf15a'},             
+           
+      {name:'loops',
+      skills:[
+          {title:'variables-4',description:getRandomText('variables-4'),disabled:true },
+           {title:'booleans-4',description:getRandomText('booleans-4') ,disabled:false},
+            {title:'integers-4',description:getRandomText('integers-4') ,disabled:false},
+       ],
+      image:'\uf15a'},  
+      ],
+      roleName:'TEST WITH DUMMY DATA',lego:'',
       description:'DESCRIPTION: This one of the most likely repeated test to make sure that all Role features are working perfectly.',
-      keywords: [],// each element is an object of  {id:1,text:'keyword-1'}
+      keywords: [{id:1,text:'Apple'},{id:2,text:'Microsoft'},{id:3,text:'Google'}],// each element is an object of  {id:1,text:'keyword-1'}
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
       key:Date.now(),
       RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,

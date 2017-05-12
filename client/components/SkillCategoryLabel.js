@@ -14,16 +14,8 @@ class SkillCategoryLabel extends React.Component {
       isModalOpen: false,
       currentWidth:'64px',
       items:[
-        // './client/assets/icons/1.png',
-        // './client/assets/icons/2.png',
-        // './client/assets/icons/3.png',
-        // './client/assets/icons/4.png',
-        // './client/assets/icons/5.png',
-        // './client/assets/icons/6.png',
-        // './client/assets/icons/7.png',
-        // './client/assets/icons/8.png',
-        // './client/assets/icons/9.png',
-                   '\uf19c',
+
+           '\uf19c',
            '\uf15a',
            '\uf2dc',
            '\uf17a',
@@ -32,7 +24,8 @@ class SkillCategoryLabel extends React.Component {
            '\uf270',
            '\uf179',
            '\uf294',
-           '\uf1f4','\uf06e'
+           '\uf1f4',
+           '\uf06e'
             ]
     }
     this.toggleShow=this.toggleShow.bind(this)
@@ -157,10 +150,18 @@ class SkillCategoryLabel extends React.Component {
       let key=  Math.random() // this line is very important to keep track of skills when add/remove Cretory & skill
        let dir;(parseInt(this.props.id)-1) %2 >0 ? dir='left' : dir='right'
        this.props.activeSort ? dir='left': null
+       let redLineIfDisabled=skill.disabled ? 'block': 'none'
        //let comma= index!=(this.props.skills.length-1) ? ',' : '' 
       return(
 
         <div  style={{width:'4em'}} key={key} >
+         <span style={{
+            position:'absolute',
+            fontSize:'20px',color:'red',
+            display:`${redLineIfDisabled}`,
+            width:`${this.state.currentWidth}`,
+             textAlign:`center`}} >&mdash;&mdash;&mdash;</span>
+
           <input   id={`skill-${index+1}`}
             key={index}  
             placeholder='skill' 
@@ -259,7 +260,7 @@ class SkillCategoryLabel extends React.Component {
 
             </div>
           )
-      else
+    else
             return (      
           <div className="main-container" style={{backgroundColor:'white',width:'350px'}}>
 
