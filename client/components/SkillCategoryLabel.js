@@ -156,20 +156,21 @@ class SkillCategoryLabel extends React.Component {
 
         <div  style={{width:'4em'}} key={key} >
          <span style={{ 
-            position:'absolute',margin:'auto 0px',
+            position:'absolute',margin:'0px 1px 0px',
             fontSize:'20px',color:'red',
             display:`${redLineIfDisabled}`,
             width:`${this.state.currentWidth}`,
-             textAlign:`center`}} >&mdash;&mdash;&mdash;</span>
+             textAlign:`center`}} >&mdash;&mdash;&mdash;&mdash;</span>
 
-          <input   id={`skill-${index+1}`}
+          <input   id={`skill-${index+1}`} disabled={skill.disabled}
             key={index}  
             placeholder='skill' 
             onKeyUp={this.onEnter}
             style={{border:'none',borderSize:'0px',readOnly:true,margin:'auto',width:`${this.state.currentWidth}`,
-            textOverflow: 'ellipsis',textAlign:`${dir}`}}
+               color:skill.disabled? '#8e423b' : '#595959',
+            textOverflow: 'ellipsis',textAlign:`center`}}
             
-            onFocus={(! this.props.activeSort) ?  this.toggleShow : (e)=>e.target.blur()}
+            onFocus={(! this.props.activeSort) ? (e)=>e.target.select() : (e)=>e.target.blur()}
             onBlur={(! this.props.activeSort) ? (e)=>this.syncSkills(e) : null} 
             defaultValue={skill.title} />
         </div>
@@ -190,7 +191,7 @@ class SkillCategoryLabel extends React.Component {
                          marginTop: '0px',
                          fontWeight: '400px',
                          textOverflow: 'ellipsis'}} 
-                       onFocus={this.toggleShow}
+                       onFocus={(e)=>e.target.select()}
                        onKeyUp={this.onEnter}
                        onBlur={this.syncCategoryName}
                        placeholder='Category'

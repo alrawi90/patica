@@ -26,7 +26,7 @@ class LegoGallery extends React.Component{
     render(){
       const thumbs=this.state.items.map((item,index)=>{
         return(
-            <div key={index} className='thumb' >
+            <div key={index+} className='thumb' >
                <img id={`thumb-${index+1}`} onClick={this.handleClick} style={{height:'75px',width:'75px'}} src={this.state.items[index]} />
             </div>
         )

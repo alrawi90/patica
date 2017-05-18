@@ -1,5 +1,5 @@
 html {
-  background-color: #fff;
+  background-color: #fff; max-width: 95%;
   font-family: "Montserrat","Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif,'Inconsolata';
 
 }
@@ -202,20 +202,27 @@ background-color: #dadfe8;
 }
 .thumb::selection{border-color: red;}*/
 .thumb::focus{border-color: red;box-shadow: 0 0 10px }
-.disabled:before, .disabled:after {
+.crossed {
     position: relative;
-    content: '';
-    background: red;
-    display: block;
+    width: 4em;
+    height: 1.5em;
+    background: blue;
+}
+.crossed svg {
     width: 100%;
-    height: 1px;
-    -webkit-transform: rotate(160deg);
-    transform: rotate(160deg);
+    height: 100%;
+    position: absolute;
+    top: 5px;
     left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+}
+.crossed svg line {
+    stroke: rgb(255, 0, 0);
+    stroke-width: 1;
+}
+.crossed input {
+    width: 5em;
+    height: 1em;
+    box-sizing:border-box;text-align:center
 }
 .upcase{
   text-transform: uppercase

@@ -185,7 +185,7 @@ After following this skill path, you should be able to:
             <div style={{marginTop:'0px'}}> 
               <button disabled={item[0].disabled}
                 className={!item[0].disabled ? `button patica-bg-color` : `button-inactive`}
-                style={{display: 'inline-block',margin:'0px 3px',border:'none'}} 
+                style={{display: 'inline-block',padding:'8px 5px',border:'none'}} 
                 id={`Editkill-${index+1}`} 
                 onClick={this.startEditMode} >
                 <i id={`fa_EditSkill-${index+1}`} className="fa fa-edit white"></i>
@@ -246,7 +246,8 @@ After following this skill path, you should be able to:
                                     fontSize:'16px',fontWeight:'bold',overflow:'hidden'}} 
                             key={Date.now()} 
                             defaultValue={this.state.name} 
-                            type='text' ref='cn'
+                            type='text'
+                            onFocus={(e)=>e.target.select()}
                             onBlur={this.onCategoryNameChanged}
                            />
                         </label>
