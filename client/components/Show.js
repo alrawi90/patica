@@ -14,11 +14,11 @@ class Show extends React.Component {
     super(props)
     this.state={
       isModalOpen:false,isOk:false,
-      roleId:'5909976af3958abbc84d19c4',//show be a prop (set from the router)
+      roleId:'591e9cf3af97120c70c96624',//show be a prop (set from the router)
       error:'' ,
-      categories:props.categories,
-      roleName:props.roleName,lego:props.lego,description:props.description,
-      keywords: props.keywords,// each element is an object of  {id:1,text:'keyword-1'}
+      categories:[],
+      roleName:'',lego:'',description:'',
+      keywords: [],// each element is an object of  {id:1,text:'keyword-1'}
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
       key:Date.now(),
       RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
@@ -42,7 +42,37 @@ class Show extends React.Component {
     // this.onStop=this.onStop.bind(this)
     this.onSortEnd=this.onSortEnd.bind(this)
   }
+  componentWillMount(){
+      let app=this;
+      console.log('reading from database ...')
+      fetch('http://patica-role.mertdogar.com/role/'+this.state.roleId
+          ).then(function(response) {
+              return response.json();
+            }).then(function(data) {
+               let kwrds=data.keywords.map((item,index)=>{
+                 return(
+                   {id:index,text:item}
+                 )
+               })
+              
+               let categories=data.skillCategory.map((item,index)=>{
+                 return(
 
+                   {name:item.name,skills:item.skills,image:item.image}
+                 )
+               })
+               app.setState({
+                 roleName: data.name,
+                 description:data.description,
+                 lego:data.image,
+                 keywords:kwrds,
+                 categories:categories
+               });
+      })  .catch(function(error) {
+    console.log(error);
+  });
+
+  }
   showAdvancedSettings(e){
    e.stopPropagation()
    let factor=e.target.id.split('-')[1];
@@ -391,55 +421,6 @@ class Show extends React.Component {
 //     price: React.PropTypes.number.isRequired,
 //     initialQty: React.PropTypes.number
 // };
-Show.defaultProps = {
-      isModalOpen:false,
-      roleId:'5909976af3958abbc84d19c4',//show be a prop (set from the router)
-      error:'' ,
-      categories:[
-      {name:'fundamentals',
-       skills:[
-          {title:'variables', description:getRandomText('variables'),disabled:false },
-           {title:'booleans',description:getRandomText('booleans'),disabled:false },
-            {title:'integers', description:getRandomText('integers') ,disabled:true },
-        ]
-       ,image:'\uf2dc'},
-      {name:'functions',skills:[
-          {title:'variables-3', description:getRandomText('variables-3'),disabled:false },
-           {title:'booleans-3',description:getRandomText('booleans-3'),disabled:false },
-            {title:'integers-3', description:getRandomText('integers-3') ,disabled:true },
-      ],image: '\uf17a'},
-      {name:'paypal',
-      skills:[
-          {title:'variables-2',description:getRandomText('variables-2'),disabled:false },
-           {title:'booleans-2',description:getRandomText('booleans-2') ,disabled:true},
-            {title:'integers-2',description:getRandomText('integers-2') ,disabled:false},
-       ],
-      image:'\uf15a'},             
-           
-      {name:'loops',
-      skills:[
-          {title:'variables-4',description:getRandomText('variables-4'),disabled:true },
-           {title:'booleans-4',description:getRandomText('booleans-4') ,disabled:false},
-            {title:'integers-4',description:getRandomText('integers-4') ,disabled:false},
-       ],
-      image:'\uf15a'},  
-      ],
-      roleName:'TEST WITH DUMMY DATA',lego:'',
-      description:'DESCRIPTION: This one of the most likely repeated test to make sure that all Role features are working perfectly.',
-      keywords: [{id:1,text:'Apple'},{id:2,text:'Microsoft'},{id:3,text:'Google'}],// each element is an object of  {id:1,text:'keyword-1'}
-      suggestions:["Banana", "Mango", "Pear", "Apricot"],
-      key:Date.now(),
-      RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
-       'Product Marketing Manager'],
-};
-function getRandomText(x){
-   let text='\n';
-   for(var i=0;i<50 ;i++){text+=x+' description '}
-   return text;
-}
-function getRandomList(x){
-   let text=[]
-   for(var i=0;i<10 ;i++){text.push('module-details_'+i+1)}
-   return text;
-}
+Show.defaultProps = {isModalOpen:false}
+
 module.exports = Show

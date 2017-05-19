@@ -59,15 +59,17 @@ class Lego extends React.Component{
          counter:0,isModalOpen:false
        }
    }
+   componentDidUpdate(p,s){s.counter!==this.state.counter ? this.props.setLego(this.state.items[this.state.counter]): null}
    handleClick(e){this.props.pickedIcon(e.target.src)}
    handlePrevious(e){
      this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})
-     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App's state
+
    }
+   
    handleNext(e){
      this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})
-     this.props.setLego(this.state.items[this.state.counter])// set the lego img url in the main App's state
-   }
+
+  }
    pick(index){
      this.setState({counter:index})
      this.props.setLego(this.state.items[index]) // set the lego img url in the main App's state
@@ -84,31 +86,21 @@ class Lego extends React.Component{
 
    render(){
      return(
-
-       <Swipeable
-          onSwiping={this.swiping}
-          onSwipingUp={this.swipingUp}
-          onSwipingRight={this.swipingRight}
-          onSwipingDown={this.swipingDown}
-          onSwipingLeft={this.swipingLeft}
-          onSwipedUp={this.swipedUp}
-          onSwipedRight={this.swipedRight}
-          onSwipedDown={this.swipedDown}
-          onSwipedLeft={this.swipedLeft}
-          onSwiped={this.handleSwipeAction}>
-
+      
           <div className='lego-container' >
             <div className='lego-up' >
-              <Trapezoid className='up-trapezoid' size={3} points="300,150 0,150 75,20 225,20" click={this.handleNext} />
+              <Trapezoid key={Math.random()} className='up-trapezoid' size={3} points="300,150 0,150 75,20 225,20" click={this.handleNext} />
             </div>
-            <div className='logo-img' >
-                 <img  className='lego-img' onClick={this.openModal}
+            <div key={Math.random()} className='logo-img' >
+                 <img  key={Math.random()} className='lego-img' onClick={this.openModal}
                     src={this.props.currentLego !=='' ? this.props.currentLego : this.state.items[this.state.counter]}
                      />
             </div  >
             <div className='lego-down'>
-              <Trapezoid className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
+              <Trapezoid key={Math.random()} className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
+            <button onClick={(e)=>this.props.setLego(this.state.items[this.state.counter])} >test</button>
             </div>
+
             <Modal
               style={this.style}
               isOpen={this.state.isModalOpen}
@@ -120,7 +112,6 @@ class Lego extends React.Component{
             </Modal>
           </div>
 
-        </Swipeable>
 
      )
    }

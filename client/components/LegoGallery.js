@@ -5,8 +5,6 @@ class LegoGallery extends React.Component{
     constructor(props){
       super(props)
       this.handleClick=this.handleClick.bind(this)
-      this.handleNext=this.handleNext.bind(this)
-      this.handlePrevious=this.handlePrevious.bind(this)
       this.state={
          key:Date.now(),
          items:this.props.legos,
@@ -20,13 +18,12 @@ class LegoGallery extends React.Component{
           counter:index
       })
     }
-    handlePrevious(e){this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
-    handleNext(e){this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})}
+
 
     render(){
       const thumbs=this.state.items.map((item,index)=>{
         return(
-            <div key={index+} className='thumb' >
+            <div key={Math.random()} className='thumb' >
                <img id={`thumb-${index+1}`} onClick={this.handleClick} style={{height:'75px',width:'75px'}} src={this.state.items[index]} />
             </div>
         )
