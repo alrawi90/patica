@@ -373,7 +373,7 @@ class App extends React.Component {
                }
                 {this.props.mode=="viewer" ?
                 (<div className="item"  >
-                       <a className="white button patica-bg-color"
+                       <a  className="white button patica-bg-color"
                           onClick={this.copy}  >
                           <i className="fa fa-copy white"></i> Copy Role
                        </a>

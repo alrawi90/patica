@@ -14,7 +14,7 @@ class LegoGallery extends React.Component{
     handleClick(e){
 
       let index=e.target.id.split('-')[1] -1
-      if (this.props.mode!="viewer" )
+     // if (this.props.mode!="viewer" )
         this.props.pickedLego(index);
         this.setState({
             counter:index
