@@ -12,11 +12,13 @@ class LegoGallery extends React.Component{
               }
     }
     handleClick(e){
+
       let index=e.target.id.split('-')[1] -1
-      this.props.pickedLego(index);
-      this.setState({
-          counter:index
-      })
+      if (this.props.mode!="viewer" )
+        this.props.pickedLego(index);
+        this.setState({
+            counter:index
+        })
     }
 
 

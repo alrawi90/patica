@@ -61,6 +61,7 @@ class RoleLabel extends React.Component {
         <div className="item-role-details" style={{fontSize: 28,fontWeight:'400px',fontFamily:'Montserrat',textTransform: 'uppercase',color:'#556d7e'}}>
           ROLE:
           <InlineEdit
+              
               validate={this.customValidateText}
               activeClassName="editing"
               text={`${this.props.roleName}`}
@@ -82,7 +83,7 @@ class RoleLabel extends React.Component {
               <textarea
                  style={{border:'none',borderSize:'0px',width:'50em',height:'5em',resize:'none',
                        readOnly:false,fontSize:'10px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}} 
-                 onFocus={this.toggleShow}
+                 onFocus={this.props.mode!="viewer" ? (e)=>e.target.select() : (e)=>e.target.blur()}
                  onKeyUp={this.onEnter}
                  onBlur={this.DescriptionChanged}
                  placeholder='Role Description'

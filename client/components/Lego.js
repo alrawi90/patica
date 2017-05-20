@@ -62,11 +62,15 @@ class Lego extends React.Component{
    componentDidUpdate(p,s){s.counter!==this.state.counter ? this.props.setLego(this.state.items[this.state.counter]): null}
    handleClick(e){this.props.pickedIcon(e.target.src)}
    handlePrevious(e){
+    if (this.props.mode!="viewer" )
+
      this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})
 
    }
    
    handleNext(e){
+    if (this.props.mode!="viewer" )
+
      this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})
 
   }
@@ -107,7 +111,7 @@ class Lego extends React.Component{
               onRequestClose={() => this.closeModal()}
               contentLabel="Lego Gallery"
               >
-                 <LegoGallery pickedLego={this.pick} legos={this.state.items}/>
+                 <LegoGallery mode={this.props.mode} pickedLego={this.pick} legos={this.state.items}/>
             </Modal>
           </div>
 

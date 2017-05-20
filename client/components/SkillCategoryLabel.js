@@ -156,7 +156,7 @@ class SkillCategoryLabel extends React.Component {
        this.props.activeSort ? dir='left': null
        let redLineIfDisabled=skill.disabled ? 'block': 'none'
        //let comma= index!=(this.props.skills.length-1) ? ',' : '' 
-      return(
+       return(
 
         <div  style={{width:'4em'}} key={key} >
          <span style={{ 
@@ -174,7 +174,7 @@ class SkillCategoryLabel extends React.Component {
                color:skill.disabled? '#8e423b' : '#595959',
             textOverflow: 'ellipsis',textAlign:`center`}}
             
-            onFocus={(! this.props.activeSort) ? (e)=>e.target.select() : (e)=>e.target.blur()}
+            onFocus={(! this.props.activeSort && this.props.mode!="viewer" ) ? (e)=>e.target.select() : (e)=>e.target.blur()}
             onBlur={(! this.props.activeSort) ? (e)=>this.syncSkills(e) : null} 
             defaultValue={skill.title} />
         </div>
@@ -195,7 +195,7 @@ class SkillCategoryLabel extends React.Component {
                          marginTop: '0px',
                          fontWeight: '400px',
                          textOverflow: 'ellipsis'}} 
-                       onFocus={(e)=>e.target.select()}
+                       onFocus={this.props.mode!="viewer" ? (e)=>e.target.select() : (e)=>e.target.blur()}
                        onKeyUp={this.onEnter}
                        onBlur={this.syncCategoryName}
                        placeholder='Category'

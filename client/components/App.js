@@ -288,7 +288,7 @@ class App extends React.Component {
         return(
              
               <div  className="box"  key={index} >
-              {!this.props.mode=="viewer" ? 
+              {this.props.mode!="viewer" ? 
                 (<div style={{textAlign:`${dir}`}} >
                     {dir=='left' ? [removeBtn,showAvdancedBnt] : [showAvdancedBnt,removeBtn]  }
                 </div>) :(null)
@@ -364,7 +364,7 @@ class App extends React.Component {
               </div>
               
               <div className='row' style={{justifyContent:'space-around'}}>
-                {!this.props.mode=="viewer" ?    
+                {this.props.mode!="viewer" ?    
                     (<div className="item" >
                        <a onClick={this.create} className='white button patica-bg-color' >
                          <i className="fa fa-plus-square white"></i> Create New Role
@@ -379,8 +379,8 @@ class App extends React.Component {
                        </a>
                 </div>
                 ) : (null)}
-
-                {!this.props.mode=="viewer" ?
+                
+                {this.props.mode!="viewer" ?
                 (<div className="item" >
                        <a className="white button patica-bg-color"
                           onClick={(e)=>this.handleClick(e)} >
@@ -389,7 +389,7 @@ class App extends React.Component {
                 </div>) : (null)
                 }
 
-                {!this.props.mode=="viewer" ?  
+                {this.props.mode!="viewer" ?  
                 (<div className='' key={Date.now()} style={{position:'relative'}}>
                         <a onClick={this.addNewCategory} className="button white patica-bg-color"  >
                           <i className="fa fa-plus-circle white"></i> Add New Category
@@ -409,7 +409,7 @@ class App extends React.Component {
              <div className="col-center" >
 
                 <div className="item" >
-                  <Lego setLego={this.setLego} currentLego={this.state.lego}/>
+                  <Lego mode={this.props.mode} setLego={this.setLego} currentLego={this.state.lego}/>
                 </div>
 
             </div>
