@@ -182,22 +182,26 @@ After following this skill path, you should be able to:
               <span style={{position:'absolute',color:'red',display:`${redLineIfDisabled}`}} >{'----------------'}</span>
               <li style={{color:`${greenIfSelected}`,listStylePosition: 'inside'}}>{element}</li> 
             </div>
+
             <div style={{marginTop:'0px'}}> 
+            {this.props.mode!="viewer" ? (
               <button disabled={item[0].disabled}
                 className={!item[0].disabled ? `button patica-bg-color` : `button-inactive`}
                 style={{display: 'inline-block',padding:'8px 5px',border:'none'}} 
                 id={`Editkill-${index+1}`} 
                 onClick={this.startEditMode} >
                 <i id={`fa_EditSkill-${index+1}`} className="fa fa-edit white"></i>
-              </button>
-
+              </button>                   ) : (null)
+            } 
+            {this.props.mode!="viewer" ? (
               <a 
                 className="button patica-bg-color"
                 style={{display: 'inline-block'  ,margin:'0px 3px'}} 
                 id={`Removeskill-${index+1}`} 
                 onClick={(e)=>this.removeSkill(e)} >
                 <i id={`fa_removeSkill-${index+1}`} className="fa fa-remove white"></i>
-              </a>
+              </a>                        ) : (null)
+            }
               <a 
                 className="button patica-bg-color"
                 style={{display: 'inline-block'  ,margin:'0px 3px'}} 
@@ -259,10 +263,12 @@ After following this skill path, you should be able to:
                            Skills:
                           </label>
                             {outcome}
-                          <a className="button patica-bg-color white"
-                            onClick={(e) =>this.addSkillField(e)} >
-                            <i className="fa fa-plus white"></i>Add New Skill
-                          </a>
+                          {this.props.mode!="viewer" ? (  
+                            <a className="button patica-bg-color white"
+                              onClick={(e) =>this.addSkillField(e)} >
+                              <i className="fa fa-plus white"></i>Add New Skill
+                            </a> ) : (null)
+                          }  
                       </div>
               </div>
     
@@ -274,14 +280,15 @@ After following this skill path, you should be able to:
                       </div>
                       
                       <div>
+                      {this.props.mode!="viewer" ? (
                           <a 
                             className="button " ref="descriptionBtn"
                             style={{display: 'inline-block',margin:'0px 3px',backgroundColor:'#fff',float:'right'}} 
                             
                             onClick={this.startEditMode} >
                             <i  ref="descriptionBtnFa" className="fa fa-edit " style={{color:'green'}}></i>
-                          </a>
-
+                          </a> ) :(null)
+                      }
                           <textarea ref="description" readOnly
                              style={{border:'none',borderSize:'0px',width:'48em',height:'30em',resize:'none',
                                    readOnly:false,fontSize:'10px',fontWeight:'bold',

@@ -56,8 +56,12 @@ class SkillCategoryLabel extends React.Component {
      this.setState({ isModalOpen: false })
      //this.updateCategory()
   }
-  handleClick(e){this.openModal(e)}
-
+  handleClick(e){
+    if(this.props.mode=="viewer")
+      { e.target.id="hex-"+this.props.id;//we need this line to meet App.showAvancedSkillCategory() needs.
+        this.props.showAvancedSkillCategory(e) }
+    else{this.openModal(e)}
+  }
   toggleShow(e){
    // e.stopPropagation()
     let input =e.target.parentNode.childNodes[0]

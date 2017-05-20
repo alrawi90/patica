@@ -98,7 +98,6 @@ class Lego extends React.Component{
             </div  >
             <div className='lego-down'>
               <Trapezoid key={Math.random()} className='down-trapezoid' size={3} points="300,150 0,150 75,300 225,300" click={this.handlePrevious} />
-            <button onClick={(e)=>this.props.setLego(this.state.items[this.state.counter])} >test</button>
             </div>
 
             <Modal
