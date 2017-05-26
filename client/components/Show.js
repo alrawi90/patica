@@ -24,7 +24,9 @@ class Show extends React.Component {
     }
   render(){
     return(
-         <App fork={(e)=>this.fork(e)} roleId={this.props.roleId} mode={this.state.mode}/>
+         <App fork={(e)=>this.fork(e)} roleId={this.props.roleId} mode={this.state.mode}  categories={[]}
+         RelatedRoles={['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
+       'Product Marketing Manager']}/>
       )
   }  
 

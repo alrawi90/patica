@@ -27,13 +27,12 @@ class App extends React.Component {
       isModalOpen:false,isOk:false,isModalErrorOpen:false,
       roleId:props.roleId,//show be a prop (set from the router)
       error:'' ,
-      categories:[],
+      categories:this.props.categories,
       roleName:'',lego:'',description:'',
       keywords: [],// each element is an object of  {id:1,text:'keyword-1'}
       suggestions:["Banana", "Mango", "Pear", "Apricot"],
       key:Date.now(),
-      RelatedRoles:['Product Owner (Scrum)','Head of Product ', 'Director of Product' , 'Product Manager' ,
-       'Product Marketing Manager'],
+      RelatedRoles:props.RelatedRoles,
 
     }
     this.setRoleName=this.setRoleName.bind(this)
@@ -54,7 +53,9 @@ class App extends React.Component {
     this.onSortEnd=this.onSortEnd.bind(this)
   }
   componentWillMount(){
-      let app=this;
+    let app=this;
+    if(this.props.mode !="creator")
+
       console.log('reading from database ...')
       fetch('http://patica-role.mertdogar.com/role/'+this.state.roleId
           ).then(function(response) {
@@ -374,15 +375,19 @@ class App extends React.Component {
               />
               <div className='row' style={{justifyContent:'center',marginBottom:'15px',
                     cursor: 'auto',fontSize:'17px',fontWeight:'300px',
-                    }}>Related Roles:
-                  {this.state.RelatedRoles.map((role,index)=>{
+                    }}>{this.props.mode=="creator" ? null :"Related Roles:"}
+                {
+                  this.state.RelatedRoles!==undefined ?
+                  
+                    this.state.RelatedRoles.map((role,index)=>{
                     return (
                       <span key={index} >
                           <a style={{textDecoration:'none',cursor: 'auto',fontSize:'17px',color:'#2a9639',
                                       fontWeight:'300px'}}
                            href='#'>{role}</a>{index!=(this.state.RelatedRoles.length-1) ? ' - ' : '' }
                       </span>)
-                  })}
+                  }) : null
+                }
               </div>
               
               <div className='row' style={{justifyContent:'space-around'}}>
