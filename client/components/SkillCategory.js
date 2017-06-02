@@ -79,7 +79,8 @@ After following this skill path, you should be able to:
     if(e.target==this.refs.descriptionBtn   || e.target==this.refs.descriptionBtnFa){
        // alert('ok');
         this.refs.description.readOnly = false;
-        this.refs.description.focus();this.refs.description.select();
+        this.refs.description.focus();
+        this.refs.description.select();
         this.refs.description.style.backgroundColor="white";
         this.refs.description.style.color="blue";
         }
@@ -111,7 +112,7 @@ After following this skill path, you should be able to:
   
   }
   displayCurrentSkill(e,index){
-
+    //alert(index)
     //e.target.style.color='green'
     //e.target.parentNode.id
     this.setState({
@@ -150,7 +151,7 @@ After following this skill path, you should be able to:
       if(this.state.SkillBoxes[index][1].isEditMode){
         element=(                
           <input 
-                  style={{border:'none',borderSize:'0px',display: 'inline-block',
+                  style={{border:'none',borderSize:'0px',display: 'inline-block',width:'190px',
                   readOnly:false,fontSize:'14px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}}  
                   onBlur={(e)=>this.finishEditMode(e)}
                   defaultValue={item[0].title} 
@@ -176,7 +177,7 @@ After following this skill path, you should be able to:
       }
       return(
         
-        <span key={key} onClick={(e)=> e.target.blur()} className='row'
+        <div key={key} onClick={(e)=> e.target.blur()} className='row'
           style={{backgroundColor:'',whiteSpace:'wrap'}} >
             <div style={{padding: '0px'}}>
               <span style={{position:'absolute',color:'red',display:`${redLineIfDisabled}`}} >{'----------------'}</span>
@@ -210,7 +211,7 @@ After following this skill path, you should be able to:
                 <i className={`fa ${btnIcon} white`} id={`fa_skillStatus-${index+1}`} ></i>
               </a>
             </div>
-        </span>
+        </div>
       )
     })
 
@@ -258,7 +259,7 @@ After following this skill path, you should be able to:
                       </div>
                   </div>  
     
-                  <div className='' >
+                  <div className='' style={{backgroundColor:''}} >
                           <label>
                            Skills:
                           </label>
