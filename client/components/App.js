@@ -394,7 +394,7 @@ class App extends React.Component {
                 {this.props.mode!="viewer" ?    
                     (<div className="item" >
                        <a onClick={this.create} className='white button patica-bg-color' >
-                         <i className="fa fa-plus-square white"></i> Create New Role
+                         <i className="fa fa-plus-square white"></i> Save Role
                        </a>
                     </div>) : (null)
                }
