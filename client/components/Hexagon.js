@@ -26,7 +26,7 @@ class Hexagon extends React.Component {
           version="1.1" width={this.props.size+'em'} height={this.props.size+'em'}
           xmlnsXlink="http://www.w3.org/1999/xlink">
           <filter id="blur-filter" x="-2" y="-2" width="200" height="200">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="0.7" />
+                <feGaussianBlur in="SourceGraphic" stdDeviation="0.0" />
           </filter>
 
           <defs key={this.state.key} >
