@@ -104,10 +104,10 @@ svg text {
   transform-origin: 50% 50%;
   -webkit-transform-origin: 50% 50%;
 }
-#glow { 
+/*#glow { 
   stroke: rgba(0, 0, 0, 0.1);
   filter: url(#blur-filter);
-}
+}*/
 /*#glow:hover:{
     transform: scale(0.9);
   -webkit-transform: scale(0.9);
