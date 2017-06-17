@@ -5,12 +5,16 @@ const New = require('./New');
  class Main extends React.Component {
 	  constructor(props) {
     super(props)
+    let lang=(props.language =="En" || props.language=="Ar") ? props.language : "En"
     this.state={
-       roles:[] , displayPage:"home",selectedRoleId:""
+       roles:[] , displayPage:"home",selectedRoleId:"",language=lang
 
     }
      this.renderRole=this.renderRole.bind(this)
-  
+     this.swichLanguage=this.swichLanguage.bind(this)
+  }
+  componentWillReceiveProps(NewProps){
+    NewProps.language!=this.state.language ? this.state.language=NewProps.language : null
   }
   componentWillMount(){
       let app=this;
@@ -32,6 +36,12 @@ const New = require('./New');
       })  .catch(function(error) {
     console.log(error);
   });
+
+  }
+  swichLanguage(e){
+    let language=this.state.language
+    language=="Ar"? language="En" : language=="Ar"
+    this.setState({language})
 
   }
   renderRole(e){
