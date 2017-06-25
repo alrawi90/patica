@@ -21,6 +21,11 @@
     display: table;;
 }
 .justify-vertical{margin:50% 1%;}*/
+.wrapper{
+
+  width:100%;
+  margin: 1% auto;
+}
 [class*="col-"] {
     /*float: left;*/
     padding: 1px;

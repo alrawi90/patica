@@ -167,8 +167,10 @@ class SkillCategoryLabel extends React.Component {
              textAlign:`center`}} >&mdash;&mdash;&mdash;&mdash;</span>
 
           <input   id={`skill-${index+1}`} disabled={skill.disabled}
+            
             key={index}  
-            placeholder='skill' 
+            dir={this.props.language=="Ar" ? "rtl" : "ltr"} 
+            placeholder={this.props.language=="Ar" ? "مهارة" : "skill"} 
             onKeyUp={this.onEnter}
             style={{border:'none',borderSize:'0px',readOnly:true,margin:'auto',width:`${this.state.currentWidth}`,
                color:skill.disabled? '#8e423b' : '#595959',
@@ -198,7 +200,9 @@ class SkillCategoryLabel extends React.Component {
                        onFocus={this.props.mode!="viewer" ? (e)=>e.target.select() : (e)=>e.target.blur()}
                        onKeyUp={this.onEnter}
                        onBlur={this.syncCategoryName}
-                       placeholder='Category'
+                       dir={this.props.language=="Ar" ? "rtl" : "ltr"} 
+                       placeholder={this.props.language=="Ar" ? "صنف" : "Category"} 
+                       
                        key={Math.random()}
                        className="item-category-name" 
                        defaultValue={this.props.categoryName} />
@@ -252,7 +256,8 @@ class SkillCategoryLabel extends React.Component {
                        onFocus={this.toggleShow}
                        onKeyUp={this.onEnter}
                        onBlur={this.syncCategoryName}
-                       placeholder='Category'
+                       dir={this.props.language=="Ar" ? "rtl" : "ltr"} 
+                       placeholder={this.props.language=="Ar" ? "صنف" : "Category"} 
                        key={Math.random()}
                        className="item-category-name" 
                        defaultValue={this.props.categoryName} />

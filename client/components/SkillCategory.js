@@ -150,7 +150,9 @@ After following this skill path, you should be able to:
       let isDisabled=item[0].disabled ? 'readOnly' : ''
       if(this.state.SkillBoxes[index][1].isEditMode){
         element=(                
-          <input 
+          <input              
+                  dir={this.props.language=="Ar" ? "rtl" : "ltr"} 
+                  placeholder={this.props.language=="Ar" ? "مهارة" : "skill"}  
                   style={{border:'none',borderSize:'0px',display: 'inline-block',width:'190px',
                   readOnly:false,fontSize:'14px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}}  
                   onBlur={(e)=>this.finishEditMode(e)}
@@ -166,7 +168,9 @@ After following this skill path, you should be able to:
                  />)
       }else{
         element=(                
-          <input   readOnly href="#"  onClick={(e)=>this.displayCurrentSkill(e,index)}
+          <input   
+
+                  readOnly href="#"  onClick={(e)=>this.displayCurrentSkill(e,index)}
                   style={{border:'none',borderSize:'0px',width:'190px',whiteSpace: 'no-wrap',
                   textDecoration:'none',color:`${greenIfSelected}`,
                   fontSize:'14px',fontWeight:'bold',overflow:'hidden'}}  
@@ -245,7 +249,10 @@ After following this skill path, you should be able to:
                     <Hexagon size={5} className="item-hexagon" isActive={false} key={Math.random()}  setIcon={this.props.iconUrl}  />
                       <div style={{margin:'6% 0%'}}> 
                         <label className="upcase" style={{fontSize:'16px',fontWeight:'bold'}}>
-                          <input size='15' 
+                          <input
+                            
+                            placeholder={this.props.language=="Ar" ? "صنف" : "Category"}  
+                            size='15' 
                             className="upcase"
                             style={{border:'none',borderSize:'0px',whiteSpace: 'no-wrap',
                                     fontSize:'16px',fontWeight:'bold',overflow:'hidden'}} 
@@ -259,15 +266,17 @@ After following this skill path, you should be able to:
                       </div>
                   </div>  
     
-                  <div className='' style={{backgroundColor:''}} >
+                  <div className='' style={{textAlign:'center'}} >
                           <label>
-                           Skills:
+                  {this.props.language=="Ar" ? "المهارات" : "skills"} 
                           </label>
                             {outcome}
                           {this.props.mode!="viewer" ? (  
                             <a className="button patica-bg-color white"
                               onClick={(e) =>this.addSkillField(e)} >
-                              <i className="fa fa-plus white"></i>Add New Skill
+                              <i className="fa fa-plus white"></i>
+
+                  {this.props.language=="Ar" ? "اضافة مهارة جديدة" : "Add New Skill"} 
                             </a> ) : (null)
                           }  
                       </div>
@@ -297,7 +306,9 @@ After following this skill path, you should be able to:
                              onFocus={this.toggleShow}
                              onKeyUp={this.onEnter}
                              onBlur={(e)=>this.DescriptionChanged(e)}
-                             placeholder='Skill Description'
+                             
+                             dir={this.props.language=="Ar" ? "rtl" : "ltr"} 
+                             placeholder={this.props.language=="Ar" ? "وصف المهارة" : "Skill Description"} 
                              key={Math.random()} id={`skill_description-${(this.state.skillSelected)+1}`}
                              cols="42" rows="5" defaultValue={this.state.description}
                              className="patica-bg-color white"  >

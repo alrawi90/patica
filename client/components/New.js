@@ -35,7 +35,7 @@ class New extends React.Component {
 
   render(){
     return(
-         <App categories={this.state.categories} mode={this.state.mode}/>
+         <App language={this.props.language} categories={this.state.categories} mode={this.state.mode}/>
       )
   }  
 

@@ -1,4 +1,4 @@
-
+import {Route } from 'react-router-dom'
 const React = require('react');
 const SkillCategoryLabel = require('./SkillCategoryLabel');
 const RoleLabel = require('./RoleLabel');
@@ -234,6 +234,15 @@ class App extends React.Component {
   closeErrorModal(){this.setState({ isModalErrorOpen: false })}
 
   handleClick(e){this.openModal(e)}
+  handleNewRoute(){
+    // let { pageId } = this.props.data
+     let language = this.props.language
+     this.context.router.push({    // use push
+       pathname: `/`,
+      // query: { language }
+     })
+  }
+
   render() {
   
     const DragHandle = SortableHandle(() => 
@@ -265,6 +274,7 @@ class App extends React.Component {
 
               <div  className="box" style={{border:'solid 1px #57a300 ',padding:'5px',backgroundColor:'#fff'}} key={index} >                  
                     <SkillCategoryLabel
+                      language={this.props.language}
                       activeSort={true}
                       key={index}
                       id={index+1}
@@ -315,6 +325,7 @@ class App extends React.Component {
                 </div>) :(null)
                 } 
                 <SkillCategory 
+                  language={this.props.language}
                   mode={this.props.mode}
                   id={index+1} 
                   ref={'sc-'+(index+1)} 
@@ -326,6 +337,7 @@ class App extends React.Component {
                   categoryName={category.name}
                 />
                 <SkillCategoryLabel
+                  language={this.props.language}
                   mode={this.props.mode}
                   showAvancedSkillCategory={this.showAvancedSkillCategory}
                   activeSort={false}
@@ -340,12 +352,14 @@ class App extends React.Component {
                 />
               </div>
         ) })
-
+        let related= this.props.language=="Ar" ? "ادوار ذات علاقة:" : "Related Roles:"
     return (
       
       <div className='col' >
-      <button onClick={(e)=>window.location.href = '/'} className="white button-inactive patica-bg-color" > Home </button>
-
+<a className="white button-inactive patica-bg-color" style={{textAlign:'center'}} href={`/?language=${this.props.language}`} >
+{this.props.language=="Ar" ? "الصفحة الرئيسية" : "Home"}
+</a>
+      
       <Modal
                   style={{}}
                   isOpen={this.state.isModalOpen}
@@ -363,6 +377,7 @@ class App extends React.Component {
 
            <div className='' >
               <RoleLabel 
+                 language={this.props.language} 
                  mode={this.props.mode}
                  setRoleName={this.setRoleName} 
                  setRoleDescription={this.setRoleDescription}
@@ -373,15 +388,19 @@ class App extends React.Component {
                  description={this.state.description} 
                  suggestions={this.state.suggestions}
               />
-              <div className='row' style={{justifyContent:'center',marginBottom:'15px',
+              <div  dir={this.props.language=="Ar" ? "rtl" : "ltr"}
+                    className='row' style={{justifyContent:'center',marginBottom:'15px',
                     cursor: 'auto',fontSize:'17px',fontWeight:'300px',
-                    }}>{this.props.mode=="creator" ? null :"Related Roles:"}
+                    }}>
+                     <label >
+                    {this.props.mode=="creator" ? null : related}
+                    </label>
                 {
                   this.state.RelatedRoles!==undefined ?
                   
                     this.state.RelatedRoles.map((role,index)=>{
                     return (
-                      <span key={index} >
+                      <span dir="rtl" key={index} >
                           <a style={{textDecoration:'none',cursor: 'auto',fontSize:'17px',color:'#2a9639',
                                       fontWeight:'300px'}}
                            href='#'>{role}</a>{index!=(this.state.RelatedRoles.length-1) ? ' - ' : '' }
@@ -394,7 +413,9 @@ class App extends React.Component {
                 {this.props.mode!="viewer" ?    
                     (<div className="item" >
                        <a onClick={this.create} className='white button patica-bg-color' >
-                         <i className="fa fa-plus-square white"></i> Save Role
+                         <i className="fa fa-plus-square white"></i> 
+                         {this.props.language=="Ar" ? "حفظ الدور الوظيفي" : "Save Role"}
+                         
                        </a>
                     </div>) : (null)
                }
@@ -402,7 +423,8 @@ class App extends React.Component {
                 (<div className="item"  >
                        <a   className="white button patica-bg-color"
                           onClick={(e)=>this.props.fork(e)}  >
-                          <i className="fa fa-copy white"></i> Copy Role
+                          <i className="fa fa-copy white"></i> 
+                          {this.props.language=="Ar" ? "نسخ الدور الوظيفي" : "Copy Role"}
                        </a>
                 </div>
                 ) : (null)}
@@ -411,7 +433,8 @@ class App extends React.Component {
                 (<div className="item" >
                        <a className="white button patica-bg-color"
                           onClick={(e)=>this.handleClick(e)} >
-                          <i className="fa fa-sort-amount-asc white"></i> Sort Categories
+                          <i className="fa fa-sort-amount-asc white"></i> 
+                          {this.props.language=="Ar" ? "اعادة ترتيب الاصناف" : "Sort Categories"}
                        </a>
                 </div>) : (null)
                 }
@@ -419,7 +442,9 @@ class App extends React.Component {
                 {this.props.mode!="viewer" ?  
                 (<div className='' key={Date.now()} style={{position:'relative'}}>
                         <a onClick={this.addNewCategory} className="button white patica-bg-color"  >
-                          <i className="fa fa-plus-circle white"></i> Add New Category
+                          <i className="fa fa-plus-circle white"></i> 
+                        {this.props.language=="Ar" ? "اضافة صنف جديد" : "Add New Category"}
+
                         </a>
                  </div>):(null) }
 

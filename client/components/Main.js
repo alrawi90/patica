@@ -5,16 +5,17 @@ const New = require('./New');
  class Main extends React.Component {
 	  constructor(props) {
     super(props)
-    let lang=(props.language =="En" || props.language=="Ar") ? props.language : "En"
+    console.log(props)
+    let lang=(props.location.search.split("language=")[1] =="En" || props.location.search.split("language=")[1]=="Ar") ?  props.location.search.split("language=")[1] : "En"
     this.state={
-       roles:[] , displayPage:"home",selectedRoleId:"",language=lang
+       roles:[] , displayPage:"home",selectedRoleId:"",language:lang
 
     }
      this.renderRole=this.renderRole.bind(this)
      this.swichLanguage=this.swichLanguage.bind(this)
   }
   componentWillReceiveProps(NewProps){
-    NewProps.language!=this.state.language ? this.state.language=NewProps.language : null
+    NewProps.location.search.split("language=")[1]!=this.state.language ? this.state.language=NewProps.location.search.split("language=")[1] : null
   }
   componentWillMount(){
       let app=this;
@@ -39,8 +40,11 @@ const New = require('./New');
 
   }
   swichLanguage(e){
+    
+    e.preventDefault()
+    e.stopPropagation()
     let language=this.state.language
-    language=="Ar"? language="En" : language=="Ar"
+    language=="En" ? language="Ar" : language="En"
     this.setState({language})
 
   }
@@ -54,39 +58,54 @@ const New = require('./New');
   }
   render() {
   	let links=this.state.roles.map((item,index)=>{
-  		return(<li style={{textAlign:'right'}} key={index}><label >{item.name}</label> <button id={item.id} onClick={this.renderRole}>View</button></li>)
+  		return(<li style={{textAlign:'right'}} key={index}><label >{item.name}</label> <button id={item.id} onClick={this.renderRole}>
+        {this.state.language=="En" ? "View" : "معاينة"}
+        </button></li>)
   	   }
   		)
     
     if(this.state.displayPage=="home")
        return (
-        <div className='main-container' style={{width:'250%'}} >
-             <div className="col-left" >
-                    <h1> All Roles</h1><br /> 
-                    <ul>{links}</ul>
-             </div>
-             <div className="col-center" >
+        <div className='main-container wrapper' style={{width:'',backgroundColor:''}} >
+          <div className="row_" style={{textAlign:'center'}}>
+              <div style={{marginTop:'1.8em'}} >
+                    <a onClick={(e)=>this.renderBlankRole()} className='white button patica-bg-color' style={{margin:'0 0.5em'}} >
+                         <i className="fa fa-plus-square white"></i> {this.state.language=="En" ? "New Role" : "دور وظيفي جديد"}
+                    </a>
 
+                    <a onClick={this.swichLanguage} className='white button patica-bg-color' style={{margin:'0 0.1em'}}  >
+                         <i className="fa fa-language white"></i> {this.state.language=="Ar" ? "English" : "عربي"}
+                    </a>
+                </div>
+          </div>   
+          <div className="row_">    
+             <div className="col-left" style={{minWidth:'30%'}} >
+                 
                 <div className="item" style={{clear:'both',display:'inline-flex'}}>
                 </div>
-
-            </div>
-            <div className="col-right" >
-                <div style={{marginTop:'1.8em'}} >
-                    <a onClick={(e)=>this.renderBlankRole()} className='white button patica-bg-color' >
-                         <i className="fa fa-plus-square white"></i> New Role
-                    </a>
-                </div>    
              </div>
+             <div className="col-center" style={{minWidth:"50%",backgroundColor:""}} >
 
+                <div 
+                  
+                  className="col-center" >
+                    <h1 dir= {this.state.language=="En" ? "ltr": "rtl"}>{this.state.language=="En" ? "All Roles" : "كل الادوار الوظيفية"}</h1><br /> 
+                    <ul>{links}</ul>
+                </div>
+
+                </div>
+            <div className="col-right" style={{width:"20%",backgroundColor:""}} >
+   
+             </div>
+</div>
 
         </div>
              )
     else if(this.state.displayPage=="show") 
     	return(
-    		<div><Show roleId={this.state.selectedRoleId} /></div>
+    		<div><Show language={this.state.language} roleId={this.state.selectedRoleId} /></div>
     		)
-    else return(<div><New /></div>)	
+    else return(<div><New language={this.state.language} /></div>)	
   }
 }
 module.exports = Main

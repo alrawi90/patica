@@ -59,9 +59,10 @@ class RoleLabel extends React.Component {
 
       <div className="item-role-container">
         <div className="item-role-details" style={{fontSize: 28,fontWeight:'400px',fontFamily:'Montserrat',textTransform: 'uppercase',color:'#556d7e'}}>
-          ROLE:
+          <label dir={this.props.language=="Ar" ? "rtl" : "ltr"}>{this.props.language=="Ar" ? "الدور الوظيفي:" : "ROLE:"}
           <input
-              placeholder="Role Title .............."
+              dir={this.props.language=="Ar" ? "rtl" : "ltr"}
+              placeholder={this.props.language=="Ar" ? "عنوان..............." : "Title .............."}
               value={`${this.props.roleName}`}
               onChange={this.RoleNameChanged}
               onKeyUp={this.onEnter}
@@ -77,16 +78,19 @@ class RoleLabel extends React.Component {
                 border: 0
               }}
             />
+            </label>
             </div>
           <div>
 
               <textarea
+                 dir={this.props.language=="Ar" ? "rtl" : "ltr"}
                  style={{border:'none',borderSize:'0px',width:'50em',height:'5em',resize:'none',
                        readOnly:false,fontSize:'10px',fontWeight:'bold',textOverflow: 'ellipsis',overflow:'hidden'}} 
                  onFocus={this.props.mode!="viewer" ? (e)=>e.target.select() : (e)=>e.target.blur()}
                  onKeyUp={this.onEnter}
                  onBlur={this.DescriptionChanged}
-                 placeholder='Role Description ................................................................'
+                 placeholder={this.props.language=="Ar" ? "وصف الدور الوظيفي ................................................................" : "Role Description ................................................................"}
+                 
                  key={Math.random()}
                  cols="42" rows="5" defaultValue={this.props.description}
                  className="item-category-name"  ></textarea>
@@ -95,7 +99,8 @@ class RoleLabel extends React.Component {
                      style={{margin:'2px',outline:'none'}}          
                      key={this.key}
                      tags={keywords}
-                     placeholder='add keyword'
+                     dir={this.props.language=="Ar" ? "rtl" : "ltr"} 
+                     placeholder={this.props.language=="Ar" ? "اضافة كلمة مفتاحية" : "add keyword" }
                      suggestions={suggestions}
                      handleDelete={this.handleDelete}
                      handleAddition={this.handleAddition}

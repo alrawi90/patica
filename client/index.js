@@ -11,7 +11,8 @@ ReactDOM.render((
 	 </BrowserRouter>
 
      <BrowserRouter>
-          <Route path="/" component={Main}/>
+          
+          <Route path='/' render={routeProps => <Main {...routeProps} />} />
 
      </BrowserRouter>
      </x>
@@ -21,7 +22,7 @@ ReactDOM.render((
 
 // ReactDOM.render((
 //   <Router history={hashHistory}>
-//     <Route path="/" component={Main}/>
+//     <Route path="/:language" component={Main}/>
 //   </Router>
 // ), document.getElementById('main'))
 
