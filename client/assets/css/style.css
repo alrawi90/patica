@@ -3,6 +3,7 @@ html {
   font-family: "Montserrat","Open Sans", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif,'Inconsolata';
 
 }
+.centered{text-align: center;}
 * {
     box-sizing: border-box;   color: #38417a;
 }
