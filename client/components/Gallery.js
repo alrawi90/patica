@@ -13,7 +13,8 @@ class Gallery extends React.Component{
          items:this.props.icons,
          counter:0
               }
-   }
+    }
+
     handleClick(e){
       e.stopPropagation()
       let index=e.target.id.split('-')[1] -1
@@ -22,8 +23,11 @@ class Gallery extends React.Component{
           counter:index
       })
     }
+
     handlePrevious(e){this.state.counter <= 0 ? this.setState({ counter: 0}) :  this.setState({ counter: this.state.counter - 1})}
+    
     handleNext(e){this.state.counter >= this.state.items.length -1 ? this.setState({ counter: this.state.items.length -1}) : this.setState({ counter: this.state.counter + 1})}
+    
     render(){
 
         const thumbs=this.state.items.map((item,index)=>{
@@ -51,6 +55,7 @@ class Gallery extends React.Component{
         )
 
       })
+        
      return(
 
 
