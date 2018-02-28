@@ -8,13 +8,24 @@ const SkillCategory = require('./SkillCategory');
 // import DragSortableList from 'react-drag-sortable'
 import {SortableContainer, SortableElement,arrayMove,SortableHandle} from 'react-sortable-hoc';
 const Modal = require('react-modal')
+const ModalStyle = {
+                        content : {
+                          top                   : '50%',
+                          left                  : '50%',
+                          right                 : 'auto',
+                          bottom                : 'auto',
+                          marginRight           : '-50%',
+                          transform             : 'translate(-50%, -50%)',
+                          width:'20em' ,height:'20em',
+                        }
+                  };
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      isModalOpen:false,isOk:false,
-      roleId:'591e9cf3af97120c70c96624',//show be a prop (set from the router)
+      isModalOpen:false,isOk:false,isModalErrorOpen:false,
+      roleId:props.roleId,//show be a prop (set from the router)
       error:'' ,
       categories:[],
       roleName:'',lego:'',description:'',
@@ -180,7 +191,7 @@ class App extends React.Component {
       )})
       console.log(opts)
       const app=this
-      fetch('http://patica-role.mertdogar.com/role', {
+      fetch('http://patica-role.mertdogar.com/role ', {
        method: 'post',
        headers: {
           'Accept': 'application/json, text/plain, */*',
@@ -190,7 +201,14 @@ class App extends React.Component {
            }).then(function(response) {
              return response.json();
            }).then(function(data) {
-              app.setState({ error: data.error.message });
+              let msg="" ; 
+              if (data.error== undefined)  {window.location.href = '/';}
+              else{
+              if(data.error.message.startsWith("WriteError")){msg="Role name is already exist"}
+              else{msg=data.error.message}  
+              console.log(data.error)
+              app.setState({ error: msg, isModalErrorOpen: true });
+            }
 
      });
   }
@@ -212,6 +230,8 @@ class App extends React.Component {
      this.setState({ isModalOpen: false })
      //this.updateCategory()
   }
+  closeErrorModal(){this.setState({ isModalErrorOpen: false })}
+
   handleClick(e){this.openModal(e)}
   render() {
   
@@ -323,7 +343,8 @@ class App extends React.Component {
     return (
       
       <div className='col' >
-      
+      <button onClick={(e)=>window.location.href = '/'} className="white button-inactive patica-bg-color" > Home </button>
+
       <Modal
                   style={{}}
                   isOpen={this.state.isModalOpen}
@@ -338,6 +359,7 @@ class App extends React.Component {
       </Modal>
 
           <div className='row' style={{justifyContent:'center'}}>
+
            <div className='' >
               <RoleLabel 
                  mode={this.props.mode}
@@ -373,8 +395,8 @@ class App extends React.Component {
                }
                 {this.props.mode=="viewer" ?
                 (<div className="item"  >
-                       <a  className="white button patica-bg-color"
-                          onClick={this.copy}  >
+                       <a   className="white button patica-bg-color"
+                          onClick={(e)=>this.props.fork(e)}  >
                           <i className="fa fa-copy white"></i> Copy Role
                        </a>
                 </div>
@@ -418,11 +440,20 @@ class App extends React.Component {
               {items.map((item,index)=>{if(index % 2 >0) return (item)})}
              </div>
           </div>
+
           <div className='row' style={{justifyContent:'center'}}>
 
-              <div className="item" >
-                 <label style={{color:'red',fontSize:'12px'}}>{this.state.error}</label>
-              </div>
+
+                <Modal
+                  style={ModalStyle}
+                  isOpen={this.state.isModalErrorOpen}
+                  onAfterOpen={this.afterOpenModal}
+                  onRequestClose={() => this.closeErrorModal()}
+                  contentLabel="Error"
+                >
+                <h1>Error</h1><br />
+                <center ><p style={{color:'red'}}>{this.state.error}</p></center>
+                </Modal>
           </div>
 
         </div>

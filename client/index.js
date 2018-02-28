@@ -1,5 +1,41 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/Show.js';
+import { BrowserRouter, Route } from 'react-router-dom'
+import Main from './components/Main.js';import Show from './components/Show.js';
 
-ReactDOM.render(<App />, document.getElementById('main'));
+
+ReactDOM.render((
+	<x>
+	 <BrowserRouter>          
+	   <Route path="/show/:id" component={Show}/>
+	 </BrowserRouter>
+
+     <BrowserRouter>
+          <Route path="/" component={Main}/>
+
+     </BrowserRouter>
+     </x>
+     ),
+     document.getElementById('main')
+);
+
+// ReactDOM.render((
+//   <Router history={hashHistory}>
+//     <Route path="/" component={Main}/>
+//   </Router>
+// ), document.getElementById('main'))
+
+// ReactDOM.render(
+
+// <Router history={hashHistory} >
+// 	<Route path="/" component={Main} > 
+//       <IndexRoute component={Main} ></IndexRoute>
+// 	</Route>
+
+// </Router>
+
+
+// 	, document.getElementById('main'));
+
+
+

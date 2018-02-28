@@ -35,11 +35,11 @@ class RoleLabel extends React.Component {
   }
 
 
-  RoleNameChanged(data) {
+  RoleNameChanged(e) {
     // data = { description: "New validated text comes here" }
     // Update your model from here
-    console.log(data)
-    this.props.setRoleName(data.message.toUpperCase())
+    //console.log(data)
+    this.props.setRoleName(e.target.value.toUpperCase())
 
     //this.setState({RoleName:data.message.toUpperCase()})
 }
@@ -60,13 +60,13 @@ class RoleLabel extends React.Component {
       <div className="item-role-container">
         <div className="item-role-details" style={{fontSize: 28,fontWeight:'400px',fontFamily:'Montserrat',textTransform: 'uppercase',color:'#556d7e'}}>
           ROLE:
-          <InlineEdit
+          <input
               
-              validate={this.customValidateText}
-              activeClassName="editing"
-              text={`${this.props.roleName}`}
-              paramName="message"
-              change={this.RoleNameChanged}
+              value={`${this.props.roleName}`}
+              onChange={this.RoleNameChanged}
+              onKeyUp={this.onEnter}
+              onFocus={this.props.mode=="viewer"? (e)=>e.target.blur() : (e)=>e.target.select()}
+
               style={{
                 minWidth: 300,
                 display: 'inline-block',

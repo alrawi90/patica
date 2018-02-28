@@ -9,13 +9,22 @@ const Modal = require('react-modal')
 
 class Show extends React.Component {
   constructor(props) {
-    super(props)
-  
 
+    super(props)
+       this.state={
+       	mode:"viewer"
+
+  	    }
+
+    }
+    fork(e){
+      this.setState({
+      	mode:"editor"
+      })
     }
   render(){
     return(
-         <App mode='viewer'/>
+         <App fork={(e)=>this.fork(e)} roleId={this.props.roleId} mode={this.state.mode}/>
       )
   }  
 
